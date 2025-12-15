@@ -27,7 +27,7 @@ const TokenSingle = ({ enabled = true, ...props }: Props) => {
                 <div className="text-escher-gray600 dark:text-white text-xs">{formatNumber(Number(props.token.balance.formattedBalance), false, 4)} {props.token.symbol}</div>
             }
             {!enabled &&
-                <div className="absolute inset-0 bg-white bg-opacity-70"></div>
+                <div className="absolute inset-0 bg-white/70"></div>
             }
         </button>
     );

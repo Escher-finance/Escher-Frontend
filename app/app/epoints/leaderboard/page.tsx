@@ -83,7 +83,7 @@ const Page = () => {
                                                 key={key}
                                                 className={clsx(
                                                     "font-semibold text-sm border-t border-escher-dedfff dark:border-escher-darkblue_border",
-                                                    v.rank <= 3 && "bg-escher-electricblue bg-opacity-[0.03]"
+                                                    v.rank <= 3 && "bg-escher-electricblue/3"
                                                 )}
                                             >
                                                 <td className="p-4">{(v.total_points ?? 0) > 0 ? v.rank : "-"}</td>

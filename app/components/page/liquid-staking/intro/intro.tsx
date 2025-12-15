@@ -3,7 +3,6 @@ import { useTheme } from "@/components/providers/themeProvider"
 import { APP_CONFIG } from "@/configs/app"
 import { formatNumber } from "@/lib/utils"
 import { Liquidity, LiquidStaking } from "@/types/chain"
-import React from "react"
 import { LiquidCard } from "./liquid-card"
 
 interface Props {

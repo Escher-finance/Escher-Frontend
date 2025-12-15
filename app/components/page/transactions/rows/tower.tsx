@@ -161,7 +161,7 @@ const ColumnContent = (props: {
         <div className={clsx(
             "col-span-4",
             showTokenB ?
-                "grid grid-cols-[1fr,auto,1fr]" :
+                "grid grid-cols-[1fr_auto_1fr]" :
                 "flex justify-center"
         )}>
             {props.token.a &&

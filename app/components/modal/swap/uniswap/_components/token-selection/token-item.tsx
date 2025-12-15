@@ -28,7 +28,7 @@ const TokenItem = ({ enabled = true, ...props }: Props) => {
                 <div className="text-escher-gray600 dark:text-white text-xs">{formatNumber(Number(props.balance))} {props.symbol}</div>
             }
             {!enabled &&
-                <div className="absolute inset-0 bg-white bg-opacity-70"></div>
+                <div className="absolute inset-0 bg-white/70"></div>
             }
         </button>
     );

@@ -37,7 +37,7 @@ export const LiquidCard = (props: {
 
     const tokenIcon = useMemo(() => {
         return props.themeIsDark ? props.tokenImageDark : props.tokenImage;
-    }, [props.themeIsDark]);
+    }, [props.themeIsDark, props.tokenImage, props.tokenImageDark]);
 
     const BgImage = useMemo(() => {
         if (props.themeIsDark) {
@@ -60,37 +60,7 @@ export const LiquidCard = (props: {
             }
         }
         return <></>;
-    }, [props.themeIsDark]);
-
-    const Defis = () => {
-        switch (props.chain) {
-            case "Babylon":
-                return (
-                    <div className="flex items-center">
-                        <Image alt="" src={"/images/liquid-stake/apps-4.svg"} width={24} height={24} alt="" className="z-[7]" />
-                        <div className="w-6 h-6 -ml-1.5 z-[6] bg-white p-[3px] rounded-full flex items-center justify-center">
-                            <div>
-                                <Image alt="" src={"https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmo.svg"} alt="" />
-                            </div>
-                        </div>
-                    </div>
-                );
-            case "OtherFutureTemplate":
-                return (
-                    <div className="flex items-center">
-                        <Image alt="" src={"/images/liquid-stake/apps-1.svg"} width={24} height={24} alt="" className="z-[8]" />
-                        <Image alt="" src={"/images/liquid-stake/apps-2.svg"} width={24} height={24} alt="" className="-ml-1.5 z-[7]" />
-                        <Image alt="" src={"/images/liquid-stake/apps-3.svg"} width={24} height={24} alt="" className="-ml-1.5 z-[6]" />
-                        <Image alt="" src={"/images/liquid-stake/apps-4.svg"} width={24} height={24} alt="" className="-ml-1.5 z-[5]" />
-                        <Image alt="" src={"/images/liquid-stake/apps-5.svg"} width={24} height={24} alt="" className="-ml-1.5 z-[4]" />
-                        <Image alt="" src={"/images/liquid-stake/apps-6.svg"} width={24} height={24} alt="" className="-ml-1.5 z-[3]" />
-                        <Image alt="" src={"/images/liquid-stake/apps-7.svg"} width={24} height={24} alt="" className="-ml-1.5 z-[2]" />
-                        <Image alt="" src={"/images/liquid-stake/apps-8.svg"} width={24} height={24} alt="" className="-ml-1.5 z-[1]" />
-                    </div>
-                );
-        }
-        return <></>;
-    }
+    }, [props.chain, props.themeIsDark]);
 
     const totalTrade = useMemo(() => {
         return props.detail?.tradeDatas?.reduce((sum, cur) => sum += cur.amount, 0);
@@ -103,7 +73,7 @@ export const LiquidCard = (props: {
                 onClick={props.onNext}
             >
                 {BgImage}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-escher-electricblue rounded-2xl opacity-0 group-hover:opacity-5 transition-all" />
+                <div className="absolute inset-0 bg-linear-to-b from-transparent to-escher-electricblue rounded-2xl opacity-0 group-hover:opacity-5 transition-all" />
 
                 <div className="flex items-center justify-between z-10">
                     <div className="flex items-center gap-3">
@@ -120,7 +90,7 @@ export const LiquidCard = (props: {
                                     <Icon type="BsExclamationCircle" />
                                 </TooltipTrigger>
                                 <TooltipContent
-                                    className="flex flex-col p-6 leading-none bg-white dark:bg-escher-darkblue rounded-2xl text-escher-black dark:text-white max-w-[432px] shadow-md bg-[url('/images/liquid-stake/tooltip-bg.jpg')] dark:bg-none bg-[100%_100%] bg-no-repeat dark:border dark:border-escher-darkblue_4"
+                                    className="flex flex-col p-6 leading-none bg-white dark:bg-escher-darkblue rounded-2xl text-escher-black dark:text-white max-w-[432px] shadow-md bg-[url('/images/liquid-stake/tooltip-bg.jpg')] dark:bg-none bg-position-[100%_100%] bg-no-repeat dark:border dark:border-escher-darkblue_4"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <div className="font-semibold text-base">{props.tooltip.title1}</div>
@@ -144,7 +114,7 @@ export const LiquidCard = (props: {
                 </div>
 
                 <div className="flex flex-col text-xs font-semibold mt-14 z-10">
-                    <div className="self-start grid grid-cols-[1fr,auto,auto] gap-y-[6px] gap-x-3 text-start">
+                    <div className="self-start grid grid-cols-[1fr_auto_auto] gap-y-1.5 gap-x-3 text-start">
                         {props.themeIsDark ?
                             <Image alt="" src="/icons/chart-03-white.svg" width={14} height={14} /> :
                             <Image alt="" src="/icons/chart-03-blue.svg" width={14} height={14} />
@@ -201,9 +171,12 @@ export const LiquidCard = (props: {
                                         </TooltipTrigger>
                                         <TooltipContent className="flex flex-col gap-2 bg-white text-escher-text2 shadow-lg border p-4">
                                             <div className="text-escher-electricblue font-semibold text-xs">Breakdown</div>
-                                            {props.detail?.tradeDatas?.map(v =>
-                                                <div className="flex items-center gap-1 border border-escher-dedfff rounded-full p-1">
-                                                    <Image alt="" src={v.logo} alt="" className="w-4 h-4" />
+                                            {props.detail?.tradeDatas?.map((v, k) =>
+                                                <div
+                                                    key={k}
+                                                    className="flex items-center gap-1 border border-escher-dedfff rounded-full p-1"
+                                                >
+                                                    <Image alt="" src={v.logo} className="w-4 h-4" width={16} height={16} />
                                                     <div className="text-xs text-escher-text2 font-semibold">${formatNumber(v.amount)}</div>
                                                 </div>
                                             )}
@@ -228,14 +201,14 @@ export const LiquidCard = (props: {
                     </div>
 
                     <div className="flex justify-between items-center mt-2">
-                        <div className="bg-escher-dedfff dark:bg-gray-500 dark:bg-opacity-40 rounded-full py-1 pl-1 pr-2 flex gap-1 text-escher-electricblue dark:text-white text-xs font-medium">
+                        <div className="bg-escher-dedfff dark:bg-gray-500/40 rounded-full py-1 pl-1 pr-2 flex gap-1 text-escher-electricblue dark:text-white text-xs font-medium">
                             <Image src={"/images/points/escher.svg"} alt="" width={14} height={14} />
                             {/* <Image src={"/images/points/union.svg"} alt="" width={14} height={14} /> */}
                             <Image src={props.themeIsDark ? "/images/points/flash-white.svg" : "/images/points/flash.svg"} alt="" width={14} height={14} />
                             <div>Points</div>
                         </div>
 
-                        <Defis />
+                        <Defis chain={props.chain} />
                     </div>
                 </div>
             </div>
@@ -245,4 +218,34 @@ export const LiquidCard = (props: {
             }
         </div>
     );
+}
+
+const Defis = (props: { chain: string }) => {
+    switch (props.chain) {
+        case "Babylon":
+            return (
+                <div className="flex items-center">
+                    <Image alt="" src={"/images/liquid-stake/apps-4.svg"} width={24} height={24} className="z-7" />
+                    <div className="w-6 h-6 -ml-1.5 z-6 bg-white p-[3px] rounded-full flex items-center justify-center">
+                        <div>
+                            <Image alt="" src={"https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmo.svg"} width={24} height={24} />
+                        </div>
+                    </div>
+                </div>
+            );
+        case "OtherFutureTemplate":
+            return (
+                <div className="flex items-center">
+                    <Image alt="" src={"/images/liquid-stake/apps-1.svg"} width={24} height={24} className="z-8" />
+                    <Image alt="" src={"/images/liquid-stake/apps-2.svg"} width={24} height={24} className="-ml-1.5 z-7" />
+                    <Image alt="" src={"/images/liquid-stake/apps-3.svg"} width={24} height={24} className="-ml-1.5 z-6" />
+                    <Image alt="" src={"/images/liquid-stake/apps-4.svg"} width={24} height={24} className="-ml-1.5 z-5" />
+                    <Image alt="" src={"/images/liquid-stake/apps-5.svg"} width={24} height={24} className="-ml-1.5 z-4" />
+                    <Image alt="" src={"/images/liquid-stake/apps-6.svg"} width={24} height={24} className="-ml-1.5 z-3" />
+                    <Image alt="" src={"/images/liquid-stake/apps-7.svg"} width={24} height={24} className="-ml-1.5 z-2" />
+                    <Image alt="" src={"/images/liquid-stake/apps-8.svg"} width={24} height={24} className="-ml-1.5 z-1" />
+                </div>
+            );
+    }
+    return <></>;
 }

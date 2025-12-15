@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import { Funnel_Display, Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: (APP_CONFIG.network === "mainnet") ? "Escher App" : "Testnet Escher App",
@@ -51,6 +52,12 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <Script strategy="beforeInteractive" id="test">
+          {`globalThis.Browser = { T: () => {} };`}
+        </Script>
+      </head>
+
       <body
         className={`${inter.variable} ${funnelDisplay.variable} font-inter antialiased bg-white dark:bg-black min-h-screen`}
       >
