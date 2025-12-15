@@ -1,0 +1,22 @@
+<svg width="350" height="307" viewBox="0 0 350 307" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="51.0234" y="53.3496" width="49.2327" height="50.5879" fill="#f5f6f8"/>
+<line x1="350" y1="52.9297" x2="-3.91329e-08" y2="52.9297" stroke="#f5f5ff"/>
+<line x1="350" y1="104.438" x2="-4.24319e-08" y2="104.437" stroke="#f5f5ff"/>
+<line x1="350" y1="155.945" x2="-4.24319e-08" y2="155.945" stroke="#f5f5ff"/>
+<line x1="350" y1="207.453" x2="-4.24319e-08" y2="207.453" stroke="#f5f5ff"/>
+<line x1="350" y1="258.961" x2="-4.24319e-08" y2="258.961" stroke="#f5f5ff"/>
+<line x1="50.4999" y1="1" x2="50.5" y2="307" stroke="#f5f5ff"/>
+<line x1="100.5" y1="1" x2="100.5" y2="307" stroke="#f5f5ff"/>
+<line x1="149.5" y1="1" x2="149.5" y2="307" stroke="#f5f5ff"/>
+<line x1="201.5" y1="1" x2="201.5" y2="307" stroke="#f5f5ff"/>
+<line x1="251.5" y1="1" x2="251.5" y2="307" stroke="#f5f5ff"/>
+<line x1="301.5" y1="1" x2="301.5" y2="307" stroke="#f5f5ff"/>
+<rect width="350" height="307" rx="16" fill="url(#paint0_linear_2323_6131)"/>
+<rect x="201.406" y="104.857" width="49.2327" height="50.5879" fill="#f5f6f8"/>
+<defs>
+<linearGradient id="paint0_linear_2323_6131" x1="169.182" y1="213.172" x2="161.631" y2="55.0779" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>

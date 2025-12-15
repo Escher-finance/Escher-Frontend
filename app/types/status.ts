@@ -1,0 +1,1 @@
+export type ProgressStatus = 'pending' | 'onProgress' | 'success';

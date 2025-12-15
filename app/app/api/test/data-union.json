@@ -1,0 +1,198 @@
+{
+    "contract": "union1d2r4ecsuap4pujrlf3nz09vz8eha8y0z25knq0lfxz4yzn83v6kq0jxsmk",
+    "contractData": {
+        "total_bonded_native_tokens": "33602964210000000000000000",
+        "total_issued_lst": "33602964210000000000000000",
+        "total_reward_amount": "0",
+        "redemption_rate": "1",
+        "purchase_rate": "1"
+    },
+    "networkData": {
+        "bonded_tokens": "937731530218148902588808012",
+        "not_bonded_tokens": "56379000989000001000000",
+        "inflation": "0.050536268846830336",
+        "total_supply": "10002988835138133298652040662"
+    },
+    "delegatorData": {
+        "delegator": "union19ydrfy0d80vgpvs6p0cljlahgxwrkz54ps8455q7jfdfape7ld7quaq69v",
+        "validators": [
+            "unionvaloper1zef80pxh6yynt5krj20c8rezcv7hsf9cq2ts4e",
+            "unionvaloper1dqsjs63kpahlkfj3x5f9kuryk78uekqdv9z72k",
+            "unionvaloper1symf474wnypes2d3mecllqk6l26rwz8mhl89nm",
+            "unionvaloper15zf3fp5f96ncs8dcmg5t5amxgleyels4jyq0ud",
+            "unionvaloper140l6y2gp3gxvay6qtn70re7z2s0gn57zhqqe9e",
+            "unionvaloper16appturqyamylwha87st4j0nrwmtn450lcqre7",
+            "unionvaloper1maxq9hma5h89ham2uvtfmv9uqujfratjsqqqds"
+        ],
+        "bonded_tokens": "33602955210000000000000000",
+        "unbonding_tokens": "0",
+        "total_rewards": "84963392915179002920960",
+        "raw": {
+            "delegations": {
+                "delegation_responses": [
+                    {
+                        "delegation": {
+                            "delegator_address": "union19ydrfy0d80vgpvs6p0cljlahgxwrkz54ps8455q7jfdfape7ld7quaq69v",
+                            "validator_address": "unionvaloper1zef80pxh6yynt5krj20c8rezcv7hsf9cq2ts4e",
+                            "shares": "8400738802500000000000000.000000000000000000"
+                        },
+                        "balance": {
+                            "denom": "au",
+                            "amount": "8400738802500000000000000"
+                        }
+                    },
+                    {
+                        "delegation": {
+                            "delegator_address": "union19ydrfy0d80vgpvs6p0cljlahgxwrkz54ps8455q7jfdfape7ld7quaq69v",
+                            "validator_address": "unionvaloper1dqsjs63kpahlkfj3x5f9kuryk78uekqdv9z72k",
+                            "shares": "4704413729400000000000000.000000000000000000"
+                        },
+                        "balance": {
+                            "denom": "au",
+                            "amount": "4704413729400000000000000"
+                        }
+                    },
+                    {
+                        "delegation": {
+                            "delegator_address": "union19ydrfy0d80vgpvs6p0cljlahgxwrkz54ps8455q7jfdfape7ld7quaq69v",
+                            "validator_address": "unionvaloper1symf474wnypes2d3mecllqk6l26rwz8mhl89nm",
+                            "shares": "4032354625200000000000000.000000000000000000"
+                        },
+                        "balance": {
+                            "denom": "au",
+                            "amount": "4032354625200000000000000"
+                        }
+                    },
+                    {
+                        "delegation": {
+                            "delegator_address": "union19ydrfy0d80vgpvs6p0cljlahgxwrkz54ps8455q7jfdfape7ld7quaq69v",
+                            "validator_address": "unionvaloper15zf3fp5f96ncs8dcmg5t5amxgleyels4jyq0ud",
+                            "shares": "3360295521000000000000000.000000000000000000"
+                        },
+                        "balance": {
+                            "denom": "au",
+                            "amount": "3360295521000000000000000"
+                        }
+                    },
+                    {
+                        "delegation": {
+                            "delegator_address": "union19ydrfy0d80vgpvs6p0cljlahgxwrkz54ps8455q7jfdfape7ld7quaq69v",
+                            "validator_address": "unionvaloper140l6y2gp3gxvay6qtn70re7z2s0gn57zhqqe9e",
+                            "shares": "4032354625200000000000000.000000000000000000"
+                        },
+                        "balance": {
+                            "denom": "au",
+                            "amount": "4032354625200000000000000"
+                        }
+                    },
+                    {
+                        "delegation": {
+                            "delegator_address": "union19ydrfy0d80vgpvs6p0cljlahgxwrkz54ps8455q7jfdfape7ld7quaq69v",
+                            "validator_address": "unionvaloper16appturqyamylwha87st4j0nrwmtn450lcqre7",
+                            "shares": "8400738802500000000000000.000000000000000000"
+                        },
+                        "balance": {
+                            "denom": "au",
+                            "amount": "8400738802500000000000000"
+                        }
+                    },
+                    {
+                        "delegation": {
+                            "delegator_address": "union19ydrfy0d80vgpvs6p0cljlahgxwrkz54ps8455q7jfdfape7ld7quaq69v",
+                            "validator_address": "unionvaloper1maxq9hma5h89ham2uvtfmv9uqujfratjsqqqds",
+                            "shares": "672059104200000000000000.000000000000000000"
+                        },
+                        "balance": {
+                            "denom": "au",
+                            "amount": "672059104200000000000000"
+                        }
+                    }
+                ],
+                "pagination": {
+                    "next_key": null,
+                    "total": "7"
+                }
+            },
+            "rewards": {
+                "rewards": [
+                    {
+                        "validator_address": "unionvaloper1zef80pxh6yynt5krj20c8rezcv7hsf9cq2ts4e",
+                        "reward": [
+                            {
+                                "denom": "au",
+                                "amount": "20391161270645648740671.315000000000000000"
+                            }
+                        ]
+                    },
+                    {
+                        "validator_address": "unionvaloper1dqsjs63kpahlkfj3x5f9kuryk78uekqdv9z72k",
+                        "reward": [
+                            {
+                                "denom": "au",
+                                "amount": "12053484056736810086075.107200000000000000"
+                            }
+                        ]
+                    },
+                    {
+                        "validator_address": "unionvaloper1symf474wnypes2d3mecllqk6l26rwz8mhl89nm",
+                        "reward": [
+                            {
+                                "denom": "au",
+                                "amount": "10331558487116946528126.321600000000000000"
+                            }
+                        ]
+                    },
+                    {
+                        "validator_address": "unionvaloper15zf3fp5f96ncs8dcmg5t5amxgleyels4jyq0ud",
+                        "reward": [
+                            {
+                                "denom": "au",
+                                "amount": "8609632711055143445453.886000000000000000"
+                            }
+                        ]
+                    },
+                    {
+                        "validator_address": "unionvaloper140l6y2gp3gxvay6qtn70re7z2s0gn57zhqqe9e",
+                        "reward": [
+                            {
+                                "denom": "au",
+                                "amount": "10331558501843545146010.868400000000000000"
+                            }
+                        ]
+                    },
+                    {
+                        "validator_address": "unionvaloper16appturqyamylwha87st4j0nrwmtn450lcqre7",
+                        "reward": [
+                            {
+                                "denom": "au",
+                                "amount": "21524070789918113420592.022500000000000000"
+                            }
+                        ]
+                    },
+                    {
+                        "validator_address": "unionvaloper1maxq9hma5h89ham2uvtfmv9uqujfratjsqqqds",
+                        "reward": [
+                            {
+                                "denom": "au",
+                                "amount": "1721927097862798300618.320000000000000000"
+                            }
+                        ]
+                    }
+                ],
+                "total": [
+                    {
+                        "denom": "au",
+                        "amount": "84963392915179005667547.840700000000000000"
+                    }
+                ]
+            },
+            "unbonding": {
+                "unbonding_responses": [],
+                "pagination": {
+                    "next_key": null,
+                    "total": "0"
+                }
+            }
+        }
+    }
+}

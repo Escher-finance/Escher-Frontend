@@ -1,0 +1,7 @@
+upgrade list
+
+- next
+- wagmi
+- cosmos kit
+- union sdk integration
+- 
