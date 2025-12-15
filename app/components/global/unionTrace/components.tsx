@@ -137,9 +137,9 @@ export const TraceLine = (props: TraceLineProps) => {
         isLast = false;
     }
 
-    let classA = `w-full h-full ${isLast ? 'bg-escher-electricblue' : curPercentage < props.percentage ? 'bg-escher-959AFF animate-blink' : 'bg-escher-E6E8EC dark:bg-gray-500'}`;
+    let classA = `w-full h-full ${isLast ? 'bg-escher-electricblue' : curPercentage < props.percentage ? 'bg-escher-959aff animate-blink' : 'bg-escher-e6e8ec dark:bg-gray-500'}`;
     if (props.isFinished) {
-        classA = `w-full h-full ${isLast ? 'bg-escher-electricblue' : curPercentage < props.percentage ? 'bg-escher-959AFF' : 'bg-escher-E6E8EC'}`;
+        classA = `w-full h-full ${isLast ? 'bg-escher-electricblue' : curPercentage < props.percentage ? 'bg-escher-959aff' : 'bg-escher-e6e8ec'}`;
     }
 
     return (

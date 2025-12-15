@@ -1,0 +1,133 @@
+import Button from "@/components/global/button";
+import Card from "@/components/global/card";
+import LdrsAnimation from "@/components/global/ldrsAnimation";
+import useUnionContract from "@/hooks/useUnionEvmContract";
+import { UseReadContractBalanceReturnType } from "@/types/contract-balance";
+import Link from "next/link";
+import { useState } from "react";
+import { toast } from "sonner";
+import { formatUnits, WalletClient } from "viem";
+import { UseBalanceReturnType } from "wagmi";
+
+interface FormState {
+    amount: string | undefined
+    isProcessing: boolean
+}
+
+interface Props {
+    walletClient: WalletClient
+    nativeBalance: UseBalanceReturnType
+    unionInEvmBalance: UseReadContractBalanceReturnType
+    lUnionInEvmBalance: UseReadContractBalanceReturnType
+}
+
+const BondHoleskyToUnion = (props: Props) => {
+    const { allowance, bond } = useUnionContract();
+
+    // Form
+    const [formState, setFormState] = useState<FormState>({
+        amount: undefined,
+        isProcessing: false
+    });
+
+    const onFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormState((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const submit = async () => {
+        console.log({
+            munoBalance: props.unionInEvmBalance.balance?.value
+        });
+
+        setFormState((prevState) => ({
+            ...prevState,
+            ['isProcessing']: true,
+        }));
+
+        try {
+            if (!formState.amount) {
+                throw ('Please fill in the form');
+            }
+
+            if (Number(formState.amount) > Number(formatUnits(BigInt(props.unionInEvmBalance.balance?.value ?? 0), (props.unionInEvmBalance.balance?.decimals ?? 0)))) {
+                throw ('Insufficient Muno balance');
+            }
+
+            // if (Number(formState.amount) < 0.0000000000015) {
+            //     throw ('Minimum staking amount is 0.0000000000015');
+            // }
+
+            // await bond(formState.amount);
+            toast.success('Liquid stake success! It will take about 5 minutes for the LMuno token to arrive');
+
+        } catch (error: any) {
+            console.error(error.toString());
+            toast.error(error.toString());
+        }
+
+        setFormState((prevState) => ({
+            ...prevState,
+            ['isProcessing']: false,
+        }));
+    }
+
+    return (
+        <Card className="items-start gap-2 text-sm">
+            <div className="text-xl font-semibold text-escher-gray900 dark:text-white">Bond muno from Holesky to Union (liquid staking)</div>
+            <hr className="border border-t border-escher-gray200 dark:border-escher-darkblue_border w-full" />
+            <table className="text-escher-gray600 dark:text-white">
+                <tbody>
+                    <tr>
+                        <td>Address</td>
+                        <td>:</td>
+                        <td><b>{props.walletClient.account?.address}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Balance</td>
+                        <td>:</td>
+                        <td>{props.nativeBalance.isSuccess ? <b>{props.nativeBalance.data?.formatted} <span className="text-escher-gray400 dark:text-escher-777e90">{props.nativeBalance.data?.symbol}</span></b> : <LdrsAnimation />}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>{props.unionInEvmBalance.isSuccess ? <b>{props.unionInEvmBalance.balance?.formattedBalance} <span className="text-escher-gray400 dark:text-escher-777e90">Muno</span></b> : <LdrsAnimation />}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>{props.lUnionInEvmBalance.isSuccess ? <b>{props.lUnionInEvmBalance.balance?.formattedBalance} <span className="text-escher-gray400 dark:text-escher-777e90">LMuno</span></b> : <LdrsAnimation />}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr className="w-full border-escher-gray300 dark:border-none" />
+            <div>Notes</div>
+            <ul className="list-disc list-inside font-medium text-sm">
+                <li>Holesky ETH <Link href={'https://cloud.google.com/application/web3/faucet/ethereum/holesky'} target="_blank" className="text-escher-electricblue dark:text-white font-medium">faucet</Link></li>
+                <li>Ask Isak for Muno token</li>
+                <li>Currently the minimum staking is 0.0000000000015 Muno</li>
+            </ul>
+            <hr className="w-full border-escher-gray300 dark:border-none" />
+            <input
+                type="text"
+                name="amount"
+                value={formState.amount}
+                onChange={onFormChange}
+                placeholder="amount"
+                className="border border-gray-400 rounded px-2 py-1"
+            />
+            <Button
+                title="Bond"
+                style="fill"
+                className="py-2 font-bold text-sm"
+                onClick={submit}
+                isLoading={formState.isProcessing}
+            />
+        </Card>
+    );
+}
+
+export default BondHoleskyToUnion;

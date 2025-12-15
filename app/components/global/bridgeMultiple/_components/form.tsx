@@ -115,7 +115,7 @@ const Form = (props: Props) => {
                                     </div>
                                     <div className="flex justify-between items-center mt-3 text-escher-777e90 text-sm">
                                         <div className="flex items-center gap-2">
-                                            <img src="/icons/wallet.svg" />
+                                            <Image alt="" src="/icons/wallet.svg" />
                                             {props.pool.tokenA.balance?.formattedBalance ?
                                                 <div>{addThousandSeparators(props.pool.tokenA.balance?.formattedBalance)}</div>
                                                 :
@@ -168,7 +168,7 @@ const Form = (props: Props) => {
                                     </div>
                                     <div className="flex justify-between items-center mt-3 text-escher-777e90 text-sm">
                                         <div className="flex items-center gap-2">
-                                            <img src="/icons/wallet.svg" />
+                                            <Image alt="" src="/icons/wallet.svg" />
                                             {props.pool.tokenB.balance?.formattedBalance ?
                                                 <div>{addThousandSeparators(props.pool.tokenB.balance?.formattedBalance)}</div>
                                                 :
@@ -259,7 +259,7 @@ const Form = (props: Props) => {
                         </div>
                         <div className="flex justify-between items-center mt-3 text-escher-777e90 text-sm">
                             <div className="flex items-center gap-2">
-                                <img src="/icons/wallet.svg" />
+                                <Image alt="" src="/icons/wallet.svg" />
                                 {props.activeTokenObj.balance?.formattedBalance ?
                                     <div>{addThousandSeparators(props.activeTokenObj.balance?.formattedBalance)}</div>
                                     :

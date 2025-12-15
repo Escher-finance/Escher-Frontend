@@ -45,7 +45,7 @@ const AssetsDefiRowOsmosis = (props: Props) => {
                     </div>
                 </AccordionTrigger>
                 <AccordionContent
-                    className="grid grid-cols-[auto,auto,auto,auto] gap-x-4 gap-y-2 items-start bg-escher-electricblue_light5 dark:bg-escher-darkblue px-6 py-4 text-xs"
+                    className="grid grid-cols-[repeat(4,auto)] gap-x-4 gap-y-2 items-start bg-escher-electricblue_light5 dark:bg-escher-darkblue px-6 py-4 text-xs"
                 >
                     <div className=" text-escher-electricblue dark:text-white font-medium" onClick={() => console.log({ defi: props.defi })}>Assets</div>
                     <div className=" text-escher-electricblue dark:text-white font-medium">APR (24h)</div>

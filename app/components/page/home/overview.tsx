@@ -315,13 +315,13 @@ const Overview = (props: Props) => {
                                         <div className="w-full flex flex-col gap-1">
                                             {/* Osmosis */}
                                             <div className="flex items-center gap-2 w-full">
-                                                <Image src={props.defis.osmosis.info.logoURI} alt="" className="w-6 h-6" />
+                                                <Image src={props.defis.osmosis.info.logoURI} alt="" className="w-6 h-6" width={24} height={24} />
                                                 <div className="font-semibold flex-1 mr-10 text-sm">{props.defis.osmosis.info.name}</div>
                                                 <div className="font-semibold text-xs">${formatNumber(props.defis.osmosis.info.tvl ?? 0)}</div>
                                             </div>
                                             {/* Uniswap */}
                                             <div className="flex items-center gap-2 w-full">
-                                                <Image src={props.defis.uniswap.info.logoURI} alt="" className="w-6 h-6" />
+                                                <Image src={props.defis.uniswap.info.logoURI} alt="" className="w-6 h-6" width={24} height={24} />
                                                 <div className="font-semibold flex-1 mr-10 text-sm">{props.defis.uniswap.info.name}</div>
                                                 <div className="font-semibold text-xs">${formatNumber(props.defis.uniswap.info.tvl ?? 0)}</div>
                                             </div>

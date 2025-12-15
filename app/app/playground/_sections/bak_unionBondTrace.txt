@@ -1,0 +1,144 @@
+import Button from "@/components/global/button";
+import Card from "@/components/global/card";
+import ConnectkitConnectButton from "@/components/global/connectkit-connect-button";
+import Icon from "@/components/global/icons";
+import { getUnionInstruction, getUnionPacket } from "@/hooks/useUnionTrace";
+import { formatDate } from "@/lib/date";
+import { UnionInstruction, UnionPacket } from "@/types/trace";
+import { useState } from "react";
+import { useAccount, useDisconnect } from "wagmi";
+
+const UnionBondTrace = () => {
+    const { address, isConnected } = useAccount();
+    const { disconnect } = useDisconnect();
+    const [hash, setHash] = useState<string>();
+    const [error, setError] = useState<string>();
+    const [bondPacket, setBondPacket] = useState<UnionInstruction>();
+    const [sendTrace, setSendTrace] = useState<UnionPacket>();
+    const [receiveTrace, setReceiveTrace] = useState<UnionPacket>();
+
+    const submit = async () => {
+        try {
+            if (!address) throw "Wallet not connected";
+            if (!hash) throw "Invalid transaction hash";
+            setError(undefined);
+            setBondPacket(undefined);
+            setSendTrace(undefined);
+            setReceiveTrace(undefined);
+
+            const resultBondPacket = await getUnionInstruction(hash);
+            console.log({ resultBondPacket });
+            if (!resultBondPacket?.packet_hash) throw "Packet not found";
+            setBondPacket(resultBondPacket);
+
+            const resultSendTrace = await getUnionPacket("send", resultBondPacket?.packet_hash);
+            console.log({ resultSendTrace });
+            if (resultSendTrace)
+                setSendTrace(resultSendTrace);
+
+            const resultReceiveTrace = await getUnionPacket("receive", resultBondPacket?.packet_send_transaction_hash);
+            console.log({ resultReceiveTrace });
+            setReceiveTrace(resultReceiveTrace);
+
+        } catch (error) {
+            console.log(error);
+            setError((error as any).toString())
+        }
+    }
+
+    const getBondStatus = (status: boolean | null) => {
+        switch (status) {
+            case true:
+                return "Success"
+            case false:
+                return "Failed"
+            case null:
+                return "Pending"
+        }
+    }
+
+    return (
+        <Card className="w-full items-start gap-2 text-sm">
+            <div className="w-full flex justify-between items-center">
+                <div className="text-xl font-semibold text-escher-gray900 dark:text-white">Trace Bond</div>
+                {isConnected &&
+                    <button onClick={() => disconnect()}>
+                        <Icon type="RiLogoutCircleRLine" />
+                    </button>
+                }
+            </div>
+            <hr className="border border-t border-escher-gray200 dark:border-escher-darkblue_border w-full" />
+
+            {isConnected &&
+                <>
+                    <div className="flex gap-2 w-full">
+                        <input
+                            type="text"
+                            placeholder="Bond transaction hash"
+                            className="flex-1 border border-slate-500 px-4"
+                            value={hash ?? ""}
+                            onChange={e => setHash(e.target.value)}
+                            onFocus={(e) => e.target.select()}
+                        />
+                        <Button title="Trace Bond" onClick={submit} />
+                    </div>
+
+                    {error &&
+                        <div className="bg-red-100 text-red-900 p-2 font-medium rounded-lg mt-4 flex items-center gap-2 w-full overflow-scroll">
+                            <Icon type="FaExclamationTriangle" />
+                            <div>{error}</div>
+                        </div>
+                    }
+                    {bondPacket &&
+                        <div className="flex flex-col gap-2">
+                            <div>Bond status : <b>{getBondStatus(bondPacket.success)}</b></div>
+                            <div>Packet step : <b>{bondPacket?.status}</b></div>
+                            <div>{bondPacket?.success}</div>
+                        </div>
+                    }
+
+                    <div className="w-full grid grid-cols-2 gap-4">
+                        <div className="bg-sky-700 text-sky-50 p-2 rounded">
+                            <div>Send Packet</div>
+                            <div className="grid grid-cols-3">
+                                <div className="font-bold p-2">Type</div>
+                                <div className="font-bold p-2">Hash</div>
+                                <div className="font-bold p-2">Datetime</div>
+
+                                {sendTrace?.traces.map((v) =>
+                                    <>
+                                        <div className="text-xs overflow-scroll border-t border-sky-800 py-2">{v.type}</div>
+                                        <div className="text-xs overflow-scroll border-t border-sky-800 py-2 pl-4">{v.transaction_hash}</div>
+                                        <div className="text-xs border-t border-sky-800 py-2 pl-4">{formatDate(v.timestamp)}</div>
+                                    </>
+                                )}
+                            </div >
+                        </div>
+
+                        <div className="bg-emerald-700 text-emerald-50 p-2 rounded">
+                            <div>Receive Packet</div>
+                            <div className="grid grid-cols-3">
+                                <div className="font-bold p-2">Type</div>
+                                <div className="font-bold p-2">Hash</div>
+                                <div className="font-bold p-2">Datetime</div>
+
+                                {receiveTrace?.traces.map((v) =>
+                                    <>
+                                        <div className="text-xs overflow-scroll border-t border-sky-800 py-2">{v.type}</div>
+                                        <div className="text-xs overflow-scroll border-t border-sky-800 py-2 pl-4">{v.transaction_hash}</div>
+                                        <div className="text-xs border-t border-sky-800 py-2 pl-4">{formatDate(v.timestamp)}</div>
+                                    </>
+                                )}
+                            </div >
+                        </div>
+                    </div>
+                </>
+            }
+            {!isConnected &&
+                <ConnectkitConnectButton className="w-fit" />
+            }
+        </Card>
+    )
+}
+
+export default UnionBondTrace;

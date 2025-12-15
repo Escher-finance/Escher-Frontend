@@ -1,0 +1,164 @@
+"use client";
+
+import Button from "@/components/global/button";
+import Card from "@/components/global/card";
+import { UNION_CONTRACTS } from "@/configs/union";
+import { formatNumber } from "@/lib/number";
+import { getSalt } from "@/lib/salt";
+import { Asset } from "@chain-registry/types";
+import { Coin } from "@cosmjs/stargate";
+import { ChainContext, WalletStatus } from "@cosmos-kit/core";
+import { useCallback, useEffect, useState } from "react";
+
+interface Props {
+    cosmosContext: ChainContext
+}
+
+const BondFromCosmos = (props: Props) => {
+    // assets
+    const nativeAsset: Asset | undefined = props.cosmosContext.assets?.assets[0];
+
+    const [balance, setBalance] = useState<Coin>();
+    const [lBalance, setLBalance] = useState<Coin>();
+    const getBalance = useCallback(async () => {
+        if (!props.cosmosContext.address) {
+            return undefined;
+        }
+        console.info('getBalance');
+
+        const cosmWasmClient = await props.cosmosContext.getCosmWasmClient();
+        const _balance = await cosmWasmClient.getBalance(props.cosmosContext.address, nativeAsset?.base!);
+        const _lBalance = await cosmWasmClient.getBalance(props.cosmosContext.address, UNION_CONTRACTS.cw20);
+        console.log({
+            _balance,
+            _lBalance
+        });
+
+        setBalance(_balance);
+        setLBalance(_lBalance);
+    }, [props.cosmosContext.address]);
+    useEffect(() => {
+        getBalance();
+    }, [props.cosmosContext.address]);
+
+    const [isBonding, setIsBonding] = useState(false);
+    const [successMsg, setSuccessMsg] = useState<string>();
+    const [errorMsg, setErrorMsg] = useState<string>();
+    const bond = async () => {
+        setIsBonding(true);
+        setSuccessMsg(undefined);
+        setErrorMsg(undefined);
+        try {
+            if (!props.cosmosContext.address) {
+                throw ("Account not connected");
+            }
+            if (!nativeAsset) {
+                throw ("Asset not defined");
+            }
+
+            const signingCosmWasmClient = await props.cosmosContext.getSigningCosmWasmClient();
+            const clientChainId = await signingCosmWasmClient.getChainId();
+            console.log({
+                signingCosmWasmClient,
+                clientChainId
+            });
+
+            const amount = "2000000";
+            const msg = {
+                bond: {
+                    staker: props.cosmosContext.address,
+                    salt: getSalt()
+                }
+            };
+            console.log({ msg });
+
+            if (Number(amount) < 2000000) {
+                alert("Sorry, minimal bond amount is 2000000");
+                return;
+            }
+            const funds = [{
+                amount,
+                denom: nativeAsset?.base
+            }];
+            console.log({ funds });
+
+            const res = await signingCosmWasmClient.execute(props.cosmosContext.address, UNION_CONTRACTS.lst, msg, "auto", "execute bond", funds);
+            console.log(res);
+            setSuccessMsg("Bond success!")
+        } catch (err: any) {
+            console.log(err);
+            setErrorMsg(err.toString())
+        }
+        setIsBonding(false);
+    };
+
+    const Guest = () => {
+        return (
+            <Card className="items-start gap-2">
+                <div className="text-xl font-semibold text-escher-gray900 dark:text-white">Bond from Cosmos chain</div>
+                <hr className="border border-t border-escher-gray200 dark:border-escher-darkblue_border w-full" />
+                <div className="text-sm font-medium text-escher-gray800 dark:text-white">Wallet not connected. Please connect your Cosmos wallet.</div>
+                <Button onClick={props.cosmosContext.connect} title="Connect Cosmos Wallet" isLoading={props.cosmosContext.status === WalletStatus.Connecting} size="sm" />
+            </Card>
+        );
+    }
+
+    if (props.cosmosContext.address === undefined) {
+        return <Guest />
+    }
+
+    return (
+        <Card className="items-start gap-2 text-sm">
+            <div className="w-full flex justify-between items-center">
+                <div className="text-xl font-semibold text-escher-gray900 dark:text-white">Bond from Cosmos chain</div>
+                <button onClick={() => props.cosmosContext.disconnect()} className="text-xs bg-red-500 text-red-50 rounded-lg font-bold px-2 py-0.5 shadow">Disconnect</button>
+            </div>
+            <hr className="border border-t border-escher-gray200 dark:border-escher-darkblue_border w-full" />
+
+            <table className="text-escher-gray600 dark:text-white">
+                <tbody>
+                    <tr>
+                        <td>Address</td>
+                        <td>:</td>
+                        <td><b>{props.cosmosContext.address}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Balance</td>
+                        <td>:</td>
+                        {balance ?
+                            <td><b>{formatNumber(Number(balance.amount))}</b> {balance.denom}</td>
+                            :
+                            <td><b>-</b></td>
+                        }
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        {lBalance ?
+                            <td><b>{formatNumber(Number(lBalance.amount))}</b> limuno</td>
+                            :
+                            <td><b>-</b></td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr className="w-full border-escher-gray300 dark:border-none" />
+            <div>Notes</div>
+            <ul className="list-disc list-inside font-medium text-sm">
+                <li>Ask Isak for Muno token</li>
+                <li>Currently the minimum staking is 2,000,000 Muno</li>
+            </ul>
+            <hr className="w-full border-escher-gray300 dark:border-none" />
+            {successMsg &&
+                <textarea disabled className="w-full bg-green-500 text-green-50 p-2 rounded text-xs font-medium" value={successMsg} />
+            }
+            {errorMsg &&
+                <textarea disabled className="w-full bg-red-500 text-red-50 p-2 rounded text-xs font-medium" value={errorMsg} />
+            }
+            <Button title="Bond 2,000,000" onClick={bond} size="sm" className="" isLoading={isBonding} />
+        </Card>
+    );
+}
+
+export default BondFromCosmos;

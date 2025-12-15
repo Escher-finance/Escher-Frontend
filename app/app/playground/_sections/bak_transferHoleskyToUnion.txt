@@ -1,0 +1,96 @@
+import Button from "@/components/global/button";
+import Card from "@/components/global/card";
+import LdrsAnimation from "@/components/global/ldrsAnimation";
+import useUnionContract from "@/hooks/useUnionEvmContract";
+import { UseReadContractBalanceReturnType } from "@/types/contract-balance";
+import { useState } from "react";
+import { PublicClient, WalletClient } from "viem";
+import { UseBalanceReturnType } from "wagmi";
+
+interface FormState {
+    amount: string | undefined;
+    receiver: string | undefined;
+}
+
+interface Props {
+    publicClient: PublicClient
+    walletClient: WalletClient
+    nativeBalance: UseBalanceReturnType
+    unionInEvmBalance: UseReadContractBalanceReturnType
+}
+
+const TransferHoleskyToUnion = (props: Props) => {
+    const { transfer } = useUnionContract();
+
+    // Form
+    const [formState, setFormState] = useState<FormState>({
+        amount: undefined,
+        receiver: undefined,
+    });
+
+    const onFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormState((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const submit = () => {
+        if (!formState.amount || !formState.receiver) {
+            throw 'Please fill the form';
+        }
+
+        // transfer(formState.amount, formState.receiver);
+    }
+
+    return (
+        <Card className="items-start gap-2">
+            <div className="text-xl font-semibold text-escher-gray900 dark:text-white">Transfer muno from Holesky to Union</div>
+            <hr className="border border-t border-escher-gray200 dark:border-escher-darkblue_border w-full" />
+            <table className="text-escher-gray600 dark:text-white">
+                <tbody>
+                    <tr>
+                        <td>Address</td>
+                        <td>:</td>
+                        <td><b>{props.walletClient.account?.address}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Balance</td>
+                        <td>:</td>
+                        <td>{props.nativeBalance.isSuccess ? <b>{props.nativeBalance.data?.formatted} {props.nativeBalance.data?.symbol}</b> : <LdrsAnimation />}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>{props.unionInEvmBalance.isSuccess ? <b>{props.unionInEvmBalance.balance?.formattedBalance} {props.unionInEvmBalance.balance?.symbol}</b> : <LdrsAnimation />}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <input
+                type="text"
+                name="amount"
+                value={formState.amount}
+                onChange={onFormChange}
+                placeholder="amount"
+                className="border border-gray-400 rounded px-2 py-1"
+            />
+            <input
+                type="text"
+                name="receiver"
+                value={formState.receiver}
+                onChange={onFormChange}
+                placeholder="receiver"
+                className="border border-gray-400 rounded px-2 py-1"
+            />
+            <Button
+                title="Transfer"
+                style="fill"
+                className="py-2"
+                onClick={submit}
+            />
+        </Card>
+    );
+}
+
+export default TransferHoleskyToUnion;

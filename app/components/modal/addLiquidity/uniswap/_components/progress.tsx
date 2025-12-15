@@ -97,7 +97,7 @@ const Progress = (props: Props) => {
                         ))}
                     </div>
                     <div className="p-2">
-                        <Image alt="" src={props.defi.logoURI} className="w-8 h-8" />
+                        <Image alt="" src={props.defi.logoURI} className="w-8 h-8" width={32} height={32} />
                     </div>
                 </div>
                 <div className="flex justify-between gap-4 p-2">

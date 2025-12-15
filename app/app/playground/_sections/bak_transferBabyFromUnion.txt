@@ -1,0 +1,209 @@
+"use client";
+
+import Button from "@/components/global/button";
+import Card from "@/components/global/card";
+import { formatNumber } from "@/lib/number";
+import { getSalt } from "@/lib/salt";
+import { getChannelInfo, getQuoteToken, getRecommendedChannels, getTimestamp } from "@/lib/ucs03";
+import { Asset } from "@chain-registry/types";
+import { Coin } from "@cosmjs/stargate";
+import { ChainContext, WalletStatus } from "@cosmos-kit/core";
+import { assets } from "chain-registry";
+import { useCallback, useEffect, useState } from "react";
+import { fromHex, toHex } from "viem";
+
+interface FormState {
+    receiver: string | undefined
+    amount: string | undefined
+    isProcessing: boolean
+}
+
+interface Props {
+    cosmosContext: ChainContext
+}
+
+const TransferBabyFromUnion = (props: Props) => {
+    const BASE_TOKEN = "muno";
+    const babylonChannelId = "bbn-test-5";
+
+    // assets
+    const chainAsset: Asset | undefined = assets.find(
+        (asset) => asset.chain_name === props.cosmosContext.chain.chain_name
+    )?.assets[0];
+
+    const [balance, setBalance] = useState<Coin>();
+
+    const getBalance = useCallback(async () => {
+        if (!props.cosmosContext.address) {
+            return undefined;
+        }
+        console.info('getBalance');
+
+        const cosmWasmClient = await props.cosmosContext.getCosmWasmClient();
+        const _balance = await cosmWasmClient.getBalance(props.cosmosContext.address, chainAsset?.base!);
+        setBalance(_balance);
+    }, [props.cosmosContext.address]);
+
+    useEffect(() => {
+        getBalance();
+    }, [props.cosmosContext.address]);
+
+
+    // Form
+    const [formState, setFormState] = useState<FormState>({
+        receiver: undefined,
+        amount: undefined,
+        isProcessing: false
+    });
+
+    const onFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormState((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const transfer = async () => {
+        try {
+            if (!props.cosmosContext.address) {
+                throw ("Account not connected");
+            }
+            if (!chainAsset) {
+                throw ("Asset not defined");
+            }
+            if (!formState.receiver || !formState.amount) {
+                throw ("Please fill in the form");
+            }
+
+            setFormState((prevState) => ({
+                ...prevState,
+                ['isProcessing']: true,
+            }));
+
+            const signingCosmWasmClient = await props.cosmosContext.getSigningCosmWasmClient();
+            const clientChainId = await signingCosmWasmClient.getChainId();
+            console.log({
+                signingCosmWasmClient,
+                clientChainId
+            });
+
+            let channels = await getRecommendedChannels();
+            const channel = getChannelInfo(clientChainId, babylonChannelId, channels)
+            if (channel === null) {
+                throw ("no channel found");
+            }
+            console.log({ channel });
+
+            const baseToken = toHex(BASE_TOKEN)
+            let receiver = toHex(formState.receiver);
+            const quoteToken = await getQuoteToken(clientChainId, baseToken, channel)
+            if (quoteToken.isErr()) {
+                console.info("could not get quote token")
+                console.error(quoteToken.error)
+                return;
+            }
+
+            if (quoteToken.value.type === "NO_QUOTE_AVAILABLE") {
+                console.error("No quote token available")
+                return;
+            }
+            console.info("quote token", quoteToken.value)
+
+            const ucs03Address = fromHex(`0x${channel.source_port_id}`, "string");
+            console.log("ucs03Address", ucs03Address);
+
+            const msg = {
+                transfer: {
+                    channel_id: channel.source_channel_id,
+                    receiver: receiver,
+                    base_token: baseToken,
+                    base_amount: formState.amount,
+                    quote_token: quoteToken,
+                    quote_amount: formState.amount,
+                    timeout_height: 0,
+                    timeout_timestamp: getTimestamp(),
+                    salt: getSalt(),
+                }
+            };
+            console.log({ msg });
+            let result = await signingCosmWasmClient?.execute(props.cosmosContext.address, ucs03Address, msg, "auto", `send ${formState.amount} ${BASE_TOKEN} to ${receiver}`, [{ amount: props.cosmosContext.address, denom: BASE_TOKEN }]);
+
+            console.log("transfer", result);
+            alert(result?.transactionHash);
+        } catch (err) {
+            console.error(err);
+            alert("Something went wrong, please check log!");
+        }
+    };
+
+    const Guest = () => {
+        return (
+            <Card className="items-start gap-2">
+                <div className="text-xl font-semibold text-escher-gray900 dark:text-white">Transfer muno from cosmos to babylon</div>
+                <hr className="border border-t border-escher-gray200 dark:border-escher-darkblue_border w-full" />
+                <div className="text-sm font-medium text-escher-gray800 dark:text-white">Wallet not connected. Please connect your Cosmos wallet.</div>
+                <Button onClick={props.cosmosContext.connect} title="Connect Cosmos Wallet" isLoading={props.cosmosContext.status === WalletStatus.Connecting} size="sm" />
+            </Card>
+        );
+    }
+
+    if (props.cosmosContext.address === undefined) {
+        return <Guest />
+    }
+
+    return (
+        <Card className="items-start gap-2 text-sm">
+            <div className="w-full flex justify-between items-center">
+                <div className="text-xl font-semibold text-escher-gray900 dark:text-white">Transfer muno from cosmos to babylon</div>
+                <button onClick={() => props.cosmosContext.disconnect()} className="text-xs bg-red-500 text-red-50 rounded-lg font-bold px-2 py-0.5 shadow">Disconnect</button>
+            </div>
+            <hr className="border border-t border-escher-gray200 dark:border-escher-darkblue_border w-full" />
+
+            <table className="text-escher-gray600 dark:text-white">
+                <tbody>
+                    <tr>
+                        <td>Address</td>
+                        <td>:</td>
+                        <td><b>{props.cosmosContext.address}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Balance</td>
+                        <td>:</td>
+                        {balance ?
+                            <td><b>{formatNumber(Number(balance.amount))}</b> {balance.denom}</td>
+                            :
+                            <td><b>-</b></td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr className="w-full border-escher-gray300 dark:border-none" />
+            <div>Notes</div>
+            <ul className="list-disc list-inside font-medium text-sm">
+                <li>Ask Isak for Muno token</li>
+            </ul>
+            <hr className="w-full border-escher-gray300 dark:border-none" />
+            <input
+                type="text"
+                name="receiver"
+                value={formState.receiver}
+                onChange={onFormChange}
+                placeholder="receiver address"
+                className="border border-gray-400 rounded px-2 py-1"
+            />
+            <input
+                type="text"
+                name="amount"
+                value={formState.amount}
+                onChange={onFormChange}
+                placeholder="amount"
+                className="border border-gray-400 rounded px-2 py-1"
+            />
+            <Button title="Transfer" onClick={transfer} size="sm" className="" />
+        </Card>
+    );
+}
+
+export default TransferBabyFromUnion;
