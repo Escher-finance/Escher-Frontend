@@ -9,6 +9,7 @@ import { formatDecimal, formatNumber } from "@/lib/utils";
 import { CustomToken } from "@/types/chain";
 import { IndexerTransaction } from "@/types/transaction";
 import clsx from "clsx";
+import Image from "next/image";
 import { useState } from "react";
 import Detail from "../details/detail";
 import DetailUnbondUnion from "../details/unbond-union";

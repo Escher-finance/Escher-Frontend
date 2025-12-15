@@ -11,19 +11,19 @@ interface Props {
 export const Tag = ({ tag }: { tag: DappTag }) => {
     switch (tag) {
         case "lending": return (
-            <div className="flex items-center gap-[6px] bg-escher-blue50 text-escher-blue700 text-xs font-medium rounded-full py-0.5 px-2">
+            <div className="flex items-center gap-1.5 bg-escher-blue50 text-escher-blue700 text-xs font-medium rounded-full py-0.5 px-2">
                 <Icon type="FaCircle" size="xs" className="text-escher-blue500" />
                 <div>LENDING</div>
             </div>
         );
         case "yield": return (
-            <div className="flex items-center gap-[6px] bg-escher-purple50 text-escher-purple700 text-xs font-medium rounded-full py-0.5 px-2">
+            <div className="flex items-center gap-1.5 bg-escher-purple50 text-escher-purple700 text-xs font-medium rounded-full py-0.5 px-2">
                 <Icon type="FaCircle" size="xs" className="text-escher-purple500" />
                 <div>YIELD AGGREGATION</div>
             </div>
         );
         case "pools": return (
-            <div className="flex items-center gap-[6px] bg-escher-orange50 dark:bg-[#202338] text-escher-orange700 dark:text-[#b93814] text-xs font-medium rounded-full py-0.5 px-2">
+            <div className="flex items-center gap-1.5 bg-escher-orange50 dark:bg-[#202338] text-escher-orange700 dark:text-[#b93814] text-xs font-medium rounded-full py-0.5 px-2">
                 <Icon type="FaCircle" size="xs" className="text-escher-orange700" />
                 <div>LIQUIDITY POOLS</div>
             </div>

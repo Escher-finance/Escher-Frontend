@@ -9,7 +9,7 @@ import { Action } from "@/types/transaction";
 import clsx from "clsx";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useAccount } from "wagmi";
+import { useConnection } from "wagmi";
 import Icon from "../icons";
 import LdrsAnimation from "../ldrsAnimation";
 import TokenChain from "../tokenChain";
@@ -29,7 +29,7 @@ interface Props {
 }
 
 const UnionTransfer = (props: Props) => {
-    const { address: evmAddress } = useAccount();
+    const { address: evmAddress } = useConnection();
 
     const totalLine = 26;
     const [showDetails, setShowDetails] = useState(true);

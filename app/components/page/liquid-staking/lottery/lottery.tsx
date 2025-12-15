@@ -1,5 +1,6 @@
 import Button from "@/components/global/button";
 import Card from "@/components/global/card";
+import Image from "next/image";
 
 export default function Lottery() {
     return (
@@ -19,7 +20,7 @@ export default function Lottery() {
                 <div className="text-xs font-extrabold">Escher Lucky Draw</div>
                 <div className="text-sm font-extrabold">800,000 U in Prizes</div>
                 <div className="flex-1 flex items-center">
-                    <Image alt="" src="/images/lottery/union-blue.png" alt="" className="w-[70px]" />
+                    <Image src="/images/lottery/union-blue.png" alt="" className="w-[70px]" width={70} height={70} />
                 </div>
             </div>
         </Card>

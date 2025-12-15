@@ -31,7 +31,7 @@ interface EvmBridgeParams {
 
 export const useEvmBridge = () => {
     const { updateTimestampTransaction } = useEscher();
-    const { switchChainAsync } = useSwitchChain();
+    const { mutateAsync: switchChainAsync } = useSwitchChain();
     const { saveData } = useLocalTransactions();
 
     const [isPending, setIsPending] = useState(false);

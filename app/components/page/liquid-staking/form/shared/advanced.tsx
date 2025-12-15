@@ -7,6 +7,7 @@ import { textToNumberRegex } from "@/lib/text";
 import { formatDecimal, formatNumber } from "@/lib/utils";
 import { CustomToken } from "@/types/chain";
 import { Action } from "@/types/transaction";
+import Image from "next/image";
 import { useState } from "react";
 
 interface Props {
@@ -139,7 +140,7 @@ const Advanced = (props: Props) => {
                                             <SelectItem value={token.id} key={key}>
                                                 <div className="flex items-center gap-2 font-semibold text-sm">
                                                     {token.icon && token.icon !== "" && !token.icon.includes("ipfs") &&
-                                                        <Image alt="" src={token.icon} className="w-6 h-6" />
+                                                        <Image alt="" src={token.icon} className="w-6 h-6" width={24} height={24} />
                                                     }
                                                     <div>{token.symbol}</div>
                                                 </div>

@@ -98,7 +98,7 @@ const FormUnion = (props: Props) => {
         return [
             addrOut
         ];
-    }, [selectedInputToken, selectedOutputToken, props.account]);
+    }, [props.account.cosmos?.address.babylon, props.account.cosmos?.address.osmosis, props.account.evm?.address, selectedOutputToken?.chain.id, selectedOutputToken?.chain.network]);
 
     const [fCustomAddress, setFCustomAddress] = useState<string>();
     const fRecipientAddress = useMemo(() => {
@@ -139,7 +139,7 @@ const FormUnion = (props: Props) => {
 
         // Set default recipient
         setFCustomAddress(undefined);
-    }, [selectedInputToken.id]);
+    }, [chainId, operation, outputTokens, selectedInputToken.chain.id, switchChain]);
 
     const outputAmount = useMemo(() => {
         const rate = props.exchangeRate;
@@ -156,7 +156,7 @@ const FormUnion = (props: Props) => {
                     : 0;
 
         return calculated.toFixed(selectedOutputToken.decimals).replace(/\.?0+$/, "");
-    }, [selectedInputToken, fInputAmount, props.exchangeRate, operation]);
+    }, [fInputAmount, operation, props.exchangeRate, selectedOutputToken.decimals]);
 
     const buttonStatus = useMemo((): ButtonStatus => {
         const enabled = true;
@@ -232,7 +232,7 @@ const FormUnion = (props: Props) => {
             enabled,
             text
         };
-    }, [operation, selectedInputToken, selectedOutputToken, fInputAmount, lstConfig]);
+    }, [fInputAmount, fRecipientAddress, lstConfig.feature.bond, lstConfig.feature.unbond, lstConfig.minBond, operation, selectedInputToken.balance, selectedInputToken.chain.network, selectedOutputToken.chain.network, selectedOutputToken.symbol]);
 
     const useFormProps = (): FormProps => {
         return {

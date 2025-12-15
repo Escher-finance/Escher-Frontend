@@ -24,7 +24,7 @@ const Success = (props: Props) => {
             "tx",
             props.hash
         );
-    }, [props.hash]);
+    }, [props.chainId, props.hash]);
 
     return (
         <div className={`${props.operation === 'bond' ? "w-[400px]" : "w-[550px]"} flex flex-col items-center p-4 leading-none bg-[url('/images/modal-bg.svg')] dark:bg-none bg-cover bg-top bg-no-repeat`}>

@@ -38,26 +38,31 @@ const UnbondType = (props: Props) => {
     }, [countdown]);
 
     useEffect(() => {
-        if (!remainingSeconds) return
+        if (!remainingSeconds) return;
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setCountdown(remainingSeconds);
+    }, [remainingSeconds]);
 
-        setCountdown(remainingSeconds)
-
-        if (intervalRef.current) clearInterval(intervalRef.current)
+    useEffect(() => {
+        if (countdown <= 0) return;
 
         intervalRef.current = setInterval(() => {
             setCountdown((prev) => {
                 if (prev <= 1) {
-                    clearInterval(intervalRef.current!)
-                    return 0
+                    clearInterval(intervalRef.current!);
+                    return 0;
                 }
-                return prev - 1
-            })
-        }, 1000)
+                return prev - 1;
+            });
+        }, 1000);
 
         return () => {
-            if (intervalRef.current) clearInterval(intervalRef.current)
-        }
-    }, [remainingSeconds]);
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+                intervalRef.current = null;
+            }
+        };
+    }, [countdown]);
 
     return (
         <div className="flex flex-col gap-2 mt-6">

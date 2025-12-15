@@ -48,7 +48,7 @@ interface UniswapAddLiquidityParams {
 }
 
 export const useUniswapAddLiquidity = () => {
-    const { switchChainAsync } = useSwitchChain();
+    const { mutateAsync: switchChainAsync } = useSwitchChain();
 
     const [statusPrepare, setStatusPrepare] =
         useState<ProgressStatus>("pending");

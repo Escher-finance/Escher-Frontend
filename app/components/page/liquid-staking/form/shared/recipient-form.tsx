@@ -9,8 +9,8 @@ import { shortenAddress } from "@/lib/text";
 import { CustomToken } from "@/types/chain";
 import { useWallet } from "@cosmos-kit/react";
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
-import { useAccount } from "wagmi";
+import { useMemo, useState } from "react";
+import { useConnection } from "wagmi";
 
 interface Props {
     defaultAddress?: string
@@ -52,10 +52,8 @@ const RecipientForm = (props: Props) => {
 const Content = (props: Props) => {
     const { account, setOpenWalletConnection } = useEscher();
     const [recipient, setRecipient] = useState<string | undefined>(props.defaultAddress);
-    const { connector: connectorEvm } = useAccount();
+    const { connector: connectorEvm } = useConnection();
     const cosmosWallet = useWallet();
-
-    useEffect(() => setRecipient(props.defaultAddress), [props.defaultAddress])
 
     const [isWalletConnected, connectorIcon, connectorName] = useMemo(() => {
         switch (props.selectedToken.chain.network) {
@@ -83,7 +81,7 @@ const Content = (props: Props) => {
         }
 
         return [undefined, undefined];
-    }, [props.selectedToken]);
+    }, [account.cosmos?.isConnected, account.evm?.isConnected, connectorEvm?.icon, connectorEvm?.name, cosmosWallet.wallet?.logo, cosmosWallet.wallet?.prettyName, props.selectedToken.chain.id, props.selectedToken.chain.network]);
 
     const buttonStatus = useMemo((): { enabled: boolean, text: string } => {
         if (!recipient || recipient === "") {
@@ -115,7 +113,7 @@ const Content = (props: Props) => {
             enabled: true,
             text: "Confirm recipient address"
         }
-    }, [recipient]);
+    }, [props.selectedToken.chain.cosmosChain, props.selectedToken.chain.viemChain, recipient]);
 
     return (
         <div className="flex flex-col gap-2 w-full p-4">

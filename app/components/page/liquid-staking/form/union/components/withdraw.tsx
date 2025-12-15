@@ -100,7 +100,7 @@ export default function Withdraw() {
             {canClaim &&
                 <div className="flex flex-col gap-2 border border-escher-dedfff dark:border-escher-darkblue_border rounded-lg p-4 text-sm">
                     <div className="flex items-center justify-between">
-                        <div className="text-gray-600 dark:text-gray-400">You'll Receive</div>
+                        <div className="text-gray-600 dark:text-gray-400">You&apos;ll Receive</div>
                         <div className="flex flex-col items-end gap-2 text-base font-semibold">
                             <div className="flex items-center gap-2">
                                 <TokenChain token={escherTokens.evm.u} tokenSize={20} chainSize={12} />

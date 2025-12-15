@@ -27,8 +27,6 @@ interface Props {
     walletClient?: WalletClient
 }
 
-const maxPriceImpact = -10;
-
 const FormBabylon = (props: Props) => {
     const { setOpenWalletConnection } = useEscher();
 
@@ -134,7 +132,7 @@ const FormBabylon = (props: Props) => {
         return [
             addrOut
         ];
-    }, [selectedInputToken, selectedOutputToken, props.account]);
+    }, [props.account.cosmos?.address.babylon, props.account.cosmos?.address.osmosis, props.account.evm?.address, selectedOutputToken?.chain.id]);
 
     const [fCustomAddress, setFCustomAddress] = useState<string>();
     const fRecipientAddress = useMemo(() => {
@@ -182,7 +180,7 @@ const FormBabylon = (props: Props) => {
 
         // Set default recipient
         setFCustomAddress(undefined);
-    }, [selectedInputToken.id]);
+    }, [operation, outputTokens, selectedInputToken.chain.id]);
 
     // Set chainContext
     const cosmosChainContext = useMemo(() => {
@@ -194,7 +192,7 @@ const FormBabylon = (props: Props) => {
                     return props.account.cosmos?.chainContext?.osmosis;
             }
         }
-    }, [selectedInputToken.id, props.account.cosmos?.chainContext]);
+    }, [props.account.cosmos?.chainContext?.babylon, props.account.cosmos?.chainContext?.osmosis, selectedInputToken.chain.id, selectedInputToken.chain.network]);
     // ======================================
 
     const outputAmount = useMemo(() => {
@@ -210,31 +208,7 @@ const FormBabylon = (props: Props) => {
                     : 0;
 
         return calculated.toFixed(selectedOutputToken.decimals).replace(/\.?0+$/, "");
-    }, [selectedInputToken, fInputAmount, props.exchangeRate?.rate, operation]);
-
-    const priceImpact = useMemo(() => {
-        setError(undefined);
-        if (
-            !outputAmount ||
-            Number(outputAmount) <= 0 ||
-            Number(fInputAmount) <= 0 ||
-            !selectedInputToken.balance?.dollarPerToken ||
-            !selectedOutputToken.balance?.dollarPerToken
-        ) return undefined;
-
-        const impact = (
-            Number(outputAmount) * Number(selectedOutputToken.balance?.dollarPerToken ?? 0) -
-            Number(fInputAmount) * Number(selectedInputToken.balance?.dollarPerToken ?? 0)
-        ) /
-            (Number(fInputAmount) * Number(selectedInputToken.balance?.dollarPerToken ?? 0)) * 100;
-
-        // NOTE: commented for now; it's showing warning every time
-        if (impact <= maxPriceImpact) {
-            // setError(`Price impact is above ${Math.abs(maxPriceImpact)}%. Try reducing the swap amount`)
-        }
-
-        return impact;
-    }, [selectedInputToken, selectedOutputToken, outputAmount]);
+    }, [fInputAmount, operation, props.exchangeRate?.rate, selectedOutputToken.decimals]);
 
     const buttonStatus = useMemo((): ButtonStatus => {
         const enabled = true;
@@ -308,7 +282,7 @@ const FormBabylon = (props: Props) => {
             enabled,
             text
         };
-    }, [operation, selectedInputToken, selectedOutputToken, fInputAmount, priceImpact, fRecipientAddress]);
+    }, [fInputAmount, fRecipientAddress, operation, selectedInputToken.balance, selectedInputToken.chain.network, selectedOutputToken.chain.network, selectedOutputToken.symbol]);
 
 
     const useFormProps = (): FormProps => {

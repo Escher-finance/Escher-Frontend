@@ -34,7 +34,7 @@ interface WithdrawParams {
 
 export const useUnionWithdraw = () => {
     const { account, updateTimestampTransaction } = useEscher();
-    const { switchChainAsync } = useSwitchChain();
+    const { mutateAsync: switchChainAsync } = useSwitchChain();
 
     const [statusPrepare, setStatusPrepare] = useState<ProgressStatus>('pending');
     const [statusOperation, setStatusOperation] = useState<ProgressStatus>('pending');

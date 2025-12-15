@@ -35,7 +35,7 @@ interface BondParams {
 
 export const useUnionBond = () => {
     const { updateTimestampTransaction } = useEscher();
-    const { switchChainAsync } = useSwitchChain();
+    const { mutateAsync: switchChainAsync } = useSwitchChain();
 
     const [statusPrepare, setStatusPrepare] = useState<ProgressStatus>('pending');
     const [statusApproval, setStatusApproval] = useState<ProgressStatus>('pending');

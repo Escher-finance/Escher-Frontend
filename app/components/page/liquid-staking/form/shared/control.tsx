@@ -21,7 +21,7 @@ const Control = (props: Props) => {
             </button>
 
             <div className="h-full py-1">
-                <div className="w-[1px] h-full bg-escher-gray200 dark:bg-escher-darkblue_5"></div>
+                <div className="w-px h-full bg-escher-gray200 dark:bg-escher-darkblue_5"></div>
             </div>
 
             <button
@@ -35,7 +35,7 @@ const Control = (props: Props) => {
             </button>
 
             <div className="h-full py-1">
-                <div className="w-[1px] h-full bg-escher-gray200 dark:bg-escher-darkblue_5"></div>
+                <div className="w-px h-full bg-escher-gray200 dark:bg-escher-darkblue_5"></div>
             </div>
 
             <button
@@ -48,7 +48,7 @@ const Control = (props: Props) => {
             </button>
 
             <div className="h-full py-1">
-                <div className="w-[1px] h-full bg-escher-gray200 dark:bg-escher-darkblue_5"></div>
+                <div className="w-px h-full bg-escher-gray200 dark:bg-escher-darkblue_5"></div>
             </div>
 
             <button

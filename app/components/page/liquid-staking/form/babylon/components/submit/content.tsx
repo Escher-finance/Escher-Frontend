@@ -8,7 +8,7 @@ import { CustomToken } from "@/types/chain";
 import { ProgressStatus } from "@/types/status";
 import { Action } from "@/types/transaction";
 import { ChainContext } from "@cosmos-kit/core";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PublicClient, WalletClient } from "viem";
 import Error from "../../../shared/error";
 import Success from "../../../shared/success";
@@ -39,7 +39,7 @@ const Phase = (props: { status: ProgressStatus, title: string, subtitle: string,
     return (
         <div className="flex gap-2 items-start">
             <div className="flex flex-col gap-1 items-center text-escher-electricblue dark:text-white">
-                <div className="w-[1px] h-[6px]" />
+                <div className="w-px h-1.5" />
                 {props.status === 'pending' &&
                     <Icon type="FaRegCircle" />
                 }
@@ -50,7 +50,7 @@ const Phase = (props: { status: ProgressStatus, title: string, subtitle: string,
                     <Icon type="FaCheckCircle" />
                 }
                 {props.showLine &&
-                    <div className="w-[1px] h-10 bg-escher-electricblue" />
+                    <div className="w-px h-10 bg-escher-electricblue" />
                 }
             </div>
             <div className="flex flex-col leading-none">
@@ -90,10 +90,7 @@ const Content: React.FC<Props> = (props: Props) => {
         }
 
         return ["pending", "pending"];
-    }, [props.token, props.operation,
-        statusPrepareBondBabylon, statusOperationBondBabylon,
-        statusPrepareUnbondBabylon, statusOperationUnbondBabylon
-    ]);
+    }, [props.operation, statusOperationBondBabylon, statusOperationUnbondBabylon, statusPrepareBondBabylon, statusPrepareUnbondBabylon]);
 
     const totalPhase = props.token.chain.network === "cosmos" ? 3 : 8;
     const curTrace = useMemo(() => {
@@ -107,9 +104,9 @@ const Content: React.FC<Props> = (props: Props) => {
         }
 
         return 0;
-    }, [statusPrepare, statusOperation]);
+    }, [statusOperation, statusPrepare, totalPhase]);
 
-    const executeOperation = async () => {
+    const executeOperation = useCallback(async () => {
         if (successTxHash) return;
 
         try {
@@ -180,7 +177,7 @@ const Content: React.FC<Props> = (props: Props) => {
             console.error(error);
             setError(String(error));
         }
-    };
+    }, [bondCosmos, bondEvm, props.amount, props.cosmosChainContext, props.estimateReceive, props.operation, props.publicClient, props.recipientAddress, props.token, props.tokenReceive, props.walletClient, successTxHash, unbondCosmos, unbondEvm]);
 
     useEffect(() => {
         const submit = async () => {
@@ -190,7 +187,7 @@ const Content: React.FC<Props> = (props: Props) => {
         };
 
         submit();
-    }, []);
+    }, [executeOperation]);
 
     if (successTxHash) {
         if (

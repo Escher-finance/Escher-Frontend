@@ -31,7 +31,7 @@ const OsmosisPool = (props: Props) => {
                 </td>
                 <td className="py-4 px-2">
                     <div className="flex">
-                        <div className="flex items-center gap-[6px] rounded-full pl-1 pr-2 py-0.5 bg-[#c7b5f8]">
+                        <div className="flex items-center gap-1.5 rounded-full pl-1 pr-2 py-0.5 bg-[#c7b5f8]">
                             <Image src={props.defi.logoURI} alt="" width={16} height={16} className="border border-white rounded-full" />
                             <div className="text-escher-text2 text-sm font-medium">{props.defi.name}</div>
                         </div>
@@ -99,7 +99,7 @@ const OsmosisPool = (props: Props) => {
                     }
                 </td>
                 <td className="py-4 px-2 pr-4">
-                    <div className="flex gap-[6px]">
+                    <div className="flex gap-1.5">
                         <AddLiquidityOsmosis
                             defi={props.defi}
                             isApps={true}

@@ -82,7 +82,7 @@ const Phase = (props: { status: ProgressStatus, title: string, subtitle: string,
     return (
         <div className="flex gap-2 items-start">
             <div className="flex flex-col gap-1 items-center text-escher-electricblue dark:text-white">
-                <div className="w-[1px] h-[6px]" />
+                <div className="w-px h-1.5" />
                 {props.status === 'pending' &&
                     <Icon type="FaRegCircle" />
                 }
@@ -93,7 +93,7 @@ const Phase = (props: { status: ProgressStatus, title: string, subtitle: string,
                     <Icon type="FaCheckCircle" />
                 }
                 {props.showLine &&
-                    <div className="w-[1px] h-10 bg-escher-electricblue" />
+                    <div className="w-px h-10 bg-escher-electricblue" />
                 }
             </div>
             <div className="flex flex-col leading-none">

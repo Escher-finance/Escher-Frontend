@@ -50,7 +50,7 @@ const Content = (props: Props) => {
             :
             v.chain.name.toLowerCase().includes(searchQuery.toLowerCase())
     ),
-        [searchQuery, props.tokens]
+        [props.tokens, searchQuery, step]
     );
 
     const groupedTokens: GroupedTokens[] = useMemo(() => {

@@ -9,7 +9,7 @@ import { nonfungiblePositionManagerContractAddress } from "./useUniswapDefi";
 import { ProgressStatus } from "@/types/status";
 
 export const useUniswapClaimReward = () => {
-    const { switchChainAsync } = useSwitchChain();
+    const { mutateAsync: switchChainAsync } = useSwitchChain();
 
     const [statusPrepare, setStatusPrepare] =
         useState<ProgressStatus>("pending");

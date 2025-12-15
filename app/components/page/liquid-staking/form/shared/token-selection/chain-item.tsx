@@ -13,7 +13,7 @@ const ChainItem = ({ enabled = true, ...props }: Props) => {
         <button
             onClick={() => props.onTokenSelected(props.token)}
             disabled={!enabled}
-            className="relative flex gap-2 justify-between items-center hover:bg-escher-gray100 dark:hover:bg-escher-darkblue_5 transition-all p-[6px] rounded-lg"
+            className="relative flex gap-2 justify-between items-center hover:bg-escher-gray100 dark:hover:bg-escher-darkblue_5 transition-all p-1.5 rounded-lg"
         >
             <TokenChain
                 token={props.token}

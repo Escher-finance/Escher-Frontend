@@ -46,7 +46,7 @@ export interface UnbondEvmParams {
 
 export const useBabylonUnbond = () => {
     const { saveData } = useLocalTransactions();
-    const { switchChainAsync } = useSwitchChain();
+    const { mutateAsync: switchChainAsync } = useSwitchChain();
     const [statusPrepare, setStatusPrepare] = useState<ProgressStatus>('pending');
     const [statusOperation, setStatusOperation] = useState<ProgressStatus>('pending');
     const { getCosmWasmClient: babylonGetCosmWasmClient } = useChain(CHAINS.babylon.chainName!);
