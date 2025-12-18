@@ -137,7 +137,7 @@ const Page = () => {
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-3">
                         <Select>
-                            <SelectTrigger className="flex items-center gap-2 px-4 py-[10px] shadow-sm border border-escher-gray100 dark:border-escher-30425B rounded-lg bg-white hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all">
+                            <SelectTrigger className="flex items-center gap-2 px-4 py-[10px] shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg bg-white hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all">
                                 <Image alt="" src="/images/token/babylon-v2.svg" width={16} height={16} />
                                 <div>Babylon</div>
                             </SelectTrigger>
@@ -158,7 +158,7 @@ const Page = () => {
                         </Select>
 
                         <Select>
-                            <SelectTrigger className="flex items-center gap-2 px-4 py-[10px] shadow-sm border border-escher-gray100 dark:border-escher-30425B rounded-lg bg-white hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all">
+                            <SelectTrigger className="flex items-center gap-2 px-4 py-[10px] shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg bg-white hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all">
                                 <Image alt="" src="/images/token/e-babylon.svg" width={16} height={16} />
                                 <div>eBABY</div>
                             </SelectTrigger>
@@ -180,26 +180,26 @@ const Page = () => {
                     </div>
                     <div className="flex gap-3 font-medium text-sm text-escher-gray800 dark:text-white">
                         <button
-                            className={`px-4 py-[10px] shadow-sm border border-escher-gray100 dark:border-escher-30425B rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${!appTag ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
+                            className={`px-4 py-[10px] shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${!appTag ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
                             onClick={() => setAppTag(undefined)}
                         >All</button>
                         <button
-                            className={`px-4 py-[10px] shadow-sm border border-escher-gray100 dark:border-escher-30425B rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${(appTag === "lending") ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
+                            className={`px-4 py-[10px] shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${(appTag === "lending") ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
                             onClick={() => setAppTag("lending")}
                         >LENDING</button>
                         <button
-                            className={`px-4 py-[10px] shadow-sm border border-escher-gray100 dark:border-escher-30425B rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${(appTag === "yield") ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
+                            className={`px-4 py-[10px] shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${(appTag === "yield") ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
                             onClick={() => setAppTag("yield")}
                         >YIELD AGGREGATION</button>
                         <button
-                            className={`px-4 py-[10px] shadow-sm border border-escher-gray100 dark:border-escher-30425B rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${(appTag === "pools") ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
+                            className={`px-4 py-[10px] shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${(appTag === "pools") ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
                             onClick={() => setAppTag("pools")}
                         >LIQUIDITY POOLS</button>
 
                         <div className="relative h-full flex items-center justify-center">
                             <input
                                 type="text"
-                                className="h-full w-full bg-white pl-10 pr-4 py-[12px] shadow-sm border border-escher-gray100 dark:border-escher-30425B rounded-lg placeholder-escher-gray400 text-escher-gray800 dark:text-white font-medium text-sm"
+                                className="h-full w-full bg-white pl-10 pr-4 py-[12px] shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg placeholder-escher-gray400 text-escher-gray800 dark:text-white font-medium text-sm"
                                 placeholder="Search"
                             />
                             <Icon type="FiSearch" size="lg" className="text-escher-gray400 dark:text-escher-777e90 absolute left-2" />

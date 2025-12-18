@@ -72,11 +72,11 @@ const OsmosisPool = (props: Props) => {
                     {props.pool.isFetched ?
                         <div className="flex items-center gap-1 font-semibold text-escher-text2 dark:text-white text-xs">
                             <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-                                <Image alt="" src={props.pool.pool.tokenA.icon ?? ""} className="w-4 h-4" />
+                                <Image alt="" src={props.pool.pool.tokenA.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                                 <div>{formatNumber(props.pool.pool.tokenAStaked ?? 0)}</div>
                             </div>
                             <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-                                <Image alt="" src={props.pool.pool.tokenB.icon ?? ""} className="w-4 h-4" />
+                                <Image alt="" src={props.pool.pool.tokenB.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                                 <div>{formatNumber(props.pool.pool.tokenBStaked ?? 0)}</div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@ const OsmosisPool = (props: Props) => {
                         <div className="flex items-center gap-1 font-semibold text-escher-text2 dark:text-white text-xs">
                             {props.pool.pool.rewards?.map(reward =>
                                 <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-                                    <Image alt="" src={reward.token.icon ?? ""} className="w-4 h-4" />
+                                    <Image alt="" src={reward.token.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                                     <div>{formatNumber(Number(reward.amount), true, 2)}</div>
                                 </div>
                             )}

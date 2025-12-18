@@ -67,7 +67,9 @@ const UnbondType = (props: Props) => {
             <div className="border border-gray-300 dark:border-escher-darkblue_border px-3 py-2 rounded-lg self-start flex flex-col gap-2 mb-2 font-medium text-sm">
                 <div
                     className="text-xs text-escher-text4 dark:text-gray-500 leading-none"
-                    onClick={() => { }}
+                    onClick={() => {
+                        console.log({ unbondPeriod: UNION_CONTRACTS.mainnet.unbondingPeriod, remainingSeconds, oldestBatchSeconds, countdown });
+                    }}
                 >Next unbonding batch :</div>
                 {countdownData ?
                     <div className="text-gray-500 dark:text-gray-300 leading-none font-semibold">

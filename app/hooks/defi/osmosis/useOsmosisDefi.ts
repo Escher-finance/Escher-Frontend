@@ -97,8 +97,7 @@ const getTvl = async (chainContext: ChainContext) => {
             ebaby: formatDecimal(Number(balanceEBaby.amount), -6),
         });
 
-    } catch (error) {
-        console.error(error);
+    } catch {
         return undefined;
     }
 }
@@ -197,8 +196,7 @@ const useOsmosisPool = (params: OsmosisPoolParams): OsmosisPoolResult => {
                 }[]
             }[];
 
-        } catch (err) {
-            console.error(err);
+        } catch {
             return undefined;
         }
     };
@@ -219,9 +217,7 @@ const useOsmosisPool = (params: OsmosisPoolParams): OsmosisPoolResult => {
 
         try {
             apr = queryTradingVolume.data?.apr.value;
-        } catch (error) {
-            console.error('Osmosis defi error:', error);
-        }
+        } catch { }
 
         // Volume
         let volume: {
@@ -234,9 +230,7 @@ const useOsmosisPool = (params: OsmosisPoolParams): OsmosisPoolResult => {
                 day: Number(queryTradingVolume.data?.market.volume24hUsd.amount),
                 week: Number(queryTradingVolume.data?.market.volume7dUsd.amount)
             };
-        } catch (error) {
-            console.error('Osmosis defi error:', error);
-        }
+        } catch { }
 
         // Position
         let position: number | undefined;

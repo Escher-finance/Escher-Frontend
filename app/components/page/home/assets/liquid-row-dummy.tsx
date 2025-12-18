@@ -20,7 +20,7 @@ const AssetsLiquidRowDummy = (props: Props) => {
         <Accordion type="single" collapsible disabled>
             <AccordionItem value="item-1">
                 <AccordionTrigger
-                    className="relative flex px-6 py-0 border-t border-escher-gray100 dark:border-escher-30425B hover:bg-escher-gray50 dark:hover:bg-escher-112441 transition-all text-left text-sm"
+                    className="relative flex px-6 py-0 border-t border-escher-gray100 dark:border-escher-30425b hover:bg-escher-gray50 dark:hover:bg-escher-112441 transition-all text-left text-sm"
                 >
                     <div className="flex-1 flex items-center">
                         <div className="w-[28%] flex items-center gap-2">

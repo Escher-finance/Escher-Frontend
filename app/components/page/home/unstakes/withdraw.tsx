@@ -53,15 +53,15 @@ const Withdraw = () => {
                             <div className="text-xs text-escher-gray400 dark:text-escher-777e90">From</div>
                             <div className="text-sm text-escher-gray900 dark:text-white">0.0332 eU</div>
                         </div>
-                        <div className="flex justify-between items-center py-2 border-t border-escher-gray100 dark:border-escher-30425B">
+                        <div className="flex justify-between items-center py-2 border-t border-escher-gray100 dark:border-escher-30425b">
                             <div className="text-xs text-escher-gray400 dark:text-escher-777e90">To</div>
                             <div className="text-sm text-escher-gray900 dark:text-white">0.0332 eU</div>
                         </div>
-                        <div className="flex justify-between items-center py-2 border-t border-escher-gray100 dark:border-escher-30425B">
+                        <div className="flex justify-between items-center py-2 border-t border-escher-gray100 dark:border-escher-30425b">
                             <div className="text-xs text-escher-gray400 dark:text-escher-777e90">Exchange rate</div>
                             <div className="text-sm text-escher-gray900 dark:text-white">1.5</div>
                         </div>
-                        <div className="flex justify-between items-center py-2 border-t border-escher-gray100 dark:border-escher-30425B">
+                        <div className="flex justify-between items-center py-2 border-t border-escher-gray100 dark:border-escher-30425b">
                             <div className="text-xs text-escher-gray400 dark:text-escher-777e90">Receiver address</div>
                             <div className="text-sm text-escher-gray900 dark:text-white">0xaef...n7r3b</div>
                         </div>

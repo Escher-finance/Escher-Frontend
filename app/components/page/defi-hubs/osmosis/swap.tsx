@@ -49,14 +49,14 @@ const OsmosisSwap = (props: Props) => {
 
                 <div className="flex items-center justify-center gap-2 leading-none py-[10px] font-semibold text-sm dark:text-white">
                     <div>1 {props.swap.tokenA.symbol}</div>
-                    <Image alt="" src={props.swap.tokenA.icon} className="w-4 h-4" />
+                    <Image alt="" src={props.swap.tokenA.icon} className="w-4 h-4" width={16} height={16} />
                     <div>≈</div>
                     {route.data ?
                         <div>{formatNumber(Number(route.data.amount_out_formatted), true, 4)} {props.swap.tokenB.symbol}</div>
                         :
                         <LdrsAnimation size={16} />
                     }
-                    <Image alt="" src={props.swap.tokenB.icon} className="w-4 h-4" />
+                    <Image alt="" src={props.swap.tokenB.icon} className="w-4 h-4" width={16} height={16} />
                 </div>
             </div>
 

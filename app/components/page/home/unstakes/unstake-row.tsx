@@ -99,7 +99,7 @@ const UnstakeRow = (props: Props) => {
     }
 
     return (
-        <tr className="border-t border-escher-gray100 dark:border-escher-30425B" onClick={() => console.log({ tx: props.transaction })}>
+        <tr className="border-t border-escher-gray100 dark:border-escher-30425b" onClick={() => console.log({ tx: props.transaction })}>
             <td className={`py-3 pl-6 flex items-center gap-3`}>
                 <TokenChain token={token.send} tokenSize={23} />
                 <div className="flex flex-col gap-0">

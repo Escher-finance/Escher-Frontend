@@ -123,11 +123,11 @@ const TowerPool = (props: Props) => {
             <td className="py-4 px-2">
                 <div className="flex items-center gap-1 font-semibold text-escher-text2 dark:text-white text-xs">
                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-                        <Image alt="" src={props.pool.data.tokenA.icon ?? ""} className="w-4 h-4" />
+                        <Image alt="" src={props.pool.data.tokenA.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                         <div>{formatNumber((props.pool.data.tokenAStaked ?? 0), true, 2)}</div>
                     </div>
                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-                        <Image alt="" src={props.pool.data.tokenB.icon ?? ""} className="w-4 h-4" />
+                        <Image alt="" src={props.pool.data.tokenB.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                         <div>{formatNumber((props.pool.data.tokenBStaked ?? 0), true, 2)}</div>
                     </div>
                 </div>
@@ -138,17 +138,17 @@ const TowerPool = (props: Props) => {
                     {canClaim ? <>
                         {props.pool.data.rewards?.map(r =>
                             <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-                                <Image alt="" src={r.token.icon ?? ""} className="w-4 h-4" />
+                                <Image alt="" src={r.token.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                                 <div>{formatNumber((r.amount ?? 0), true, 2)}</div>
                             </div>
                         )}
                     </> : <>
                         <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-                            <Image alt="" src={props.pool.data.tokenA.icon ?? ""} className="w-4 h-4" />
+                            <Image alt="" src={props.pool.data.tokenA.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                             <div>0</div>
                         </div>
                         <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-                            <Image alt="" src={props.pool.data.tokenB.icon ?? ""} className="w-4 h-4" />
+                            <Image alt="" src={props.pool.data.tokenB.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                             <div>0</div>
                         </div>
                     </>}
@@ -211,7 +211,7 @@ const TowerPool = (props: Props) => {
     //                 {props.pool.data.multiplier.map(m =>
     //                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full px-2 py-0.5 flex items-center gap-1">
     //                         <div className="text-sm font-medium text-escher-text2 dark:text-white">{m.text}</div>
-    //                         <Image alt="" src={m.logoUri} className="w-4 h-4" />
+    //                         <Image alt="" src={m.logoUri} className="w-4 h-4" width={16} height={16} />
     //                     </div>
     //                 )}
     //             </div>
@@ -248,13 +248,13 @@ const TowerPool = (props: Props) => {
     //             <div className="flex items-center font-semibold text-escher-text2 dark:text-white text-xs mt-1">
     //                 <div className="flex-1 flex">
     //                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 leading-none flex items-center gap-1">
-    //                         <Image alt="" src={props.pool.data.tokenA.icon ?? ""} className="w-4 h-4" />
+    //                         <Image alt="" src={props.pool.data.tokenA.icon ?? ""} className="w-4 h-4" width={16} height={16} />
     //                         <div>{formatNumber((props.pool.data.tokenAPoolAmount ?? 0), true, 2)}</div>
     //                     </div>
     //                 </div>
     //                 <div className="flex-1 flex">
     //                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 leading-none flex items-center gap-1">
-    //                         <Image alt="" src={props.pool.data.tokenB.icon ?? ""} className="w-4 h-4" />
+    //                         <Image alt="" src={props.pool.data.tokenB.icon ?? ""} className="w-4 h-4" width={16} height={16} />
     //                         <div>{formatNumber((props.pool.data.tokenBPoolAmount ?? 0), true, 2)}</div>
     //                     </div>
     //                 </div>
@@ -282,11 +282,11 @@ const TowerPool = (props: Props) => {
     //                         <div className="text-xs text-escher-electricblue font-semibold">My Position</div>
     //                         <div className="flex items-center gap-1 font-semibold text-escher-text2 dark:text-white text-xs">
     //                             <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-    //                                 <Image alt="" src={props.pool.data.tokenA.icon ?? ""} className="w-4 h-4" />
+    //                                 <Image alt="" src={props.pool.data.tokenA.icon ?? ""} className="w-4 h-4" width={16} height={16} />
     //                                 <div>{formatNumber((props.pool.data.tokenAStaked ?? 0), true, 2)}</div>
     //                             </div>
     //                             <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-    //                                 <Image alt="" src={props.pool.data.tokenB.icon ?? ""} className="w-4 h-4" />
+    //                                 <Image alt="" src={props.pool.data.tokenB.icon ?? ""} className="w-4 h-4" width={16} height={16} />
     //                                 <div>{formatNumber((props.pool.data.tokenBStaked ?? 0), true, 2)}</div>
     //                             </div>
     //                             <div className="text-escher-electricblue">${formatNumber((props.pool.data.position ?? 0), true, 2)}</div>
@@ -298,7 +298,7 @@ const TowerPool = (props: Props) => {
     //                             <div className="flex items-center gap-1 font-semibold text-escher-text2 dark:text-white text-xs">
     //                                 {props.pool.data.rewards?.map(r =>
     //                                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-    //                                         <Image alt="" src={r.token.icon ?? ""} className="w-4 h-4" />
+    //                                         <Image alt="" src={r.token.icon ?? ""} className="w-4 h-4" width={16} height={16} />
     //                                         <div>{formatNumber(formatDecimal((r.amount ?? 0), -r.token.decimals), true, 2)}</div>
     //                                     </div>
     //                                 )}

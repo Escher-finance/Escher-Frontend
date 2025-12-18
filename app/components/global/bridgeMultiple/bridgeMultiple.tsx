@@ -187,7 +187,7 @@ const TokenInput = (props: TokenInputProps) => {
             </div>
             <div className="flex justify-between">
                 <div className="flex items-center gap-1 text-escher-777e90 text-sm">
-                    <Image src="/icons/wallet.svg" alt="" className="w-4 h-4" />
+                    <Image src="/icons/wallet.svg" alt="" className="w-4 h-4" width={16} height={16} />
                     <div>{props.token.balance?.formattedBalance}</div>
                 </div>
                 {props.token.coingeckoPrice &&

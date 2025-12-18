@@ -154,7 +154,7 @@ export default function Tickets(props: Props) {
                                 <div className="text-xs text-gray-500">{formatted}</div>
                             </div>
                         </div>
-                        <Image alt="" src={themeIsDark ? "/images/escher-white.svg" : "/images/escher-blue.svg"} className="w-6 h-6" />
+                        <Image alt="" src={themeIsDark ? "/images/escher-white.svg" : "/images/escher-blue.svg"} className="w-6 h-6" width={24} height={24} />
                     </div>
                 </div>
                 :

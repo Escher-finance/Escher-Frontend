@@ -180,7 +180,8 @@ const FormBabylon = (props: Props) => {
 
         // Set default recipient
         setFCustomAddress(undefined);
-    }, [operation, outputTokens, selectedInputToken.chain.id]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [operation, selectedInputToken.chain.id]);
 
     // Set chainContext
     const cosmosChainContext = useMemo(() => {

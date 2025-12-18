@@ -54,7 +54,7 @@ const SidebarMenuMulti = (props: Props) => {
                         activeClass
                     )}
                 >
-                    <Image src={icon} width={24} height={24} alt="" className="w-6 h-6" />
+                    <Image src={icon} width={24} height={24} alt="" className="w-6 h-6" width={24} height={24} />
                     <div className="flex-1">{props.title}</div>
                     <Icon type="FaChevronRight" size="sm" className={`${open && 'rotate-90'} transition-all`} />
                 </AccordionTrigger>

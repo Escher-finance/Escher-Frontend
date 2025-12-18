@@ -169,17 +169,17 @@ export const ChainTrace = (props: { lst: "babylon" | "union", token: CustomToken
         if (props.token.chain.network === "evm") {
             return (
                 <div className="p-1 rounded-full border border-escher-E7E8FE dark:border-escher-darkblue_border flex items-center gap-2 text-escher-electricblue dark:text-white">
-                    <Image alt="" src={"https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"} className="w-4 h-4" />
+                    <Image alt="" src={"https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"} className="w-4 h-4" width={16} height={16} />
                     <Icon type="BsArrowRight" size="sm" />
-                    <Image alt="" src={chainLogo} className="w-4 h-4" />
+                    <Image alt="" src={chainLogo} className="w-4 h-4" width={16} height={16} />
                 </div>
             );
         } else {
             return (
                 <div className="p-1 rounded-full border border-escher-E7E8FE dark:border-escher-darkblue_border flex items-center gap-2 text-escher-electricblue dark:text-white">
-                    <Image alt="" src={chainLogo} className="w-4 h-4" />
+                    <Image alt="" src={chainLogo} className="w-4 h-4" width={16} height={16} />
                     <Icon type="BsArrowRight" size="sm" />
-                    <Image alt="" src={"https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"} className="w-4 h-4" />
+                    <Image alt="" src={"https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"} className="w-4 h-4" width={16} height={16} />
                 </div>
             );
         }
@@ -187,9 +187,9 @@ export const ChainTrace = (props: { lst: "babylon" | "union", token: CustomToken
     if (props.dest === "recv") {
         return (
             <div className="p-1 rounded-full border border-escher-E7E8FE dark:border-escher-darkblue_border flex items-center gap-2 text-escher-electricblue dark:text-white">
-                <Image alt="" src={chainLogo} className="w-4 h-4" />
+                <Image alt="" src={chainLogo} className="w-4 h-4" width={16} height={16} />
                 <Icon type="BsArrowRight" size="sm" />
-                <Image alt="" src={props.tokenReceive.chain.icon ?? ""} className="w-4 h-4" />
+                <Image alt="" src={props.tokenReceive.chain.icon ?? ""} className="w-4 h-4" width={16} height={16} />
             </div>
         );
     }

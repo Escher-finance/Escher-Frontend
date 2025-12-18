@@ -79,7 +79,7 @@ const EUHodl = (props: Props) => {
                         <div className="flex flex-col gap-1">
                             <div className="font-medium text-sm">Sub-bucket</div>
                             <div className="text-xs text-escher-electricblue dark:text-white flex items-center gap-1">
-                                <Image alt="" src={point.token?.chain.icon} className="w-4 h-4" />
+                                <Image alt="" src={point.token?.chain.icon} className="w-4 h-4" width={16} height={16} />
                                 <div>{point.token?.chain.name}</div>
                             </div>
                         </div>

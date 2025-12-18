@@ -220,15 +220,15 @@ const Position = (props: Props) => {
                                             </TooltipTrigger>
                                             <TooltipContent className="flex flex-col gap-2 bg-white text-escher-text2 shadow-lg border p-4">
                                                 <div className="flex items-center gap-1 border border-escher-dedfff rounded-full p-1">
-                                                    <Image alt="" src="/images/token/e-babylon.svg" alt="" className="w-4 h-4" />
+                                                    <Image alt="" src="/images/token/e-babylon.svg" alt="" className="w-4 h-4" width={16} height={16} />
                                                     <div className="text-xs text-escher-text2 font-semibold">${formatNumber(position.values.hodl.babylon)}</div>
                                                 </div>
                                                 <div className="flex items-center gap-1 border border-escher-dedfff rounded-full p-1">
-                                                    <Image alt="" src="/images/token/e-union.svg" alt="" className="w-4 h-4" />
+                                                    <Image alt="" src="/images/token/e-union.svg" alt="" className="w-4 h-4" width={16} height={16} />
                                                     <div className="text-xs text-escher-text2 font-semibold">${formatNumber(position.values.hodl.union)}</div>
                                                 </div>
                                                 <div className="flex items-center gap-1 border border-escher-dedfff rounded-full p-1">
-                                                    <Image alt="" src="/images/apps/app-uniswap-circle-2.svg" alt="" className="w-4 h-4" />
+                                                    <Image alt="" src="/images/apps/app-uniswap-circle-2.svg" alt="" className="w-4 h-4" width={16} height={16} />
                                                     <div className="text-xs text-escher-text2 font-semibold">${formatNumber(position.lpValues.uniswap)}</div>
                                                 </div>
                                             </TooltipContent>
@@ -244,7 +244,7 @@ const Position = (props: Props) => {
                     <div className="text-sm text-sky-50 bg-escher-electricblue bg-opacity-80 dark:bg-opacity-25 border border-escher-electricblue dark:border-escher-electricblue rounded px-2 py-1.5 font-medium self-start flex flex-col gap-1">
                         <div className="self-center font-semibold">APR</div>
                         <div className="flex items-center gap-1 text-xs">
-                            <Image alt="" src="/images/token/e-babylon.svg" alt="" className="w-4 h-4" />
+                            <Image alt="" src="/images/token/e-babylon.svg" alt="" className="w-4 h-4" width={16} height={16} />
                             {apr ?
                                 <div>~ {(apr * 100).toFixed(2)}%</div>
                                 :
@@ -254,7 +254,7 @@ const Position = (props: Props) => {
                             }
                         </div>
                         <div className="flex items-center gap-1 text-xs">
-                            <Image alt="" src="/images/token/e-union.svg" alt="" className="w-4 h-4" />
+                            <Image alt="" src="/images/token/e-union.svg" alt="" className="w-4 h-4" width={16} height={16} />
                             {aprUnion ?
                                 <div>~ {(aprUnion * 100).toFixed(2)}%</div>
                                 :
@@ -266,7 +266,7 @@ const Position = (props: Props) => {
                     </div>
                 </div>
                 <div className="flex border border-escher-dedfff dark:border-escher-darkblue_2 rounded-full p-1 self-start mt-2">
-                    <Image alt="" src="/images/token/e-babylon.svg" alt="" className="w-4 h-4" />
+                    <Image alt="" src="/images/token/e-babylon.svg" alt="" className="w-4 h-4" width={16} height={16} />
                     <Image alt="" src="/images/token/e-union.svg" alt="" className="w-4 h-4 -ml-1" />
                     <Image alt="" src="/images/apps/app-uniswap-circle-2.svg" alt="" className="w-4 h-4 -ml-1" />
                     {/* <Image alt="" src="/images/apps/app-osmosis-circle-2.svg" alt="" className="w-4 h-4 -ml-1.5" /> */}

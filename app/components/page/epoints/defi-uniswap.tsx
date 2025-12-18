@@ -92,7 +92,7 @@ const Defi = (props: Props) => {
                                 {pool.defiPool.multiplier.map((m, k) =>
                                     <div key={k} className="flex items-center gap-1 text-escher-electricblue dark:text-white text-xs font-medium">
                                         <div>{m.text}</div>
-                                        <Image alt="" src={m.logoUri} className="w-4 h-4" />
+                                        <Image alt="" src={m.logoUri} className="w-4 h-4" width={16} height={16} />
                                     </div>
                                 )}
                                 <Icon type="FaChevronDown" size="sm" className={`text-escher-141B34 transition-all ${open && 'rotate-180'}`} />

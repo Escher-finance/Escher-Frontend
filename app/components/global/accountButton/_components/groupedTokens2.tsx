@@ -74,7 +74,7 @@ const ButtonLst = (props: { active: boolean, onClick(): void, title: string, ico
             )}
             onClick={props.onClick}
         >
-            {/* <Image alt="" src={props.icon} className="w-4 h-4" /> */}
+            {/* <Image alt="" src={props.icon} className="w-4 h-4" width={16} height={16} /> */}
             <div className="text-sm font-semibold">{props.title}</div>
         </button>
     );

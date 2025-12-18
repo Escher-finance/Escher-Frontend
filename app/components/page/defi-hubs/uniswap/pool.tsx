@@ -105,11 +105,11 @@ const UniswapPool = (props: Props) => {
             <td className="py-4 px-2">
                 <div className="flex items-center gap-1 font-semibold text-escher-text2 dark:text-white text-xs">
                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-                        <Image alt="" src={props.pool.defiPool.tokenA.icon ?? ""} className="w-4 h-4" />
+                        <Image alt="" src={props.pool.defiPool.tokenA.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                         <div>{formatNumber(formatDecimal(Number(props.pool.position?.amount0 ?? 0), -(props.pool.position?.tokenA?.decimals ?? 0)), true, 2)}</div>
                     </div>
                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-                        <Image alt="" src={props.pool.defiPool.tokenB.icon ?? ""} className="w-4 h-4" />
+                        <Image alt="" src={props.pool.defiPool.tokenB.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                         <div>{formatNumber(formatDecimal(Number(props.pool.position?.amount1 ?? 0), -(props.pool.position?.tokenB?.decimals ?? 0)), true, 2)}</div>
                     </div>
                 </div>
@@ -117,11 +117,11 @@ const UniswapPool = (props: Props) => {
             <td className="py-4 px-2">
                 <div className="flex items-center gap-1 font-semibold text-escher-text2 dark:text-white text-xs">
                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-                        <Image alt="" src={props.pool.defiPool.tokenA.icon ?? ""} className="w-4 h-4" />
+                        <Image alt="" src={props.pool.defiPool.tokenA.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                         <div>{props.pool.position ? formatNumber(formatDecimal(Number(props.pool.position.tokensOwed0 ?? 0), -props.pool.defiPool.tokenA.decimals), true, 2) : "0"}</div>
                     </div>
                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-                        <Image alt="" src={props.pool.defiPool.tokenB.icon ?? ""} className="w-4 h-4" />
+                        <Image alt="" src={props.pool.defiPool.tokenB.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                         <div>{props.pool.position ? formatNumber(formatDecimal(Number(props.pool.position.tokensOwed1 ?? 0), -props.pool.defiPool.tokenB.decimals), true, 2) : "0"}</div>
                     </div>
                 </div>
@@ -191,7 +191,7 @@ const UniswapPool = (props: Props) => {
     //                 {props.pool.multiplier.map(m =>
     //                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full px-2 py-0.5 flex items-center gap-1">
     //                         <div className="text-sm font-medium text-escher-text2 dark:text-white">{m.text}</div>
-    //                         <Image alt="" src={m.logoUri} className="w-4 h-4" />
+    //                         <Image alt="" src={m.logoUri} className="w-4 h-4" width={16} height={16} />
     //                     </div>
     //                 )}
     //             </div>
@@ -228,13 +228,13 @@ const UniswapPool = (props: Props) => {
     //             <div className="flex items-center font-semibold text-escher-text2 dark:text-white text-xs mt-1">
     //                 <div className="flex-1 flex">
     //                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 leading-none flex items-center gap-1">
-    //                         <Image alt="" src={props.pool.tokenA.icon ?? ""} className="w-4 h-4" />
+    //                         <Image alt="" src={props.pool.tokenA.icon ?? ""} className="w-4 h-4" width={16} height={16} />
     //                         <div>{formatNumber(formatDecimal(Number(queryPool.balances?.tokenA ?? 0), -props.pool.tokenA.decimals), true, 2)}</div>
     //                     </div>
     //                 </div>
     //                 <div className="flex-1 flex">
     //                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 leading-none flex items-center gap-1">
-    //                         <Image alt="" src={props.pool.tokenB.icon ?? ""} className="w-4 h-4" />
+    //                         <Image alt="" src={props.pool.tokenB.icon ?? ""} className="w-4 h-4" width={16} height={16} />
     //                         <div>{formatNumber(formatDecimal(Number(queryPool.balances?.tokenB ?? 0), -props.pool.tokenB.decimals), true, 2)}</div>
     //                     </div>
     //                 </div>
@@ -262,11 +262,11 @@ const UniswapPool = (props: Props) => {
     //                         <div className="text-xs text-escher-electricblue dark:text-white font-semibold">My Position</div>
     //                         <div className="flex items-center gap-1 font-semibold text-escher-text2 dark:text-white text-xs">
     //                             <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-    //                                 <Image alt="" src={props.pool.tokenA?.icon ?? ""} className="w-4 h-4" />
+    //                                 <Image alt="" src={props.pool.tokenA?.icon ?? ""} className="w-4 h-4" width={16} height={16} />
     //                                 <div>{formatNumber(formatDecimal(Number(queryPool.position?.amount0 ?? 0), -(queryPool.position?.tokenA?.decimals ?? 0)), true, 2)}</div>
     //                             </div>
     //                             <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-    //                                 <Image alt="" src={props.pool.tokenB?.icon ?? ""} className="w-4 h-4" />
+    //                                 <Image alt="" src={props.pool.tokenB?.icon ?? ""} className="w-4 h-4" width={16} height={16} />
     //                                 <div>{formatNumber(formatDecimal(Number(queryPool.position?.amount1 ?? 0), -(queryPool.position?.tokenB?.decimals ?? 0)), true, 2)}</div>
     //                             </div>
     //                             <div className="text-escher-electricblue dark:text-white">${formatNumber((queryPool.position?.totalValue ?? 0), true, 2)}</div>
@@ -277,11 +277,11 @@ const UniswapPool = (props: Props) => {
     //                             <div className="text-xs text-escher-electricblue dark:text-white font-semibold">Rewards</div>
     //                             <div className="flex items-center gap-1 font-semibold text-escher-text2 dark:text-white text-xs">
     //                                 <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-    //                                     <Image alt="" src={props.pool.tokenA.icon ?? ""} className="w-4 h-4" />
+    //                                     <Image alt="" src={props.pool.tokenA.icon ?? ""} className="w-4 h-4" width={16} height={16} />
     //                                     <div>{formatNumber(formatDecimal(Number(queryPool.position.tokensOwed0 ?? 0), -props.pool.tokenA.decimals), true, 2)}</div>
     //                                 </div>
     //                                 <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
-    //                                     <Image alt="" src={props.pool.tokenB.icon ?? ""} className="w-4 h-4" />
+    //                                     <Image alt="" src={props.pool.tokenB.icon ?? ""} className="w-4 h-4" width={16} height={16} />
     //                                     <div>{formatNumber(formatDecimal(Number(queryPool.position.tokensOwed1 ?? 0), -props.pool.tokenB.decimals), true, 2)}</div>
     //                                 </div>
     //                             </div>
