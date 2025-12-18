@@ -104,7 +104,7 @@ const ColumnTitle = (props: { transaction: IndexerTransaction }) => {
             return (
                 <div className="flex items-center gap-3">
                     <div className="w-[30px] h-[30px] flex items-center justify-center">
-                        <Image alt="" src={"/icons/liquid_staking-blue.svg"} width={24} height={24} />
+                        <Image alt="" src={"/icons/liquid_staking-blue.svg"} width={30} height={30} />
                     </div>
                     <div className="text-sm font-medium text-escher-gray900 dark:text-white">LP+</div>
                 </div>
@@ -113,7 +113,7 @@ const ColumnTitle = (props: { transaction: IndexerTransaction }) => {
             return (
                 <div className="flex items-center gap-3">
                     <div className="w-[30px] h-[30px] flex items-center justify-center">
-                        <Image alt="" src={"/icons/liquid_staking-orange.svg"} width={24} height={24} />
+                        <Image alt="" src={"/icons/liquid_staking-orange.svg"} width={30} height={30} />
                     </div>
                     <div className="text-sm font-medium text-escher-gray900 dark:text-white">LP-</div>
                 </div>

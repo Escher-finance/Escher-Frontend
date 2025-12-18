@@ -89,76 +89,6 @@ const Detail = (props: Props) => {
         }
     }, [props.token, props.tokenReceive, props.transaction]);
 
-    const UnbondingProgress = () => {
-        if (!props.unbondingTime) {
-            return undefined;
-        }
-
-        if (props.transaction.status !== "success") {
-
-            const submittedTime = props.transaction.submitted ?? props.transaction.time;
-            const startTime = new Date(props.transaction.time).getTime();
-            const now = new Date().getTime();
-            const unbondingTime = props.tokenReceive?.lst?.includes("babylon") ? props.unbondingTime.babylon : props.unbondingTime.union;
-            if (!unbondingTime)
-                return undefined;
-            const endTime = new Date(submittedTime).getTime() + (unbondingTime * 1000) + BABYLON_CONTRACTS.unstakingOffset;
-
-            const seconds = Math.floor((endTime - now) / 1000);
-            const hours = seconds / 3600;
-            const totalDays = hours / 24;
-
-            let text = "";
-            if (totalDays >= 7) {
-                text = `${Math.floor(totalDays)} days`;
-            } else {
-                if (hours < 1) {
-                    text = `<1 hour`;
-                } else {
-                    text = `${Math.floor(hours)} hours`;
-                }
-            }
-
-            if (seconds < 0) {
-                return (
-                    <div className="flex flex-col gap-1">
-                        <div className="text-sm text-escher-black dark:text-white font-medium">Remaining time</div>
-                        <div className="min-w-[250px] flex items-center gap-4" onClick={() => console.log({ now: now, endTime: endTime - startTime, seconds, unbondingTime: props.unbondingTime, unstakeOffset: BABYLON_CONTRACTS.unstakingOffset })}>
-                            <div className="w-[70%] bg-escher-gray300 h-2 rounded-full">
-                                <div
-                                    className={`bg-escher-electricblue rounded-full h-full`}
-                                    style={{
-                                        'width': `100%`
-                                    }}
-                                ></div>
-                            </div>
-                            <div className="text-xs font-medium text-escher-gray800 dark:text-white whitespace-nowrap">Processing</div>
-                        </div>
-                    </div>
-                );
-            }
-
-            return (
-                <div className="flex flex-col gap-1">
-                    <div className="text-sm text-escher-black dark:text-white font-medium">Remaining time</div>
-                    <div className="min-w-[250px] flex items-center gap-4" onClick={() => console.log({ now: now, endTime: endTime - startTime, seconds, unbondingTime: props.unbondingTime, unstakeOffset: BABYLON_CONTRACTS.unstakingOffset })}>
-                        <div className="w-[70%] bg-escher-gray300 h-2 rounded-full">
-                            <div
-                                className={`bg-escher-electricblue rounded-full h-full`}
-                                style={{
-                                    'width': `${Number((now - startTime) / (endTime - startTime) * 100).toFixed(0)}%`
-                                }}
-                            ></div>
-                        </div>
-                        <div className="text-xs font-medium text-escher-gray800 dark:text-white whitespace-nowrap">{text}</div>
-                    </div>
-                </div>
-            );
-        }
-
-        return undefined;
-    }
-
     return (
         <div className="flex flex-col gap-4 bg-white dark:bg-escher-darkblue dark:text-white p-6 rounded-b-lg">
             {recipientAddress && ["bond", "unbond"].includes(props.transaction.action) && props.tokenReceive && (
@@ -198,7 +128,11 @@ const Detail = (props: Props) => {
                     </div>
                 }
                 {props.transaction.action === "unbond" &&
-                    <UnbondingProgress />
+                    <UnbondingProgress
+                        transaction={props.transaction}
+                        unbondingTime={props.unbondingTime}
+                        tokenReceive={props.tokenReceive}
+                    />
                 }
             </div>
 
@@ -221,3 +155,80 @@ const Detail = (props: Props) => {
 }
 
 export default Detail;
+
+const UnbondingProgress = (props: {
+    transaction: IndexerTransaction
+    unbondingTime: {
+        babylon?: number
+        union?: number
+    }
+    tokenReceive?: CustomToken
+}) => {
+    if (!props.unbondingTime) {
+        return undefined;
+    }
+
+    if (props.transaction.status !== "success") {
+
+        const submittedTime = props.transaction.submitted ?? props.transaction.time;
+        const startTime = new Date(props.transaction.time).getTime();
+        const now = new Date().getTime();
+        const unbondingTime = props.tokenReceive?.lst?.includes("babylon") ? props.unbondingTime.babylon : props.unbondingTime.union;
+        if (!unbondingTime)
+            return undefined;
+        const endTime = new Date(submittedTime).getTime() + (unbondingTime * 1000) + BABYLON_CONTRACTS.unstakingOffset;
+
+        const seconds = Math.floor((endTime - now) / 1000);
+        const hours = seconds / 3600;
+        const totalDays = hours / 24;
+
+        let text = "";
+        if (totalDays >= 7) {
+            text = `${Math.floor(totalDays)} days`;
+        } else {
+            if (hours < 1) {
+                text = `<1 hour`;
+            } else {
+                text = `${Math.floor(hours)} hours`;
+            }
+        }
+
+        if (seconds < 0) {
+            return (
+                <div className="flex flex-col gap-1">
+                    <div className="text-sm text-escher-black dark:text-white font-medium">Remaining time</div>
+                    <div className="min-w-[250px] flex items-center gap-4" onClick={() => console.log({ now: now, endTime: endTime - startTime, seconds, unbondingTime: props.unbondingTime, unstakeOffset: BABYLON_CONTRACTS.unstakingOffset })}>
+                        <div className="w-[70%] bg-escher-gray300 h-2 rounded-full">
+                            <div
+                                className={`bg-escher-electricblue rounded-full h-full`}
+                                style={{
+                                    'width': `100%`
+                                }}
+                            ></div>
+                        </div>
+                        <div className="text-xs font-medium text-escher-gray800 dark:text-white whitespace-nowrap">Processing</div>
+                    </div>
+                </div>
+            );
+        }
+
+        return (
+            <div className="flex flex-col gap-1">
+                <div className="text-sm text-escher-black dark:text-white font-medium">Remaining time</div>
+                <div className="min-w-[250px] flex items-center gap-4" onClick={() => console.log({ now: now, endTime: endTime - startTime, seconds, unbondingTime: props.unbondingTime, unstakeOffset: BABYLON_CONTRACTS.unstakingOffset })}>
+                    <div className="w-[70%] bg-escher-gray300 h-2 rounded-full">
+                        <div
+                            className={`bg-escher-electricblue rounded-full h-full`}
+                            style={{
+                                'width': `${Number((now - startTime) / (endTime - startTime) * 100).toFixed(0)}%`
+                            }}
+                        ></div>
+                    </div>
+                    <div className="text-xs font-medium text-escher-gray800 dark:text-white whitespace-nowrap">{text}</div>
+                </div>
+            </div>
+        );
+    }
+
+    return undefined;
+}
