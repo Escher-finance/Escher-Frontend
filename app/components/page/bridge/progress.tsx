@@ -21,12 +21,12 @@ const Progress = (props: Props) => {
     const totalPhase = getTotalPhase("bridge");
     const curTrace = useMemo(() => {
         return 2 / totalPhase * 100
-    }, []);
+    }, [totalPhase]);
 
     return (
         <DialogEmpty open={props.open}>
             <DialogContent
-                className="w-fit rounded-[20px] md:rounded-[20px] lg:rounded-[20px] border border-escher-E4E8ED dark:border-escher-darkblue_border dark:text-white"
+                className="w-fit rounded-[20px] md:rounded-[20px] lg:rounded-[20px] border border-escher-e4e8ed dark:border-escher-darkblue_border dark:text-white"
                 aria-describedby=""
                 onPointerDownOutside={e => e.preventDefault()}
             >

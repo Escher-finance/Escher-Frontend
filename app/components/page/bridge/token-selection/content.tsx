@@ -50,7 +50,7 @@ const Content = (props: Props) => {
             :
             v.chain.name.toLowerCase().includes(searchQuery.toLowerCase())
     ),
-        [searchQuery, props.tokens]
+        [props.tokens, searchQuery, step]
     );
 
     const groupedTokens: GroupedTokens[] = useMemo(() => {
@@ -158,7 +158,7 @@ const Content = (props: Props) => {
                         }}
                         className="flex items-center justify-center gap-2 bg-escher-E7E8FE hover:bg-escher-electricblue_light2 text-escher-electricblue dark:text-white p-2 font-semibold rounded-lg"
                     >
-                        <Image alt="" src={"/icons/wallet-blue.svg"} />
+                        <Image alt="" src={"/icons/wallet-blue.svg"} width={16} height={16} />
                         <div className="dark:text-escher-electricblue">Add wallet</div>
                     </button>
                 </>

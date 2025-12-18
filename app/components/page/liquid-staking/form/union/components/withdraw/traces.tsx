@@ -18,7 +18,7 @@ export default function WithdrawTraces(props: Props) {
     return (
         <DialogEmpty open={props.successTxHash !== undefined} onOpenChange={() => props.onClose()}>
             <DialogContent
-                className="w-fit rounded-[20px] md:rounded-[20px] lg:rounded-[20px] border border-escher-E4E8ED dark:border-escher-darkblue_border"
+                className="w-fit rounded-[20px] md:rounded-[20px] lg:rounded-[20px] border border-escher-e4e8ed dark:border-escher-darkblue_border"
                 aria-describedby=""
                 onPointerDownOutside={e => e.preventDefault()}
             >

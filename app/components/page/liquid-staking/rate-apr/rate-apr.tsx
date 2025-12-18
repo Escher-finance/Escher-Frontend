@@ -48,7 +48,7 @@ const RateApr = (props: Props) => {
     return (
         <div className="flex gap-2">
             {/* TVL */}
-            <div className="flex-1 flex flex-col items-center font-semibold bg-white dark:bg-escher-dark_0c203d rounded-lg border border-escher-E4E8ED dark:border-escher-darkblue_border px-4 py-3">
+            <div className="flex-1 flex flex-col items-center font-semibold bg-white dark:bg-escher-dark_0c203d rounded-lg border border-escher-e4e8ed dark:border-escher-darkblue_border px-4 py-3">
                 <Image src={icons.tvl} alt="" width={24} height={24} />
                 <div className="text-escher-electricblue dark:text-white text-sm">TVL</div>
                 {props.tvl ?
@@ -61,7 +61,7 @@ const RateApr = (props: Props) => {
             </div>
 
             {/* APR */}
-            <div className="flex-1 flex flex-col items-center font-semibold bg-white dark:bg-escher-dark_0c203d rounded-lg border border-escher-E4E8ED dark:border-escher-darkblue_border px-4 py-3">
+            <div className="flex-1 flex flex-col items-center font-semibold bg-white dark:bg-escher-dark_0c203d rounded-lg border border-escher-e4e8ed dark:border-escher-darkblue_border px-4 py-3">
                 <Image src={icons.apr} alt="" width={24} height={24} />
                 <div className="text-escher-electricblue dark:text-white text-sm">APR</div>
                 {props.apr ?
@@ -75,7 +75,7 @@ const RateApr = (props: Props) => {
 
             {/* RATIO */}
             <button
-                className="flex-1 flex flex-col items-center font-semibold bg-white dark:bg-escher-dark_0c203d hover:bg-escher-electricblue_light9 transition-all rounded-lg border border-escher-E4E8ED dark:border-escher-darkblue_border px-4 py-3"
+                className="flex-1 flex flex-col items-center font-semibold bg-white dark:bg-escher-dark_0c203d hover:bg-escher-electricblue_light9 transition-all rounded-lg border border-escher-e4e8ed dark:border-escher-darkblue_border px-4 py-3"
                 onClick={() => setRatioIsLiquid(prev => !prev)}
             >
                 <Image src={icons.ratio} alt="" width={24} height={24} />

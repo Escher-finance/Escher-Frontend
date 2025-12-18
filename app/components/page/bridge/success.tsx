@@ -1,10 +1,6 @@
 import Button from "@/components/global/button";
 import Icon from "@/components/global/icons";
 import { DialogContent, DialogEmpty, DialogTitle } from "@/components/ui/dialog-empty";
-// import { BABYLON_CONTRACTS } from "@/configs/babylon"; // unused
-// import { CHAINS } from "@/configs/chains"; // unused
-// import { CHAINS } from "@/configs/chains"; // unused
-// import { EMV_CHAINS } from "@/configs/wagmi"; // unused
 import { getExplorerUrlByChainId } from "@/lib/utils";
 import { Action } from "@/types/transaction";
 import Link from "next/link";
@@ -25,12 +21,12 @@ const Success = (props: Props) => {
             "tx",
             props.hash
         );
-    }, [props.hash]);
+    }, [props.chainId, props.hash]);
 
     return (
         <DialogEmpty open={props.open} onOpenChange={props.setOpen}>
             <DialogContent
-                className="w-fit rounded-[20px] md:rounded-[20px] lg:rounded-[20px] border border-escher-E4E8ED dark:border-escher-darkblue_border"
+                className="w-fit rounded-[20px] md:rounded-[20px] lg:rounded-[20px] border border-escher-e4e8ed dark:border-escher-darkblue_border"
                 aria-describedby=""
                 onPointerDownOutside={e => e.preventDefault()}
             >

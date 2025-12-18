@@ -114,8 +114,7 @@ const Page = () => {
     // Set default destination
     useEffect(() => {
         setTokenOutId(tokenOutList.at(0)?.id)
-    }, [tokenOutList]);
-
+    }, [tokenIn.id]);
 
     // Addresses
     const [recipientModalOpen, setRecipientModalOpen] = useState(false);
@@ -284,7 +283,7 @@ const Page = () => {
 
             }}>log</button> */}
             <Card className="w-full max-w-[518px] gap-6 relative self-center dark:bg-escher-dark_0c203d">
-                <div className="flex flex-col gap-4 border border-escher-E4E8ED dark:border-escher-darkblue_border rounded-lg p-6 dark:bg-escher-darkblue">
+                <div className="flex flex-col gap-4 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg p-6 dark:bg-escher-darkblue">
                     <TokenForm
                         activeToken={tokenIn}
                         address={addressIn}
@@ -326,10 +325,10 @@ const Page = () => {
                     />
                 </div>
 
-                <div className="flex flex-col gap-4 border border-escher-E4E8ED dark:border-escher-darkblue_border rounded-lg p-6 dark:bg-escher-darkblue">
+                <div className="flex flex-col gap-4 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg p-6 dark:bg-escher-darkblue">
                     <div className="w-full relative h-full flex items-center justify-center">
                         <input
-                            className="border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-F5F5FF dark:bg-escher-darkblue text-escher-gray900 dark:text-white rounded-full h-full px-4 py-2 font-semibold text-2xl w-full"
+                            className="border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-f5f5ff dark:bg-escher-darkblue text-escher-gray900 dark:text-white rounded-full h-full px-4 py-2 font-semibold text-2xl w-full"
                             min={0}
                             onChange={e => {
                                 let input = e.target.value;

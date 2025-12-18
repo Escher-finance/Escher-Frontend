@@ -165,7 +165,7 @@ const Content = (props: Props) => {
                 <div className="text-xs dark:text-white">CEX addresses are not supported</div>
             </div>
             <div
-                className="border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-F5F5FF dark:bg-escher-darkblue text-escher-gray900 dark:text-white rounded-full h-full px-2 py-1 w-full flex flex-row gap-2 items-center"
+                className="border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-f5f5ff dark:bg-escher-darkblue text-escher-gray900 dark:text-white rounded-full h-full px-2 py-1 w-full flex flex-row gap-2 items-center"
             >
                 <Image
                     height={25}

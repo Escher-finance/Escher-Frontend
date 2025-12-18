@@ -21,7 +21,7 @@ const TokenSelection = (props: Props) => {
     return (
         <DialogEmpty open={open} onOpenChange={v => setOpen(v)}>
             <DialogTrigger
-                className="flex items-center justify-between border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-F5F5FF dark:bg-escher-darkblue hover:bg-slate-50 dark:hover:bg-escher-dark_0c203d rounded-full p-3 gap-4"
+                className="flex items-center justify-between border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-f5f5ff dark:bg-escher-darkblue hover:bg-slate-50 dark:hover:bg-escher-dark_0c203d rounded-full p-3 gap-4"
             >
                 <div className="flex items-center gap-2">
                     <TokenChain

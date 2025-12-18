@@ -52,7 +52,7 @@ const CategoryButton = (props: CategoryButtonProps) => {
                 "px-4 py-2 border-[#ffffff10] rounded-lg font-medium text-sm ",
                 "bg-white dark:bg-escher-darkblue dark:hover:bg-escher-darkblue_2",
                 "dark:text-white dark:hover:text-white hover:text-escher-electricblue",
-                "border border-escher-E4E8ED dark:border-escher-darkblue_border",
+                "border border-escher-e4e8ed dark:border-escher-darkblue_border",
                 (props.curType === props.category && (!props.searchTerms || props.searchTerms === "")) ?
                     "text-escher-electricblue dark:text-white dark:bg-escher-dark_172c4d" :
                     "text-escher-text2 dark:text-white"
@@ -131,7 +131,7 @@ const Page = () => {
                         title="Lucky Draw"
                     />
                 </div>
-                <div className="w-[175px] h-[38px] flex items-center pl-4 bg-white dark:bg-escher-darkblue rounded-lg border border-escher-E4E8ED dark:border-escher-darkblue_border dark:text-white">
+                <div className="w-[175px] h-[38px] flex items-center pl-4 bg-white dark:bg-escher-darkblue rounded-lg border border-escher-e4e8ed dark:border-escher-darkblue_border dark:text-white">
                     <Icon type="FiSearch" className="text-gray-500" />
                     <input
                         type="text"

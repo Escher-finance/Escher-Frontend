@@ -162,7 +162,7 @@ const Detail = (props: Props) => {
     return (
         <div className="flex flex-col gap-4 bg-white dark:bg-escher-darkblue dark:text-white p-6 rounded-b-lg">
             {recipientAddress && ["bond", "unbond"].includes(props.transaction.action) && props.tokenReceive && (
-                <div className="border rounded-full border-escher-E4E8ED dark:border-escher-darkblue_border w-fit p-1 pr-2 flex items-center flex-row gap-1">
+                <div className="border rounded-full border-escher-e4e8ed dark:border-escher-darkblue_border w-fit p-1 pr-2 flex items-center flex-row gap-1">
                     {props.tokenReceive.chain.icon && (
                         <Image width={20} height={20} src={props.tokenReceive.chain.icon} alt={props.tokenReceive.chain.name} />
                     )}

@@ -22,7 +22,7 @@ const Page = () => {
 
     return (
         <div className="w-full max-w-[1440px] mx-auto flex flex-col text-escher-black dark:text-white px-6 py-10">
-            <div className="w-full bg-white dark:bg-escher-darkblue border border-escher-E4E8ED dark:border-escher-darkblue_border rounded-lg flex items-center justify-start p-6 h-[200px] bg-[url('/images/point-banner.png')] bg-right bg-contain bg-no-repeat">
+            <div className="w-full bg-white dark:bg-escher-darkblue border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg flex items-center justify-start p-6 h-[200px] bg-[url('/images/point-banner.png')] bg-right bg-contain bg-no-repeat">
                 <div className="font-bold text-[40px] leading-none" onClick={() => console.log({ leaderBoard })}>ePoints Program</div>
             </div>
             <div className="w-full flex items-start gap-6 mt-6">

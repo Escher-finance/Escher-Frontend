@@ -32,7 +32,7 @@ interface Props {
 
 const TokenForm = (props: Props) => {
     return (
-        <div className="border border-escher-E4E8ED dark:border-escher-darkblue_border rounded-lg flex flex-col gap-2 p-6 mt-6 w-full">
+        <div className="border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg flex flex-col gap-2 p-6 mt-6 w-full">
             <div className="flex items-center justify-between text-escher-gray400 dark:text-escher-777e90 text-sm" onClick={() => console.log({ props })}>
                 <div className="flex flex-row items-center gap-1">
                     {props.isReceive ?
@@ -69,7 +69,7 @@ const TokenForm = (props: Props) => {
                 <div className="w-1/2 relative flex items-center justify-center">
                     {!props.isLoading ?
                         <input
-                            className="border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-F5F5FF dark:bg-escher-darkblue text-escher-gray900 dark:text-white rounded-full h-full px-4 font-semibold text-2xl w-full"
+                            className="border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-f5f5ff dark:bg-escher-darkblue text-escher-gray900 dark:text-white rounded-full h-full px-4 font-semibold text-2xl w-full"
                             disabled={!props.enableInput}
                             min={0}
                             onChange={e => {

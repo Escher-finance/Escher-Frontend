@@ -84,7 +84,7 @@ const Advanced = (props: Props) => {
                                         value={slippageInput}
                                         onChange={handleSlippageChange}
                                         onFocus={(e) => e.target.select()}
-                                        className="w-[120px] text-end border border-escher-E4E8ED dark:border-escher-darkblue_border rounded-full p-3 pr-6"
+                                        className="w-[120px] text-end border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-full p-3 pr-6"
                                     />
                                     <button
                                         className={`font-semibold absolute hover:bg-escher-electricblue_light4 rounded-full px-3 top-2 bottom-2 left-2 ${props.slippage === props.autoSlippage ? "text-escher-electricblue dark:text-white bg-escher-DFE0FF" : "text-white bg-gray-300"}`}
@@ -132,7 +132,7 @@ const Advanced = (props: Props) => {
                             <div className="flex items-center justify-between">
                                 <div className="text-escher-141416 dark:text-white text-sm font-semibold">Pay fee with</div>
                                 <Select value={props.selectedFeeToken?.id} onValueChange={val => props.setSelectedFeeTokenId(val)}>
-                                    <SelectTrigger className="w-fit border-escher-E4E8ED dark:border-escher-darkblue_border rounded-full hover:bg-slate-50">
+                                    <SelectTrigger className="w-fit border-escher-e4e8ed dark:border-escher-darkblue_border rounded-full hover:bg-slate-50">
                                         <SelectValue placeholder="Token" />
                                     </SelectTrigger>
                                     <SelectContent>

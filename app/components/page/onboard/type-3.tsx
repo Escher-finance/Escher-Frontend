@@ -53,7 +53,7 @@ export default function Type3() {
                     animate={isConnectPage ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
                 >
-                    <div className='w-full h-full rounded-2xl bg-escher-E4E8ED py-7 flex flex-col items-center justify-between'>
+                    <div className='w-full h-full rounded-2xl bg-escher-e4e8ed py-7 flex flex-col items-center justify-between'>
                         <Image src={'/images/escher-transparent.svg'} alt='' width={150} height={150} className='w-[150px]' priority={true} />
                         <div className='flex-1 flex items-center w-full'>
                             <div className='h-[75%] w-full bg-no-repeat bg-center bg-contain bg-[url(/images/onboard/onboard-rubick.jpg)]' />

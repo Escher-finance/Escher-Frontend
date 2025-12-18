@@ -21,7 +21,7 @@ const TokenSelection = (props: Props) => {
     const [open, setOpen] = useState(false);
     return (
         <DialogEmpty open={open} onOpenChange={v => setOpen(v)}>
-            <DialogTrigger disabled={!props.enabled} className="flex items-center border border-escher-E4E8ED dark:border-escher-darkblue_border bg-escher-F5F5FF dark:bg-escher-darkblue hover:bg-slate-50 dark:hover:bg-escher-darkblue_5 rounded-full p-2 gap-4">
+            <DialogTrigger disabled={!props.enabled} className="flex items-center border border-escher-e4e8ed dark:border-escher-darkblue_border bg-escher-f5f5ff dark:bg-escher-darkblue hover:bg-slate-50 dark:hover:bg-escher-darkblue_5 rounded-full p-2 gap-4">
                 <div className="flex items-center gap-2">
                     <TokenChain
                         token={props.selectedToken}

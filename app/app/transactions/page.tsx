@@ -83,7 +83,7 @@ const Page = () => {
     return (
         <div className="w-full max-w-[1440px] mx-auto p-8 flex flex-col gap-4">
             {/* <button onClick={() => refetch()}>refetch</button> */}
-            <div className="bg-white dark:bg-escher-darkblue dark:text-white rounded-lg border border-escher-E4E8ED dark:border-escher-darkblue_border flex flex-col">
+            <div className="bg-white dark:bg-escher-darkblue dark:text-white rounded-lg border border-escher-e4e8ed dark:border-escher-darkblue_border flex flex-col">
                 <div
                     className="relative min-h-[200px] flex items-center justify-between p-6"
                     onClick={() => console.log({
@@ -100,7 +100,7 @@ const Page = () => {
                     </div>
                 </div>
 
-                <hr className="border-t border-escher-E4E8ED dark:border-escher-darkblue_border" />
+                <hr className="border-t border-escher-e4e8ed dark:border-escher-darkblue_border" />
 
                 <Filter
                     operation={operation}

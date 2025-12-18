@@ -1,7 +1,8 @@
 import { shortenAddress } from "@/lib/text";
-import { CustomToken } from "@/types/chain";
-import TokenSelection from "./token-selection";
 import { formatNumber } from "@/lib/utils";
+import { CustomToken } from "@/types/chain";
+import Image from "next/image";
+import TokenSelection from "./token-selection";
 
 interface Props {
     activeToken?: CustomToken
@@ -23,7 +24,7 @@ const TokenForm = (props: Props) => {
             <div className="flex justify-between text-sm text-escher-777e90 dark:text-white">
                 <div>{props.title}</div>
                 <div className="flex items-center gap-1 font-medium">
-                    <Image alt="" src={props.themeIsDark ? "/icons/wallet-white.svg" : "/icons/wallet-blue.svg"} />
+                    <Image alt="" src={props.themeIsDark ? "/icons/wallet-white.svg" : "/icons/wallet-blue.svg"} width={16} height={16} />
                     <div>{props.address ? shortenAddress(props.address) : "-"}</div>
                 </div>
             </div>
@@ -44,7 +45,7 @@ const TokenForm = (props: Props) => {
                     Balance : {formatNumber(Number(props.activeToken?.balance?.formattedBalance), true, 4)}
                 </div>
                 <div className="flex items-center gap-1">
-                    <Image alt="" src={props.themeIsDark ? "/icons/wallet-white.svg" : "/icons/wallet-blue.svg"} className="w-4 h-4 opacity-50" />
+                    <Image alt="" src={props.themeIsDark ? "/icons/wallet-white.svg" : "/icons/wallet-blue.svg"} className="w-4 h-4 opacity-50" width={16} height={16} />
                     <div>${formatNumber(props.activeToken?.balance?.dollarValue ?? 0)}</div>
                 </div>
             </div>

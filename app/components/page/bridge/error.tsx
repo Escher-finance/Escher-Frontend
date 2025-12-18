@@ -17,7 +17,7 @@ const Error = (props: Props) => {
     return (
         <DialogEmpty open={props.open} onOpenChange={props.setOpen}>
             <DialogContent
-                className="w-fit rounded-[20px] md:rounded-[20px] lg:rounded-[20px] border border-escher-E4E8ED dark:border-escher-darkblue_border"
+                className="w-fit rounded-[20px] md:rounded-[20px] lg:rounded-[20px] border border-escher-e4e8ed dark:border-escher-darkblue_border"
             >
                 <div className="flex flex-col w-full p-2">
                     <DialogTitle className="hidden"></DialogTitle>

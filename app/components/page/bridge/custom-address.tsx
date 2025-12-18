@@ -82,18 +82,18 @@ const CustomAddress = (props: Props) => {
             enabled: true,
             text: "Confirm recipient address"
         }
-    }, [fAddress, addressAck]);
+    }, [addressAck, fAddress, props.tokenOut.chain.cosmosChain, props.tokenOut.chain.viemChain]);
 
     return (
         <div
-            className="absolute inset-0 overflow-hidden flex flex-col justify-end bg-escher-fafbfc dark:bg-escher-darkblue bg-opacity-75 dark:bg-opacity-85"
+            className="absolute inset-0 overflow-hidden flex flex-col justify-end bg-escher-fafbfc/75 dark:bg-escher-darkblue/85"
             onClick={props.onClose}
         >
             <motion.div
                 initial={{ y: '100%' }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className="bg-white dark:bg-escher-dark_0c203d h-fit p-6 rounded-t-2xl rounded-b-lg flex flex-col border border-escher-E4E8ED dark:border-escher-darkblue_border"
+                className="bg-white dark:bg-escher-dark_0c203d h-fit p-6 rounded-t-2xl rounded-b-lg flex flex-col border border-escher-e4e8ed dark:border-escher-darkblue_border"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex justify-between items-center">
@@ -110,7 +110,7 @@ const CustomAddress = (props: Props) => {
 
                 <div className="w-full relative h-full flex items-center justify-center mt-6">
                     <input
-                        className="border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-F5F5FF dark:bg-escher-darkblue text-escher-777e90 dark:text-white rounded-full h-full px-4 py-3 font-medium text-sm w-full"
+                        className="border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-f5f5ff dark:bg-escher-darkblue text-escher-777e90 dark:text-white rounded-full h-full px-4 py-3 font-medium text-sm w-full"
                         onChange={e => {
                             setFAddress(e.target.value)
                         }}
