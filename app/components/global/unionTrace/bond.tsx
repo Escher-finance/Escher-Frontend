@@ -99,7 +99,7 @@ const UnionTraceBond = (props: TraceProps) => {
                                     <ChainTrace lst={lst} token={props.token} tokenReceive={props.tokenReceive} dest="send" />
                                     <div className="h-0.5 bg-escher-e4e8ed flex-1" />
                                     <div className="rounded-full aspect-square bg-white shadow-md p-2 shadow-escher-electricblue_light1">
-                                        <Image alt="" src={"/icons/stake.svg"} />
+                                        <Image alt="" src={"/icons/stake.svg"} width={16} height={16} />
                                     </div>
                                     <div className="h-0.5 bg-escher-e4e8ed flex-1" />
                                     <ChainTrace lst={lst} token={props.token} tokenReceive={props.tokenReceive} dest="recv" />

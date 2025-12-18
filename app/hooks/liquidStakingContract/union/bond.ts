@@ -20,9 +20,6 @@ import { Address, custom, http, PublicClient, WalletClient } from "viem";
 import { useSwitchChain } from "wagmi";
 import { getUnionExchangeRate } from "./rate";
 
-// const testSuccessHash = "0x2f2531db3859238ea55ae79dc800a1ff7d6299836afd4e46b2956a63a06a3219"; // mainnet
-// const testSuccessHash = "0x8d3296caba0733a724c4d099c5c1b4ed7494a1dfc301a13e26c4563316db4ed7"; // testnet
-
 interface BondParams {
     amount: string
     estimateReceive: string
@@ -50,7 +47,7 @@ export const useUnionBond = () => {
             case "devnet": LST_CONFIG = UNION_CONTRACTS.holesky; break;
         }
 
-        console.log('initiating : useUnionBond_a', { params, lst: LST_CONFIG });
+        console.log('initiating : useUnionBond', { params, lst: LST_CONFIG });
         setStatusPrepare('onProgress');
 
         // DEBUG
@@ -60,6 +57,8 @@ export const useUnionBond = () => {
         // setStatusOperation('onProgress');
         // await sleep(1);
         // setStatusOperation('success');
+        // const testSuccessHash = "0x2f2531db3859238ea55ae79dc800a1ff7d6299836afd4e46b2956a63a06a3219"; // mainnet
+        // const testSuccessHash = "0x8d3296caba0733a724c4d099c5c1b4ed7494a1dfc301a13e26c4563316db4ed7"; // testnet
         // return testSuccessHash;
 
         await switchChainAsync({ chainId: Number(params.token.chain.id) });
