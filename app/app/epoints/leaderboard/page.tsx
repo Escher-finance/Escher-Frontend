@@ -8,6 +8,7 @@ import { useLeaderboard } from "@/hooks/usePoints";
 import { shortenAddress } from "@/lib/text";
 import { formatNumber } from "@/lib/utils";
 import clsx from "clsx";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -90,7 +91,7 @@ const Page = () => {
                                                 <td className="">
                                                     <div className="flex items-end justify-end">
                                                         {v.rank <= 3 && (v.total_points ?? 0) > 0 &&
-                                                            <Image alt="" src={themeIsDark ? `/images/points/medal-${v.rank}-dark.svg` : `/images/points/medal-${v.rank}.svg`} />
+                                                            <Image alt="" src={themeIsDark ? `/images/points/medal-${v.rank}-dark.svg` : `/images/points/medal-${v.rank}.svg`} width={24} height={24} />
                                                         }
                                                     </div>
                                                 </td>

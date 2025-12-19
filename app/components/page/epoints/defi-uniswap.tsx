@@ -20,20 +20,19 @@ interface Props {
 }
 
 const Defi = (props: Props) => {
-    const [open, setOpen] = useState(false);
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const [openAddIndex, setOpenAddIndex] = useState<number | null>(null);
+    const [openRemoveIndex, setOpenRemoveIndex] = useState<number | null>(null);
 
     return (<>
         {props.defi.pools.map((pool, k) => {
             const point = props.points?.find(p => p.pool_address === pool.defiPool.poolAddress);
 
-            const [openAdd, setOpenAdd] = useState(false);
-            const [openRemove, setOpenRemove] = useState(false);
-
             return (
-                <Accordion key={k} type="single" collapsible onValueChange={v => setOpen(v === 'item-1')}>
-                    <AccordionItem value="item-1" className={`rounded-lg border ${open ? 'border-escher-electricblue dark:border-escher-darkblue_border' : 'border-escher-dedfff dark:border-escher-darkblue_border'}`}>
+                <Accordion key={k} type="single" collapsible onValueChange={v => setOpenIndex(v === 'item-1' ? k : null)}>
+                    <AccordionItem value="item-1" className={`rounded-lg border ${openIndex === k ? 'border-escher-electricblue dark:border-escher-darkblue_border' : 'border-escher-dedfff dark:border-escher-darkblue_border'}`}>
                         <AccordionTrigger
-                            className={`group w-full hover:bg-escher-F1F2FB ${open ? 'rounded-t-lg bg-escher-F1F2FB dark:bg-escher-dark_0c203d' : 'rounded-lg bg-white dark:bg-escher-dark_0c203d'} flex px-6 py-2 items-center transition-all text-escher-black dark:text-white text-sm font-semibold min-h-[70px]`}
+                            className={`group w-full hover:bg-escher-F1F2FB ${openIndex === k ? 'rounded-t-lg bg-escher-F1F2FB dark:bg-escher-dark_0c203d' : 'rounded-lg bg-white dark:bg-escher-dark_0c203d'} flex px-6 py-2 items-center transition-all text-escher-black dark:text-white text-sm font-semibold min-h-[70px]`}
                         >
                             {/* Title */}
                             <div
@@ -95,7 +94,7 @@ const Defi = (props: Props) => {
                                         <Image alt="" src={m.logoUri} className="w-4 h-4" width={16} height={16} />
                                     </div>
                                 )}
-                                <Icon type="FaChevronDown" size="sm" className={`text-escher-141B34 transition-all ${open && 'rotate-180'}`} />
+                                <Icon type="FaChevronDown" size="sm" className={`text-escher-141B34 transition-all ${openIndex === k && 'rotate-180'}`} />
                             </div>
                         </AccordionTrigger>
                         <AccordionContent className="p-6 grid grid-cols-5 text-escher-black dark:text-white">
@@ -146,15 +145,15 @@ const Defi = (props: Props) => {
                                     <AddLiquidityUniswap
                                         defi={props.defi.info}
                                         pool={pool.defiPool}
-                                        open={openAdd}
-                                        setOpen={setOpenAdd}
-                                        onRemoveModalOpen={() => setOpenRemove(true)}
+                                        open={openAddIndex === k}
+                                        setOpen={(isOpen) => setOpenAddIndex(isOpen ? k : null)}
+                                        onRemoveModalOpen={() => setOpenRemoveIndex(k)}
                                     />
                                     <RemoveLiquidityUniswap
                                         defi={props.defi.info}
                                         pool={pool.defiPool}
-                                        open={openRemove}
-                                        setOpen={setOpenRemove}
+                                        open={openRemoveIndex === k}
+                                        setOpen={(isOpen) => setOpenRemoveIndex(isOpen ? k : null)}
                                     />
                                 </div>
                             }
@@ -162,8 +161,7 @@ const Defi = (props: Props) => {
                     </AccordionItem>
                 </Accordion >
             );
-        }
-        )}
+        })}
     </>);
 }
 

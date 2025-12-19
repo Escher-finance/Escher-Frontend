@@ -22,7 +22,6 @@ const DefiUnion = (props: Props) => {
     // use real defi data
     const defiPool = {
         title: "eU / U",
-
     }
     const point = props.points?.find(p => p.pool_address === "0xc58e9e692352cccba57c66a3585a2384754dc5d6");
 

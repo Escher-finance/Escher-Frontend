@@ -42,11 +42,11 @@ const Page = () => {
                     </div>
                     <div className="flex flex-col items-end gap-2">
                         <Link href={"/epoints/leaderboard"} className="flex items-center gap-2 bg-[linear-gradient(90deg,#FCE39B_0%,#FEEFB6_50%,#FCEAAB_62.5%,#FBE49F_75%,#F4D883_87.5%,#F7E7B8_100%)] transition-all rounded-full p-3 text-sm font-semibold dark:text-black">
-                            <Image alt="" src="icons/rewards_icon-black.svg" />
+                            <Image alt="" src="/icons/rewards_icon-black.svg" width={18} height={18} />
                             <div>Leaderboard</div>
                         </Link>
                         <Link href={"/faq?tab=epoints"} className="flex items-center gap-2 bg-escher-gray100 dark:bg-escher-darkblue_2 hover:bg-escher-gray200 transition-all text-escher-777e90 rounded-full px-4 py-2 text-sm font-semibold">
-                            <Image alt="" src="icons/sidebar/faqs_icon_2.svg" />
+                            <Image alt="" src="/icons/sidebar/faqs_icon_2.svg" width={24} height={24} />
                             <div>FAQ</div>
                         </Link>
                     </div>
