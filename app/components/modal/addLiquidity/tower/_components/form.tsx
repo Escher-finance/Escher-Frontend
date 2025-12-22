@@ -52,7 +52,7 @@ const Form = (props: Props) => {
                 </button>
             </div>
             <div className="flex flex-col p-6">
-                <div className="flex items-center justify-between p-6 border border-[#e4e8ed] dark:border-escher-darkblue_border rounded-lg">
+                <div className="flex items-center justify-between p-6 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg">
                     <div className="flex items-center">
                         {props.pool.tokenA.icon &&
                             <Image src={props.pool.tokenA.icon} alt="" width={24} height={24} className="z-10" />
@@ -92,7 +92,7 @@ const Form = (props: Props) => {
                         {props.ratio ?
                             <>
                                 {/* Token A */}
-                                <div className="flex flex-col p-6 border border-[#e4e8ed] dark:border-escher-darkblue_border rounded-lg mt-2">
+                                <div className="flex flex-col p-6 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg mt-2">
                                     <div className="flex justify-between">
                                         <div className="w-fit flex items-center  gap-2 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-full bg-escher-f5f6f8 dark:bg-escher-darkblue p-3 pr-4">
                                             {props.pool.tokenA.icon &&
@@ -145,7 +145,7 @@ const Form = (props: Props) => {
                                 </div>
 
                                 {/* Token B */}
-                                <div className="flex flex-col p-6 border border-[#e4e8ed] dark:border-escher-darkblue_border rounded-lg mt-2">
+                                <div className="flex flex-col p-6 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg mt-2">
                                     <div className="flex justify-between">
                                         <div className="w-fit flex items-center  gap-2 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-full bg-escher-f5f6f8 dark:bg-escher-darkblue p-3 pr-4">
                                             {props.pool.tokenB.icon &&
@@ -207,7 +207,7 @@ const Form = (props: Props) => {
 
                 {
                     props.formType === "single" &&
-                    <div className="flex flex-col p-6 border border-[#e4e8ed] dark:border-escher-darkblue_border rounded-lg mt-2">
+                    <div className="flex flex-col p-6 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg mt-2">
                         <div className="flex justify-between">
                             <Select
                                 onValueChange={v => {

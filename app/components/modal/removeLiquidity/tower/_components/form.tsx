@@ -64,7 +64,7 @@ const Form = (props: Props) => {
 
                 <div className="mt-8 text-escher-777e90 text-sm">Available Staked Deposit</div>
                 <div className="grid grid-cols-2 gap-2 text-escher-black dark:text-white mt-2">
-                    <div className="flex flex-col gap-3 p-4 border border-[#e4e8ed] dark:border-escher-darkblue_border rounded-lg">
+                    <div className="flex flex-col gap-3 p-4 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg">
                         <div className="flex items-center gap-2">
                             {props.pool.tokenA.icon &&
                                 <Image src={props.pool.tokenA.icon} alt="" width={24} height={24} />
@@ -74,7 +74,7 @@ const Form = (props: Props) => {
                         <div className="text-xl font-semibold">{formatNumber(props.pool.tokenAStaked ?? 0)}</div>
                     </div>
 
-                    <div className="flex flex-col gap-3 p-4 border border-[#e4e8ed] dark:border-escher-darkblue_border rounded-lg">
+                    <div className="flex flex-col gap-3 p-4 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg">
                         <div className="flex items-center gap-2">
                             {props.pool.tokenB.icon &&
                                 <Image src={props.pool.tokenB.icon} alt="" width={24} height={24} />
@@ -118,7 +118,7 @@ const Form = (props: Props) => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 text-escher-777e90 mt-8">
-                    <div className="flex flex-col gap-3 p-4 border border-[#e4e8ed] dark:border-escher-darkblue_border rounded-lg bg-escher-f5f6f8 dark:bg-escher-darkblue">
+                    <div className="flex flex-col gap-3 p-4 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg bg-escher-f5f6f8 dark:bg-escher-darkblue">
                         <div className="flex items-center gap-2">
                             {props.pool.tokenA.icon &&
                                 <Image src={props.pool.tokenA.icon} alt="" width={24} height={24} />
@@ -128,7 +128,7 @@ const Form = (props: Props) => {
                         <div className="text-xl font-semibold">{formatNumber(result.tokenA)}</div>
                     </div>
 
-                    <div className="flex flex-col gap-3 p-4 border border-[#e4e8ed] dark:border-escher-darkblue_border rounded-lg bg-escher-f5f6f8 dark:bg-escher-darkblue">
+                    <div className="flex flex-col gap-3 p-4 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg bg-escher-f5f6f8 dark:bg-escher-darkblue">
                         <div className="flex items-center gap-2">
                             {props.pool.tokenB.icon &&
                                 <Image src={props.pool.tokenB.icon} alt="" width={24} height={24} />

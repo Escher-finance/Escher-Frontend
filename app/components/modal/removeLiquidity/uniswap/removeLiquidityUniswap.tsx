@@ -41,7 +41,7 @@ export default function RemoveLiquidityUniswap(props: Props) {
         <DialogEmpty open={open} onOpenChange={(v) => setOpen(v)}>
             {props.isApps ? (
                 <DialogTrigger className="h-6 aspect-square bg-escher-D9DAFF dark:bg-white hover:bg-escher-electricblue_light2 transition-all rounded flex items-center justify-center">
-                    <Image src={"/icons/arrow-up-blue.svg"} alt="" />
+                    <Image src={"/icons/arrow-up-blue.svg"} alt="" width={18} height={18} />
                 </DialogTrigger>
             ) : (
                 <DialogTrigger className="text-escher-electricblue dark:text-white bg-escher-electricblue_light7 dark:bg-escher-darkblue_1 dark:border border-escher-darkblue_border rounded-full px-4 py-1 font-semibold text-xs">
@@ -232,7 +232,7 @@ const Content = (props: Props) => {
             </div>
             <div className="flex flex-col p-6">
                 {/* Balance */}
-                <div className="flex flex-col gap-2 p-4 border border-[#e4e8ed] dark:border-escher-darkblue_border rounded-lg">
+                <div className="flex flex-col gap-2 p-4 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">
                             {tokens.a?.icon && (
@@ -393,7 +393,7 @@ const Content = (props: Props) => {
 
 const TokenBalance = (props: { amount: number; token: CustomToken }) => {
     return (
-        <div className="flex flex-col gap-2 p-2 dark:bg-escher-dark_0c203d border border-[#e4e8ed] dark:border-escher-darkblue_border rounded-lg">
+        <div className="flex flex-col gap-2 p-2 dark:bg-escher-dark_0c203d border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg">
             <div className="flex items-center gap-2">
                 {props.token.icon && (
                     <Image

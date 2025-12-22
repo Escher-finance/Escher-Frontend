@@ -60,10 +60,13 @@ const OsmosisPool = (props: Props) => {
                 </td>
                 <td className="py-4 px-2">
                     <div className="flex items-center gap-0.5 leading-none">
-                        {props.pool.pool.multiplier.map(m =>
-                            <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full px-1 py-0.5 flex items-center gap-1">
+                        {props.pool.pool.multiplier.map((m, k) =>
+                            <div
+                                key={k}
+                                className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full px-1 py-0.5 flex items-center gap-1"
+                            >
                                 <div className="text-[10px] font-medium text-escher-text2 dark:text-white">{m.text}</div>
-                                <Image alt="" src={m.logoUri} className="w-3 h-3" />
+                                <Image alt="" src={m.logoUri} className="w-3 h-3" width={12} height={12} />
                             </div>
                         )}
                     </div>
@@ -87,8 +90,11 @@ const OsmosisPool = (props: Props) => {
                 <td className="py-4 px-2">
                     {props.pool.isFetched ?
                         <div className="flex items-center gap-1 font-semibold text-escher-text2 dark:text-white text-xs">
-                            {props.pool.pool.rewards?.map(reward =>
-                                <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1">
+                            {props.pool.pool.rewards?.map((reward, k) =>
+                                <div
+                                    key={k}
+                                    className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full p-1 pr-2 flex items-center gap-1"
+                                >
                                     <Image alt="" src={reward.token.icon ?? ""} className="w-4 h-4" width={16} height={16} />
                                     <div>{formatNumber(Number(reward.amount), true, 2)}</div>
                                 </div>

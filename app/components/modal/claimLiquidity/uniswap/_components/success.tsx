@@ -56,7 +56,7 @@ const Success = (props: Props) => {
                 }
             </div>
 
-            <Button type="link" url="/liquid-staking" title="Liquid stake your BABY" style="fill" className="w-full mt-6" />
+            <Button type="link" url="/liquid-staking" title="Liquid stake your U" style="fill" className="w-full mt-6" />
         </div>
     );
 }

@@ -41,7 +41,7 @@ export default function ClaimLiquidityUniswap(props: Props) {
         <DialogEmpty open={open} onOpenChange={(v) => setOpen(v)}>
             {props.isApps ? (
                 <DialogTrigger className="h-6 aspect-square bg-white border border-escher-dedfff dark:border-escher-darkblue_border hover:bg-escher-electricblue_light2 transition-all rounded flex items-center justify-center">
-                    <Image alt="" src={"/icons/arrow-turn-up-blue.svg"} />
+                    <Image alt="" src={"/icons/arrow-turn-up-blue.svg"} width={18} height={18} />
                 </DialogTrigger>
             ) : (
                 <DialogTrigger className="text-escher-electricblue dark:text-white bg-escher-electricblue_light7 dark:bg-escher-darkblue_1 dark:border border-escher-darkblue_border rounded-full px-4 py-1 font-semibold text-xs">

@@ -94,10 +94,13 @@ const UniswapPool = (props: Props) => {
             </td>
             <td className="py-4 px-2">
                 <div className="flex items-center gap-0.5 leading-none">
-                    {props.pool.defiPool.multiplier.map(m =>
-                        <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full px-1 py-0.5 flex items-center gap-1">
+                    {props.pool.defiPool.multiplier.map((m, k) =>
+                        <div
+                            key={k}
+                            className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full px-1 py-0.5 flex items-center gap-1"
+                        >
                             <div className="text-[10px] font-medium text-escher-text2 dark:text-white">{m.text}</div>
-                            <Image alt="" src={m.logoUri} className="w-3 h-3" />
+                            <Image alt="" src={m.logoUri} className="w-3 h-3" width={12} height={12} />
                         </div>
                     )}
                 </div>
@@ -160,21 +163,21 @@ const UniswapPool = (props: Props) => {
     // return (
     //     <Card className="gap-0 p-4">
     //         <div className="flex flex-col border border-escher-dedfff dark:border-escher-darkblue_border rounded-lg">
-    //             <div className="flex items-center py-[10px] leading-none">
+    //             <div className="flex items-center py-2.5 leading-none">
     //                 <div className="flex-1 flex justify-center items-center">
     //                     <div
     //                         className="text-escher-electricblue dark:text-white bg-escher-electricblue_light7 text-sm font-medium px-2 py-1 leading-none rounded"
     //                         onClick={() => console.log({ props, queryPool })}
     //                     >LP</div>
     //                 </div>
-    //                 <div className="h-[20px] border-l border-escher-dedfff dark:border-escher-darkblue_border" />
+    //                 <div className="h-5 border-l border-escher-dedfff dark:border-escher-darkblue_border" />
     //                 <div className="flex-1 flex items-center justify-center gap-2 text-sm font-medium text-escher-text2 dark:text-white">
-    //                     <Image alt="" src={props.defi.logoURI} className="w-[14px] h-[14px]" />
+    //                     <Image alt="" src={props.defi.logoURI} className="w-3.5 h-3.5" width={14} height={14} />
     //                     <div>{props.defi.name}</div>
     //                 </div>
     //             </div>
 
-    //             <div className="flex items-center justify-center gap-2 py-4 border-t border-b border-escher-dedfff dark:border-escher-darkblue_border bg-gradient-to-r from-white via-white to-[#FCF9F0]">
+    //             <div className="flex items-center justify-center gap-2 py-4 border-t border-b border-escher-dedfff dark:border-escher-darkblue_border bg-linear-to-r from-white via-white to-[#FCF9F0]">
     //                 {props.pool.tokenA.icon &&
     //                     <Image src={props.pool.tokenA.icon} alt="" width={32} height={32} className="z-10" />
     //                 }
@@ -187,7 +190,7 @@ const UniswapPool = (props: Props) => {
     //                 </div>
     //             </div>
 
-    //             <div className="flex items-center justify-center gap-2 leading-none py-[10px]">
+    //             <div className="flex items-center justify-center gap-2 leading-none py-2.5">
     //                 {props.pool.multiplier.map(m =>
     //                     <div className="border border-escher-dedfff dark:border-escher-darkblue_border rounded-full px-2 py-0.5 flex items-center gap-1">
     //                         <div className="text-sm font-medium text-escher-text2 dark:text-white">{m.text}</div>

@@ -75,7 +75,7 @@ const Progress = (props: Props) => {
 
                 <div className="bg-white dark:bg-escher-darkblue border border-escher-dedfff dark:border-escher-darkblue_border rounded-xl flex items-stretch gap-1">
                     <div className="p-2">
-                        <Image alt="" src={props.defi.logoURI} className="w-8 h-8" />
+                        <Image alt="" src={props.defi.logoURI} className="w-8 h-8" width={32} height={32} />
                     </div>
                     <div className="flex-1 flex justify-between px-0 relative">
                         {[...Array(totalLine)].map((_, index) => (

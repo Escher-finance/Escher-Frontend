@@ -56,7 +56,7 @@ const Unstakes = (props: Props) => {
                 >Ongoing unstake</div>
                 {/* type selection, for future
                     <Select>
-                        <SelectTrigger className="w-fit px-4 py-[10px] border-escher-gray300 dark:border-none">
+                        <SelectTrigger className="w-fit px-4 py-2.5 border-escher-gray300 dark:border-none">
                             <SelectValue placeholder="All" />
                         </SelectTrigger>
                         <SelectContent>

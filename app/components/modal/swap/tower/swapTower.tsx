@@ -240,7 +240,7 @@ const Content = (props: Props) => {
 
                 <div className="text-escher-text4 dark:text-white text-sm">You send</div>
                 {tokens.eBaby &&
-                    <div className="flex flex-col p-6 border border-[#e4e8ed] dark:border-escher-darkblue_border rounded-lg mt-2">
+                    <div className="flex flex-col p-6 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg mt-2">
                         <div className="flex justify-between">
                             <div className="w-fit flex items-center  gap-2 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-full bg-escher-f5f6f8 dark:bg-escher-darkblue p-3 pr-4">
                                 {tokens.eBaby.icon &&
@@ -293,7 +293,7 @@ const Content = (props: Props) => {
 
                 <div className="text-escher-text4 dark:text-white text-sm mt-6">You receive</div>
                 {tokens.baby &&
-                    <div className="flex flex-col p-6 border border-[#e4e8ed] dark:border-escher-darkblue_border rounded-lg mt-2">
+                    <div className="flex flex-col p-6 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg mt-2">
                         <div className="flex justify-between items-center">
                             <div className="w-fit flex items-center  gap-2 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-full bg-escher-f5f6f8 dark:bg-escher-darkblue p-3 pr-4">
                                 {tokens.baby.icon &&
