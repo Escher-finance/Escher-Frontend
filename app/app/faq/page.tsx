@@ -23,9 +23,9 @@ const Faq = ({ data }: { data: FaqData }) => {
                     <div className="flex-1">{data.title}</div>
                     <div className="flex items-center justify-center rounded-full bg-escher-DBDCFF dark:bg-white p-1.5 aspect-square">
                         {openItem ?
-                            <Image alt="" src="/icons/minus.svg" />
+                            <Image alt="" src="/icons/minus.svg" width={14} height={14} />
                             :
-                            <Image alt="" src="/icons/plus-blue.svg" />
+                            <Image alt="" src="/icons/plus-blue.svg" width={14} height={14} />
                         }
                     </div>
                 </AccordionTrigger>
