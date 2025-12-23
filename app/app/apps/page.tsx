@@ -18,6 +18,119 @@ export type Dapp = {
     value: string
 }
 
+const Page = () => {
+    const defis = useDefi();
+    // const [appTag, setAppTag] = useState<DappTag>();
+
+    return (
+        <div className="w-full max-w-[1440px] mx-auto flex flex-col p-8 gap-6">
+
+            {/* header */}
+            <Card className="items-center">
+                <div className="text-4xl font-semibold text-escher-gray900 dark:text-white">DeFi Connectivity</div>
+            </Card>
+
+            {/* <div className="grid grid-cols-3 gap-6"> */}
+            <div className="grid grid-cols-3 gap-6">
+                {/* 
+                    <AppTower
+                        defi={defis.tower.info}
+                    />
+                */}
+                <AppUniswap
+                    defi={defis.uniswap.info}
+                />
+
+                <AppOsmosis
+                    defi={defis.osmosis.info}
+                />
+            </div>
+            {/* <Card className="col-span-2 h-[350px] flex items-center justify-center bg-[url('/images/defi-1.svg')] bg-[length:100%_120%] bg-no-repeat bg-center">
+                    <div className="text-sm font-bold text-escher-electricblue dark:text-white">Coming soon</div>
+                </Card> */}
+            {/* </div> */}
+        </div >
+    );
+}
+
+export default Page;
+
+
+/* filter
+<div className="flex justify-between items-center">
+    <div className="flex items-center gap-3">
+        <Select>
+            <SelectTrigger className="flex items-center gap-2 px-4 py-2.5 shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg bg-white hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all">
+                <Image alt="" src="/images/token/babylon-v2.svg" width={16} height={16} />
+                <div>Babylon</div>
+            </SelectTrigger>
+            <SelectContent className="">
+                <SelectItem value="light" >
+                    <div className="flex items-center gap-2">
+                        <Image alt="" src="/images/token/babylon-v2.svg" width={16} height={16} />
+                        <div>Babylon</div>
+                    </div>
+                </SelectItem>
+                <SelectItem value="dark" disabled>
+                    <div className="flex items-center gap-2">
+                        <Image alt="" src="/images/token/union.svg" width={16} height={16} />
+                        <div>Union</div>
+                    </div>
+                </SelectItem>
+            </SelectContent>
+        </Select>
+
+        <Select>
+            <SelectTrigger className="flex items-center gap-2 px-4 py-2.5 shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg bg-white hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all">
+                <Image alt="" src="/images/token/e-babylon.svg" width={16} height={16} />
+                <div>eBABY</div>
+            </SelectTrigger>
+            <SelectContent className="">
+                <SelectItem value="light" >
+                    <div className="flex items-center gap-2">
+                        <Image alt="" src="/images/token/e-babylon.svg" width={16} height={16} />
+                        <div>eBABY</div>
+                    </div>
+                </SelectItem>
+                <SelectItem value="dark" disabled>
+                    <div className="flex items-center gap-2">
+                        <Image alt="" src="/images/token/e-union.svg" width={16} height={16} />
+                        <div>eUNO</div>
+                    </div>
+                </SelectItem>
+            </SelectContent>
+        </Select>
+    </div>
+    <div className="flex gap-3 font-medium text-sm text-escher-gray800 dark:text-white">
+        <button
+            className={`px-4 py-2.5 shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${!appTag ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
+            onClick={() => setAppTag(undefined)}
+        >All</button>
+        <button
+            className={`px-4 py-2.5 shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${(appTag === "lending") ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
+            onClick={() => setAppTag("lending")}
+        >LENDING</button>
+        <button
+            className={`px-4 py-2.5 shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${(appTag === "yield") ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
+            onClick={() => setAppTag("yield")}
+        >YIELD AGGREGATION</button>
+        <button
+            className={`px-4 py-2.5 shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${(appTag === "pools") ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
+            onClick={() => setAppTag("pools")}
+        >LIQUIDITY POOLS</button>
+
+        <div className="relative h-full flex items-center justify-center">
+            <input
+                type="text"
+                className="h-full w-full bg-white pl-10 pr-4 py-[12px] shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg placeholder-escher-gray400 text-escher-gray800 dark:text-white font-medium text-sm"
+                placeholder="Search"
+            />
+            <Icon type="FiSearch" size="lg" className="text-escher-gray400 dark:text-escher-777e90 absolute left-2" />
+        </div>
+    </div>
+</div>
+*/
+
 // const apps: Dapp[] = [
 //     {
 //         chain: "union",
@@ -120,115 +233,3 @@ export type Dapp = {
 //     value: "$na"
 // },
 // ]
-
-const Page = () => {
-    const defis = useDefi();
-    // const [appTag, setAppTag] = useState<DappTag>();
-
-    return (
-        <div className="w-full max-w-[1440px] mx-auto flex flex-col p-8 gap-6">
-
-            {/* header */}
-            <Card className="items-center">
-                <div className="text-4xl font-semibold text-escher-gray900 dark:text-white">DeFi Connectivity</div>
-            </Card>
-
-            {/* filter 
-                <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-3">
-                        <Select>
-                            <SelectTrigger className="flex items-center gap-2 px-4 py-2.5 shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg bg-white hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all">
-                                <Image alt="" src="/images/token/babylon-v2.svg" width={16} height={16} />
-                                <div>Babylon</div>
-                            </SelectTrigger>
-                            <SelectContent className="">
-                                <SelectItem value="light" >
-                                    <div className="flex items-center gap-2">
-                                        <Image alt="" src="/images/token/babylon-v2.svg" width={16} height={16} />
-                                        <div>Babylon</div>
-                                    </div>
-                                </SelectItem>
-                                <SelectItem value="dark" disabled>
-                                    <div className="flex items-center gap-2">
-                                        <Image alt="" src="/images/token/union.svg" width={16} height={16} />
-                                        <div>Union</div>
-                                    </div>
-                                </SelectItem>
-                            </SelectContent>
-                        </Select>
-
-                        <Select>
-                            <SelectTrigger className="flex items-center gap-2 px-4 py-2.5 shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg bg-white hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all">
-                                <Image alt="" src="/images/token/e-babylon.svg" width={16} height={16} />
-                                <div>eBABY</div>
-                            </SelectTrigger>
-                            <SelectContent className="">
-                                <SelectItem value="light" >
-                                    <div className="flex items-center gap-2">
-                                        <Image alt="" src="/images/token/e-babylon.svg" width={16} height={16} />
-                                        <div>eBABY</div>
-                                    </div>
-                                </SelectItem>
-                                <SelectItem value="dark" disabled>
-                                    <div className="flex items-center gap-2">
-                                        <Image alt="" src="/images/token/e-union.svg" width={16} height={16} />
-                                        <div>eUNO</div>
-                                    </div>
-                                </SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="flex gap-3 font-medium text-sm text-escher-gray800 dark:text-white">
-                        <button
-                            className={`px-4 py-2.5 shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${!appTag ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
-                            onClick={() => setAppTag(undefined)}
-                        >All</button>
-                        <button
-                            className={`px-4 py-2.5 shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${(appTag === "lending") ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
-                            onClick={() => setAppTag("lending")}
-                        >LENDING</button>
-                        <button
-                            className={`px-4 py-2.5 shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${(appTag === "yield") ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
-                            onClick={() => setAppTag("yield")}
-                        >YIELD AGGREGATION</button>
-                        <button
-                            className={`px-4 py-2.5 shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg hover:bg-escher-purple50 hover:text-escher-electricblue dark:text-white transition-all ${(appTag === "pools") ? 'bg-escher-purple50 text-escher-electricblue dark:text-white' : 'bg-white'}`}
-                            onClick={() => setAppTag("pools")}
-                        >LIQUIDITY POOLS</button>
-
-                        <div className="relative h-full flex items-center justify-center">
-                            <input
-                                type="text"
-                                className="h-full w-full bg-white pl-10 pr-4 py-[12px] shadow-sm border border-escher-gray100 dark:border-escher-30425b rounded-lg placeholder-escher-gray400 text-escher-gray800 dark:text-white font-medium text-sm"
-                                placeholder="Search"
-                            />
-                            <Icon type="FiSearch" size="lg" className="text-escher-gray400 dark:text-escher-777e90 absolute left-2" />
-                        </div>
-                    </div>
-                </div>
-            */}
-
-            {/* <div className="grid grid-cols-3 gap-6"> */}
-            <div className="grid grid-cols-3 gap-6">
-                {/* 
-                    <AppTower
-                        defi={defis.tower.info}
-                    />
-                */}
-                <AppUniswap
-                    defi={defis.uniswap.info}
-                />
-
-                <AppOsmosis
-                    defi={defis.osmosis.info}
-                />
-            </div>
-            {/* <Card className="col-span-2 h-[350px] flex items-center justify-center bg-[url('/images/defi-1.svg')] bg-[length:100%_120%] bg-no-repeat bg-center">
-                    <div className="text-sm font-bold text-escher-electricblue dark:text-white">Coming soon</div>
-                </Card> */}
-            {/* </div> */}
-        </div >
-    );
-}
-
-export default Page;
