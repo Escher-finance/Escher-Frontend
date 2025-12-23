@@ -12,7 +12,7 @@ import { textToNumberRegex } from "@/lib/text";
 import { addThousandSeparators, formatDecimal, formatNumber } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePublicClient, useWalletClient } from "wagmi";
 import { DialogContent, DialogEmpty, DialogTitle, DialogTrigger } from "../../../ui/dialog-empty";
 import Progress from "./_components/progress";
@@ -33,7 +33,7 @@ export default function SwapUniswap(props: Props) {
         <DialogEmpty open={open} onOpenChange={v => setOpen(v)}>
             {props.isApps ?
                 <DialogTrigger asChild>
-                    <Button title="Swap" className="mt-4" preComponent={<Image src={themeIsDark ? "/icons/reload-square-dark.svg" : "/icons/reload-square.svg"} alt="" />} />
+                    <Button title="Swap" className="mt-4" preComponent={<Image src={themeIsDark ? "/icons/reload-square-dark.svg" : "/icons/reload-square.svg"} alt="" width={18} height={18} />} />
                 </DialogTrigger>
                 :
                 <DialogTrigger
@@ -201,6 +201,10 @@ const Content = (props: Props) => {
         }
     }, [amount, quote, selectedInputToken.balance, selectedInputToken.decimals, uniswapRoute.isFetching, uniswapRoute.error, isPending]);
 
+    useEffect(() => {
+        setAmount("0");
+    }, [selectedOutputToken.id]);
+
     if (successTxHash) {
         return <Success
             token={selectedInputToken}
@@ -279,7 +283,7 @@ const Content = (props: Props) => {
                     </div>
                     <div className="flex justify-between items-center mt-3 text-escher-777e90 text-sm">
                         <div className="flex items-center gap-2">
-                            <Image src="/icons/wallet.svg" alt="" />
+                            <Image src="/icons/wallet.svg" alt="" width={16} height={16} />
                             {selectedInputToken.balance?.formattedBalance ?
                                 <div>{addThousandSeparators(selectedInputToken.balance?.formattedBalance)}</div>
                                 :
@@ -324,7 +328,7 @@ const Content = (props: Props) => {
                     </div>
                     <div className="flex justify-between items-center mt-3 text-escher-777e90 text-sm">
                         <div className="flex items-center gap-2">
-                            <Image src="/icons/wallet.svg" alt="" />
+                            <Image src="/icons/wallet.svg" alt="" width={16} height={16} />
                             {selectedOutputToken.balance?.formattedBalance ?
                                 <div>{addThousandSeparators(selectedOutputToken.balance?.formattedBalance)}</div>
                                 :

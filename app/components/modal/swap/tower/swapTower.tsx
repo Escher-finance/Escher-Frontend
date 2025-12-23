@@ -31,7 +31,7 @@ export default function SwapTower(props: Props) {
         <DialogEmpty open={open} onOpenChange={v => setOpen(v)}>
             {props.isApps ?
                 <DialogTrigger asChild>
-                    <Button title="Swap" className="mt-4" preComponent={<Image alt="" src={themeIsDark ? "/icons/reload-square-dark.svg" : "/icons/reload-square.svg"} />} />
+                    <Button title="Swap" className="mt-4" preComponent={<Image alt="" src={themeIsDark ? "/icons/reload-square-dark.svg" : "/icons/reload-square.svg"} width={18} height={18} />} />
                 </DialogTrigger>
                 :
                 <DialogTrigger
@@ -275,7 +275,7 @@ const Content = (props: Props) => {
                         </div>
                         <div className="flex justify-between items-center mt-3 text-escher-777e90 text-sm">
                             <div className="flex items-center gap-2">
-                                <Image src="/icons/wallet.svg" alt="" />
+                                <Image src="/icons/wallet.svg" alt="" width={16} height={16} />
                                 {tokens.eBaby.balance?.formattedBalance ?
                                     <div>{addThousandSeparators(tokens.eBaby.balance?.formattedBalance)}</div>
                                     :
@@ -305,7 +305,7 @@ const Content = (props: Props) => {
                         </div>
                         <div className="flex justify-between items-center mt-3 text-escher-777e90 text-sm">
                             <div className="flex items-center gap-2">
-                                <Image src="/icons/wallet.svg" alt="" />
+                                <Image src="/icons/wallet.svg" alt="" width={16} height={16} />
                                 {tokens.baby.balance?.formattedBalance ?
                                     <div>{addThousandSeparators(tokens.baby.balance?.formattedBalance)}</div>
                                     :

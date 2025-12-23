@@ -51,7 +51,7 @@ const UniswapSwap = (props: Props) => {
                     </div>
                 </div>
 
-                <div className="flex items-center justify-center gap-2 py-4 border-t border-b border-escher-dedfff dark:border-escher-darkblue_border bg-linear-to-r from-white dark:from-escher-darkblue via-white to-[#FCF9F0]">
+                <div className="flex items-center justify-center gap-2 py-4 border-t border-b border-escher-dedfff dark:border-escher-darkblue_border">
                     {props.swap.tokenA.icon &&
                         <TokenChain token={props.swap.tokenA} />
                     }

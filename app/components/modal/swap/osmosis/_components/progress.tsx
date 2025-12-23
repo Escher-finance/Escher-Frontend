@@ -49,20 +49,20 @@ const Progress = (props: Props) => {
     }, []);
 
     return (
-        <div className="w-[400px] flex flex-col bg-white rounded-[20px]">
-            <div className="flex justify-between items-center bg-linear-to-r from-[#ded7f3] to-transparent rounded-t-[20px] p-4">
+        <div className="w-[400px] flex flex-col bg-white dark:bg-escher-darkblue rounded-lg">
+            <div className="flex justify-between items-center bg-linear-to-r from-[#ded7f3] to-transparent rounded-t-lg p-4">
                 <div className="flex-1 flex items-center gap-2 leading-none">
-                    <div className="text-escher-black dark:text-white text-xl font-bold">Swap</div>
+                    <div className="text-escher-black text-xl font-bold">Swap</div>
                     <div className="flex items-center gap-1.5 rounded-full p-1 pr-2 bg-[#c7b5f8]">
                         <Image src="/images/apps/app-osmosis-circle-2.svg" alt="" width={16} height={16} className="border border-white rounded-full" />
-                        <div className="text-escher-text2 dark:text-white text-sm font-medium">Osmosis</div>
+                        <div className="text-escher-text2 text-sm font-medium">Osmosis</div>
                     </div>
                 </div>
             </div>
 
             <div className="flex flex-col gap-2 rounded-[20px] border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-f5f6f8 dark:bg-escher-darkblue p-4 m-2 mb-0">
 
-                <div className="bg-white border border-escher-dedfff dark:border-escher-darkblue_border rounded-xl flex items-stretch gap-1">
+                <div className="bg-white dark:bg-escher-dark_0c203d border border-escher-dedfff dark:border-escher-darkblue_border rounded-xl flex items-stretch gap-1">
                     {/* <div className="text-xl font-semibold flex-1 overflow-hidden">{props.inputAmount}</div> */}
                     <div className="p-2">
                         <TokenChain token={props.tokenA} tokenSize={32} />
@@ -71,17 +71,16 @@ const Progress = (props: Props) => {
                         {[...Array(totalLine)].map((_, index) => (
                             <TraceLine key={index} percentage={curTrace} curLine={index} totalLine={totalLine} isFinished={false} />
                         ))}
-                        {/* 
-                            <div
-                                className="absolute -top-5"
-                                style={{
-                                    left: `${curTrace}%`
-                                }}
-                            >
-                                <div className="-ml-[50%] w-full bg-escher-electricblue rounded-full font-semibold text-sm px-3 pt-1 pb-1.5 leading-none text-white">state</div>
-                            </div> 
-                        */}
 
+                        {/* <div
+                                       className="absolute -top-5"
+                                       style={{
+                                           left: `${curTrace}%`
+                                       }}
+                                   >
+                                       <div className="-ml-[50%] w-full bg-escher-electricblue rounded-full font-semibold text-sm px-3 pt-1 pb-1.5 leading-none text-white">state</div>
+                                   </div>
+                                */}
                     </div>
                     {/* <div className="text-xl font-semibold flex-1 overflow-hidden">{props.outputAmount}</div> */}
                     <div className="p-2">
@@ -106,7 +105,7 @@ const Progress = (props: Props) => {
             </div>
 
             <div className="flex items-center justify-center my-4 leading-none">
-                <div className="text-xl font-bold">TRANSACTION IN PROGRESS</div>
+                <div className="text-xl font-bold dark:text-white">TRANSACTION IN PROGRESS</div>
             </div>
         </div>
     );

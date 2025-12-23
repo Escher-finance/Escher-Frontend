@@ -19,8 +19,8 @@ import { MsgSwapExactAmountIn } from "osmojs/osmosis/gamm/v1beta1/tx";
 import { useEffect, useMemo, useState } from "react";
 import { DialogContent, DialogEmpty, DialogTitle, DialogTrigger } from "../../../ui/dialog-empty";
 import Progress from "./_components/progress";
-import Success from "./_components/success";
 import TokenSelection from "./_components/token-selection";
+import Success from "../shared/success";
 
 interface Props {
     isApps?: boolean
@@ -35,7 +35,7 @@ export default function SwapOsmosis(props: Props) {
         <DialogEmpty open={open} onOpenChange={v => setOpen(v)}>
             {props.isApps ?
                 <DialogTrigger asChild>
-                    <Button title="Swap" className="mt-4" preComponent={<Image alt="" src={themeIsDark ? "/icons/reload-square-dark.svg" : "/icons/reload-square.svg"} />} />
+                    <Button title="Swap" className="mt-4" preComponent={<Image alt="" src={themeIsDark ? "/icons/reload-square-dark.svg" : "/icons/reload-square.svg"} width={18} height={18} />} />
                 </DialogTrigger>
                 :
                 <DialogTrigger
@@ -304,7 +304,7 @@ const Content = (props: Props) => {
                     </div>
                     <div className="flex justify-between items-center mt-3 text-escher-777e90 text-sm">
                         <div className="flex items-center gap-2">
-                            <Image src="/icons/wallet.svg" alt="" />
+                            <Image src="/icons/wallet.svg" alt="" width={16} height={16} />
                             {escherTokens.osmosis.ebaby?.balance?.formattedBalance ?
                                 <div>{addThousandSeparators(escherTokens.osmosis.ebaby?.balance?.formattedBalance)}</div>
                                 :
@@ -349,7 +349,7 @@ const Content = (props: Props) => {
                     </div>
                     <div className="flex justify-between items-center mt-3 text-escher-777e90 text-sm">
                         <div className="flex items-center gap-2">
-                            <Image src="/icons/wallet.svg" alt="" />
+                            <Image src="/icons/wallet.svg" alt="" width={16} height={16} />
                             {escherTokens.osmosis.baby.balance?.formattedBalance ?
                                 <div>{addThousandSeparators(escherTokens.osmosis.baby.balance?.formattedBalance)}</div>
                                 :
