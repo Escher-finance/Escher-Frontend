@@ -115,7 +115,7 @@ const Whitelist = (props: Props) => {
                 }}
                 className="flex-1 flex justify-center items-center -mt-12"
             >
-                <div className="rounded-xl border border-escher-e6e8ec bg-escher-F5F6F8 dark:bg-escher-darkblue p-6 flex flex-col items-center max-w-[847px] mx-auto">
+                <div className="rounded-xl border border-escher-e6e8ec bg-escher-f5f6f8 dark:bg-escher-darkblue p-6 flex flex-col items-center max-w-[847px] mx-auto">
                     <div className="text-escher-text2 dark:text-white font-bold text-[40px] leading-none">Welcome Goblins, WWS, and Sloths!</div>
 
                     <Button

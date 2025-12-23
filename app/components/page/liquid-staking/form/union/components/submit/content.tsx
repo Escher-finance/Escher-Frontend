@@ -184,7 +184,7 @@ const Content: React.FC<Props> = (props: Props) => {
                 <div className="text-xl font-bold">TRANSACTION IN PROGRESS</div>
             </div>
 
-            <div className="flex flex-col gap-2 rounded-[20px] border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-F5F6F8 dark:bg-escher-darkblue p-2 mt-4">
+            <div className="flex flex-col gap-2 rounded-[20px] border border-escher-dedfff dark:border-escher-darkblue_border bg-escher-f5f6f8 dark:bg-escher-darkblue p-2 mt-4">
                 <div className="flex">
                     <div className="w-[30%] bg-white dark:bg-escher-dark_0c203d border border-escher-dedfff dark:border-escher-darkblue_border rounded-xl p-3 flex items-center gap-1">
                         <div className="text-xl font-semibold flex-1 overflow-hidden">{props.amount}</div>

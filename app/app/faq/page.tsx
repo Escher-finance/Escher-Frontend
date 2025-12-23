@@ -18,10 +18,10 @@ const Faq = ({ data }: { data: FaqData }) => {
 
     return (
         <Accordion type="single" collapsible value={openItem} onValueChange={setOpenItem}>
-            <AccordionItem value="item-1" className="bg-escher-F5F6F8 dark:bg-escher-darkblue rounded-lg dark:border-none">
+            <AccordionItem value="item-1" className="bg-escher-f5f6f8 dark:bg-escher-darkblue rounded-lg dark:border-none">
                 <AccordionTrigger className="dark:text-white p-4 text-lg font-semibold flex items-start justify-between">
                     <div className="flex-1">{data.title}</div>
-                    <div className="flex items-center justify-center rounded-full bg-escher-DBDCFF dark:bg-white p-1.5 aspect-square">
+                    <div className="flex items-center justify-center rounded-full bg-escher-dbdcff dark:bg-white p-1.5 aspect-square">
                         {openItem ?
                             <Image alt="" src="/icons/minus.svg" width={14} height={14} />
                             :

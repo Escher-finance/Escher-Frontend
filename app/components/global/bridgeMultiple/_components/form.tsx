@@ -80,7 +80,7 @@ const Form = (props: Props) => {
                                 {/* Token A */}
                                 <div className="flex flex-col p-6 border border-escher-e4e8ed rounded-lg mt-2">
                                     <div className="flex justify-between">
-                                        <div className="w-fit flex items-center  gap-2 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-full bg-escher-F5F6F8 dark:bg-escher-darkblue p-3 pr-4">
+                                        <div className="w-fit flex items-center  gap-2 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-full bg-escher-f5f6f8 dark:bg-escher-darkblue p-3 pr-4">
                                             {props.pool.tokenA.icon &&
                                                 <Image src={props.pool.tokenA.icon} alt="" width={24} height={24} />
                                             }
@@ -133,7 +133,7 @@ const Form = (props: Props) => {
                                 {/* Token B */}
                                 <div className="flex flex-col p-6 border border-escher-e4e8ed rounded-lg mt-2">
                                     <div className="flex justify-between">
-                                        <div className="w-fit flex items-center  gap-2 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-full bg-escher-F5F6F8 dark:bg-escher-darkblue p-3 pr-4">
+                                        <div className="w-fit flex items-center  gap-2 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-full bg-escher-f5f6f8 dark:bg-escher-darkblue p-3 pr-4">
                                             {props.pool.tokenB.icon &&
                                                 <Image src={props.pool.tokenB.icon} alt="" width={24} height={24} />
                                             }
@@ -208,7 +208,7 @@ const Form = (props: Props) => {
                                 }}
                                 defaultValue="tokenA"
                             >
-                                <SelectTrigger className="w-fit flex items-center  gap-2 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-full bg-escher-F5F6F8 dark:bg-escher-darkblue p-3 pr-4">
+                                <SelectTrigger className="w-fit flex items-center  gap-2 border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-full bg-escher-f5f6f8 dark:bg-escher-darkblue p-3 pr-4">
                                     {props.activeTokenObj.icon &&
                                         <Image src={props.activeTokenObj.icon} alt="" width={24} height={24} />
                                     }

@@ -73,7 +73,7 @@ const Progress = (props: Props) => {
                 </div>
             </div>
 
-            <div className="flex flex-col gap-2 rounded-[20px] border border-escher-dedfff bg-escher-F5F6F8 dark:bg-escher-darkblue p-4 m-2 mb-0">
+            <div className="flex flex-col gap-2 rounded-[20px] border border-escher-dedfff bg-escher-f5f6f8 dark:bg-escher-darkblue p-4 m-2 mb-0">
 
                 <div className="bg-white border border-escher-dedfff rounded-xl flex items-stretch gap-1">
                     {/* <div className="text-xl font-semibold flex-1 overflow-hidden">{props.inputAmount}</div> */}

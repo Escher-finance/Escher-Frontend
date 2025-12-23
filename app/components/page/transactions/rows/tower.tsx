@@ -210,7 +210,7 @@ const TokenCard = ({ token, amount, className, open }: { token: CustomToken, amo
             <div className={clsx(
                 "flex items-center justify-end gap-2 col-span-2 py-2 px-2.5 rounded-lg group-hover:bg-white",
                 "dark:bg-escher-darkblue dark:border dark:border-escher-darkblue_border dark:group-hover:bg-escher-darkblue",
-                open ? 'bg-white' : 'bg-escher-F5F6F8'
+                open ? 'bg-white' : 'bg-escher-f5f6f8'
             )}>
                 <TokenChain token={token} />
                 <div className="flex flex-col items-start">
