@@ -11,6 +11,7 @@ import React, { createContext, ReactNode, useContext, useEffect, useMemo, useSta
 import { useConnection, useDisconnect, WagmiProvider } from 'wagmi';
 import Intro from '../global/intro';
 import CosmosProvider from './cosmosProvider';
+import { useSafeAutoConnect } from '@/hooks/useSafeAutoConnect';
 
 interface AccountCosmos {
     address: {
@@ -87,6 +88,7 @@ const AppProvider: React.FC<EscherProviderProps> = ({ children }) => {
     const cosmosChains = useChains(CHAINS_NAME);
     const { address: evmAddress, isConnected: isEvmConnected } = useConnection();
     const { mutate: evmDisconnect } = useDisconnect();
+    useSafeAutoConnect();
 
     const account: EscherAccount = useMemo(() => {
         return {
