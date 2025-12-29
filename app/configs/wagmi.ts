@@ -76,7 +76,7 @@ export const wagmiConfig = createConfig({
   },
   connectors: [
     safe({
-      allowedDomains: [/^app\.safe\.global$/],
+      debug: true
     })
   ]
 })
