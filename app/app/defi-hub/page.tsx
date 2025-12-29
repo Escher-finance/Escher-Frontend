@@ -17,7 +17,7 @@ import { LiquidStaking } from "@/types/chain";
 import { Defi, DefiPool } from "@/types/defi";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { zeroAddress } from "viem";
 
 type DefiType = 'lp' | 'swap';
@@ -74,6 +74,13 @@ const Page = () => {
     const [defiType, setDefiType] = useState<DefiType>(
         isValidTab(defaultTab) ? defaultTab : 'lp'
     );
+
+    useEffect(() => {
+        const defaultTab = searchParams.get("tab");
+        if (isValidTab(defaultTab)) {
+            setDefiType(defaultTab);
+        }
+    }, [searchParams]);
 
     // Protocols
     const [defiProtocol, setDefiProtocol] = useState<DefiProtocolData>();
@@ -146,10 +153,13 @@ const Page = () => {
             <div className="flex items-center gap-2">
 
                 {/* Operation */}
-                <Select onValueChange={v => {
-                    setDefiType(v as DefiType);
-                    router.push(`/defi-hub?tab=${v}`);
-                }}>
+                <Select
+                    value={defiType}
+                    onValueChange={v => {
+                        setDefiType(v as DefiType);
+                        router.push(`/defi-hub?tab=${v}`);
+                    }}
+                >
                     <SelectTrigger
                         className="w-fit border border-escher-dedfff dark:border-escher-darkblue_border py-1.5 text-escher-text4 dark:text-white rounded-full hover:bg-gray-100 dark:hover:bg-escher-darkblue_2 transition-all"
                     >

@@ -5,7 +5,6 @@ import FormBabylon from "@/components/page/liquid-staking/form/babylon/form";
 import FormUnion from "@/components/page/liquid-staking/form/union/form";
 import Intro from "@/components/page/liquid-staking/intro/intro";
 import LiquidToken from "@/components/page/liquid-staking/liquid-token/liquid-token";
-import Lottery from "@/components/page/liquid-staking/lottery/lottery";
 import RateApr from "@/components/page/liquid-staking/rate-apr/rate-apr";
 import Tokenomics from "@/components/page/liquid-staking/tokenomics/tokenomics";
 import { useEscher } from "@/components/providers/escherProvider";
@@ -228,8 +227,6 @@ const Page = () => {
             }
              */}
             <div className="w-full max-w-[537px] mx-auto flex flex-col py-8 gap-6">
-                <Lottery />
-
                 <LiquidToken
                     aprs={aprDatas}
                     rate={{
