@@ -8,6 +8,7 @@ import { BABYLON_CONTRACTS } from "@/configs/babylon";
 import { shortenAddress } from "@/lib/text";
 import { buildUrl, formatNumber } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 interface Props {
@@ -102,7 +103,12 @@ export default function Tickets(props: Props) {
                 >
 
                     <div className="flex justify-between items-center text-escher-electricblue dark:text-white font-medium mt-4">
-                        <Image alt="" src={themeIsDark ? "/images/lottery/clover-white.svg" : "/images/lottery/clover.svg"} alt="" className="w-8 h-8" />
+                        <Image
+                            src={themeIsDark ? "/images/lottery/clover-white.svg" : "/images/lottery/clover.svg"}
+                            alt=""
+                            className="w-8 h-8"
+                            width={32} height={32}
+                        />
                         {/* 
                         <div className="flex flex-col gap-1 items-end">
                             <div className="flex items-center gap-1">

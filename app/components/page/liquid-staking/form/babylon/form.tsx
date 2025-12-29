@@ -180,7 +180,6 @@ const FormBabylon = (props: Props) => {
 
         // Set default recipient
         setFCustomAddress(undefined);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [operation, selectedInputToken.chain.id]);
 
     // Set chainContext

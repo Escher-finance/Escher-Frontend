@@ -4,6 +4,7 @@ import LotteryTnc from "@/components/modal/lotteryTnc/lotteryTnc";
 import { useTheme } from "@/components/providers/themeProvider";
 import clsx from "clsx";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -20,7 +21,7 @@ const Header = () => {
     if (show)
         return (
             <Card className="flex flex-col items-center gap-2 p-0 pb-6 bg-[url('/images/lottery/sun.svg')] dark:bg-[url('/images/lottery/sun-dark.svg')] bg-cover relative">
-                <div className="dark:hidden absolute inset-0 bg-gradient-to-b from-transparent to-white to-90% rounded-lg" />
+                <div className="dark:hidden absolute inset-0 bg-linear-to-b from-transparent to-white to-90% rounded-lg" />
                 <div className="dark:hidden absolute inset-0 bg-white opacity-50 rounded-lg" />
                 <div className="absolute inset-0 z-10 overflow-hidden">
                     <motion.img
@@ -57,7 +58,7 @@ const Header = () => {
                         href={"/faq?tab=luckydraw"}
                         className="absolute top-5 right-5 flex items-center gap-2 text-escher-777e90 text-sm font-semibold bg-escher-F1F2FB px-4 py-2 leading-none rounded-full hover:bg-slate-200 transition-all dark:bg-escher-dark_20324d dark:text-white"
                     >
-                        <Image alt="" src="/icons/sidebar/faqs_icon_2.svg" alt="" className="w-5 h-5" />
+                        <Image alt="" src="/icons/sidebar/faqs_icon_2.svg" className="w-5 h-5" width={20} height={20} />
                         <div>FAQ</div>
                     </Link>
                     <div className="text-4xl text-escher-electricblue dark:text-white font-extrabold font-funnel-display mt-10" onClick={reload}>Escher Lucky Draw</div>

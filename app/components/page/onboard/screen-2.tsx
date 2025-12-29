@@ -1,5 +1,6 @@
 import Button from "@/components/global/button";
 import { useEscher } from "@/components/providers/escherProvider";
+import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
@@ -27,7 +28,7 @@ export default function Screen2(props: Props) {
                     <Button
                         title='Connect wallet'
                         onClick={() => setOpenWalletConnection(true)}
-                        className="grow text-sm px-4 py-[14px] whitespace-nowrap gap-2"
+                        className="grow text-sm px-4 py-3.5 whitespace-nowrap gap-2"
                         preComponent={
                             <Image alt="" src="/icons/wallet_icon.svg" width={24} height={24} />
                         }

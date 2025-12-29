@@ -10,6 +10,7 @@ import useBabylonCosmosContract from "@/hooks/useBabylonCosmosContract";
 import { buildUrl, formatDecimal, formatNumber } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 
 interface LotteryConfig {
@@ -220,15 +221,15 @@ const Position = (props: Props) => {
                                             </TooltipTrigger>
                                             <TooltipContent className="flex flex-col gap-2 bg-white text-escher-text2 shadow-lg border p-4">
                                                 <div className="flex items-center gap-1 border border-escher-dedfff rounded-full p-1">
-                                                    <Image alt="" src="/images/token/e-babylon.svg" alt="" className="w-4 h-4" width={16} height={16} />
+                                                    <Image src="/images/token/e-babylon.svg" alt="" className="w-4 h-4" width={16} height={16} />
                                                     <div className="text-xs text-escher-text2 font-semibold">${formatNumber(position.values.hodl.babylon)}</div>
                                                 </div>
                                                 <div className="flex items-center gap-1 border border-escher-dedfff rounded-full p-1">
-                                                    <Image alt="" src="/images/token/e-union.svg" alt="" className="w-4 h-4" width={16} height={16} />
+                                                    <Image src="/images/token/e-union.svg" alt="" className="w-4 h-4" width={16} height={16} />
                                                     <div className="text-xs text-escher-text2 font-semibold">${formatNumber(position.values.hodl.union)}</div>
                                                 </div>
                                                 <div className="flex items-center gap-1 border border-escher-dedfff rounded-full p-1">
-                                                    <Image alt="" src="/images/apps/app-uniswap-circle-2.svg" alt="" className="w-4 h-4" width={16} height={16} />
+                                                    <Image src="/images/apps/app-uniswap-circle-2.svg" alt="" className="w-4 h-4" width={16} height={16} />
                                                     <div className="text-xs text-escher-text2 font-semibold">${formatNumber(position.lpValues.uniswap)}</div>
                                                 </div>
                                             </TooltipContent>
@@ -244,7 +245,7 @@ const Position = (props: Props) => {
                     <div className="text-sm text-sky-50 bg-escher-electricblue bg-opacity-80 dark:bg-opacity-25 border border-escher-electricblue dark:border-escher-electricblue rounded px-2 py-1.5 font-medium self-start flex flex-col gap-1">
                         <div className="self-center font-semibold">APR</div>
                         <div className="flex items-center gap-1 text-xs">
-                            <Image alt="" src="/images/token/e-babylon.svg" alt="" className="w-4 h-4" width={16} height={16} />
+                            <Image alt="" src="/images/token/e-babylon.svg" className="w-4 h-4" width={16} height={16} />
                             {apr ?
                                 <div>~ {(apr * 100).toFixed(2)}%</div>
                                 :
@@ -254,7 +255,7 @@ const Position = (props: Props) => {
                             }
                         </div>
                         <div className="flex items-center gap-1 text-xs">
-                            <Image alt="" src="/images/token/e-union.svg" alt="" className="w-4 h-4" width={16} height={16} />
+                            <Image alt="" src="/images/token/e-union.svg" className="w-4 h-4" width={16} height={16} />
                             {aprUnion ?
                                 <div>~ {(aprUnion * 100).toFixed(2)}%</div>
                                 :
@@ -266,9 +267,9 @@ const Position = (props: Props) => {
                     </div>
                 </div>
                 <div className="flex border border-escher-dedfff dark:border-escher-darkblue_2 rounded-full p-1 self-start mt-2">
-                    <Image alt="" src="/images/token/e-babylon.svg" alt="" className="w-4 h-4" width={16} height={16} />
-                    <Image alt="" src="/images/token/e-union.svg" alt="" className="w-4 h-4 -ml-1" />
-                    <Image alt="" src="/images/apps/app-uniswap-circle-2.svg" alt="" className="w-4 h-4 -ml-1" />
+                    <Image alt="" src="/images/token/e-babylon.svg" className="w-4 h-4" width={16} height={16} />
+                    <Image alt="" src="/images/token/e-union.svg" className="w-4 h-4 -ml-1" />
+                    <Image alt="" src="/images/apps/app-uniswap-circle-2.svg" className="w-4 h-4 -ml-1" />
                     {/* <Image alt="" src="/images/apps/app-osmosis-circle-2.svg" alt="" className="w-4 h-4 -ml-1.5" /> */}
                 </div>
             </div>
@@ -284,7 +285,7 @@ const Position = (props: Props) => {
                                 <TooltipContent className="flex flex-col bg-white text-escher-text2 shadow-lg border p-4">
                                     <div><b>Why Your Balance Might Not Change Right Away</b></div>
                                     <div>We update your <b>official balance</b> hourly from our servers.</div>
-                                    <div>If you've just joined or made a deposit, you'll see an instant estimate until the next update.</div>
+                                    <div>If you&apos;ve just joined or made a deposit, you&apos;ll see an instant estimate until the next update.</div>
                                     <div>This keeps your ticket rates accurate.</div>
                                 </TooltipContent>
                             </Tooltip>
@@ -390,7 +391,7 @@ const Loading = (props: LoadingProps) => {
             }
 
             <div className="flex relative mt-2">
-                <div className="absolute inset-0 flex gap-[1px]">
+                <div className="absolute inset-0 flex gap-px">
                     {[...Array(props.sticksCount)].map((_, k) =>
                         <div
                             key={k}
@@ -413,7 +414,7 @@ const Loading = (props: LoadingProps) => {
                 </div>
             </div>
             <div className="flex relative">
-                <div className="w-full h-[48px] flex gap-[1px]">
+                <div className="w-full h-12 flex gap-px">
                     {[...Array(props.sticksCount)].map((_, k) =>
                         <div
                             key={k}
@@ -432,7 +433,7 @@ const Loading = (props: LoadingProps) => {
                     }} />
                     {props.isTokenBalanceFetched &&
                         <div className="flex-1 flex items-center justify-center">
-                            <div className="bg-escher-valencia text-white rounded-full px-[6px] py-[3px] leading-none text-xs font-medium">${formatNumber(props.highUsd - props.value)}</div>
+                            <div className="bg-escher-valencia text-white rounded-full px-1.5 py-[3px] leading-none text-xs font-medium">${formatNumber(props.highUsd - props.value)}</div>
                         </div>
                     }
                 </div>

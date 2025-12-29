@@ -139,7 +139,6 @@ const FormUnion = (props: Props) => {
 
         // Set default recipient
         setFCustomAddress(undefined);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [chainId, operation, selectedInputToken.chain.id, switchChain]);
 
     const outputAmount = useMemo(() => {

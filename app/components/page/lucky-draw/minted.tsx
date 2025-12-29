@@ -105,9 +105,9 @@ const Minted = () => {
                 }
             </div>
             {/* totalData */}
-            <div className={`flex-1 grid [grid-template-columns:repeat(8,minmax(0,1fr))] items-end mt-4`}>
-                {queryDailyData.data && queryDailyData.data.map(v =>
-                    <TooltipProvider>
+            <div className={`flex-1 grid grid-cols-8 items-end mt-4`}>
+                {queryDailyData.data && queryDailyData.data.map((v, k) =>
+                    <TooltipProvider key={k}>
                         <Tooltip delayDuration={0}>
                             <TooltipTrigger
                                 className="flex flex-col"
@@ -143,9 +143,9 @@ const Minted = () => {
                 }
             </div>
             {/* totalData */}
-            <div className={`grid [grid-template-columns:repeat(8,minmax(0,1fr))] text-center text-escher-667085 dark:text-white text-[10px] font-medium mt-1`}>
-                {queryDailyData.data && queryDailyData.data.map(v =>
-                    <div className="dark:text-gray-500">{formatDateOnly(v.ticket_date, "DD/MM")}</div>
+            <div className={`grid grid-cols-8 text-center text-escher-667085 dark:text-white text-[10px] font-medium mt-1`}>
+                {queryDailyData.data && queryDailyData.data.map((v, k) =>
+                    <div key={k} className="dark:text-gray-500">{formatDateOnly(v.ticket_date, "DD/MM")}</div>
                 )}
                 {queryDailyData.data && queryDailyData.data?.length < totalData &&
                     <>

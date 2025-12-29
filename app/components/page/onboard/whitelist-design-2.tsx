@@ -24,9 +24,9 @@ const WhitelistModelErrorContent = ({ setShowRestricted }: { setShowRestricted(v
                 <Icon type="BsExclamationCircle" size="lg" />
             </div>
             <div className="text-escher-black dark:text-white text-2xl font-bold mt-6 leading-none">Access Restricted</div>
-            <div className="text-escher-777e90 flex flex-col items-center text-center gap-[14px] mt-8">
-                <div>At the moment, access to Escher's App is limited to ZK Goblin Mode, Wandering Whale Sharks, and Celestine Sloth Society NFT holders.</div>
-                <div>Your wallet does not contain an eligible NFT. If you'd like to be notified when access expands, leave your email at <Link href={"https://www.escher.finance/"} target="_blank" className="text-escher-electricblue dark:text-white underline underline-offset-2">escher.finance</Link></div>
+            <div className="text-escher-777e90 flex flex-col items-center text-center gap-3.5 mt-8">
+                <div>At the moment, access to Escher&apos;s App is limited to ZK Goblin Mode, Wandering Whale Sharks, and Celestine Sloth Society NFT holders.</div>
+                <div>Your wallet does not contain an eligible NFT. If you&apos;d like to be notified when access expands, leave your email at <Link href={"https://www.escher.finance/"} target="_blank" className="text-escher-electricblue dark:text-white underline underline-offset-2">escher.finance</Link></div>
                 <div>We appreciate your interest and look forward to welcoming more users soon.</div>
             </div>
             <Button title="Close" style="fill" className="w-full mt-6" onClick={() => setShowRestricted(false)} />
@@ -66,7 +66,7 @@ const Whitelist = (props: Props) => {
                         }}
                     />
                     <div
-                        className="absolute left-0 bottom-0 right-0 h-[135px] bg-gradient-to-t from-white to-transparent"
+                        className="absolute left-0 bottom-0 right-0 h-[135px] bg-linear-to-t from-white to-transparent"
                     />
                 </div>
             </div>
@@ -97,9 +97,9 @@ const Whitelist = (props: Props) => {
                         <div className="text-escher-valencia text-xs font-semibold px-3 py-2 rounded-md bg-escher-valencia bg-opacity-10 mt-8">Exclusive Access Notice</div>
 
                         <div className="text-escher-text4 dark:text-white flex flex-col text-center gap-4 mt-6">
-                            <div>Currently, access is limited to ZK Goblin Mode, Wandering Whale Sharks, and Celestine Sloth Society NFT holders. If you're part of any of these groups, welcome, and thank you for being among the first to experience our product.</div>
-                            <div>If you'd like to be notified when access expands, leave your email: <Link href={"https://www.escher.finance/"} target="_blank" className="text-escher-electricblue dark:text-white underline underline-offset-2">escher.finance</Link></div>
-                            <div>Your early participation is invaluable in shaping what's next. We appreciate your support and feedback.</div>
+                            <div>Currently, access is limited to ZK Goblin Mode, Wandering Whale Sharks, and Celestine Sloth Society NFT holders. If you&apos;re part of any of these groups, welcome, and thank you for being among the first to experience our product.</div>
+                            <div>If you&apos;d like to be notified when access expands, leave your email: <Link href={"https://www.escher.finance/"} target="_blank" className="text-escher-electricblue dark:text-white underline underline-offset-2">escher.finance</Link></div>
+                            <div>Your early participation is invaluable in shaping what&apos;s next. We appreciate your support and feedback.</div>
                         </div>
                     </div>
                 </motion.div>

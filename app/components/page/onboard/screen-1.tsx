@@ -15,7 +15,7 @@ export default function Screen1(props: Props) {
             </div>
 
             <div className='flex-1 flex flex-col justify-center items-center text-center'>
-                <div className='font-bold text-[44px] leading-tight mt-6'>"We adore chaos because<br />we love to produce order"</div>
+                <div className='font-bold text-[44px] leading-tight mt-6'>&quot;We adore chaos because<br />we love to produce order&quot;</div>
                 <div className='text-escher-gray700 text-opacity-50 mt-6'>-M.C ESCHER</div>
                 <div className='self-center mt-14 flex items-center gap-4 justify-center'>
                     <Button
@@ -33,7 +33,7 @@ export default function Screen1(props: Props) {
                         className="font-bold"
                     />
                 </div>
-                <Link href={"/"} className="flex items-center gap-2 text-escher-text2 dark:text-white font-medium text-sm mt-[14px] hover:border-b border-gray-400">
+                <Link href={"/"} className="flex items-center gap-2 text-escher-text2 dark:text-white font-medium text-sm mt-3.5 hover:border-b border-gray-400">
                     <Image alt="" src={"/icons/arrow-right-03.svg"} />
                     <div className="opacity-40">Skip for now</div>
                 </Link>

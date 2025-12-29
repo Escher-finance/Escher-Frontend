@@ -37,7 +37,6 @@ const UnbondType = (props: Props) => {
 
     useEffect(() => {
         if (!remainingSeconds) return;
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setCountdown(remainingSeconds);
     }, [remainingSeconds]);
 

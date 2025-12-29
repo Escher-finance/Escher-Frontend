@@ -1,6 +1,7 @@
 import Card from "@/components/global/card";
-import { LotteryList } from "./shared";
 import { useTheme } from "@/components/providers/themeProvider";
+import Image from "next/image";
+import { LotteryList } from "./shared";
 
 const FirstDraw = () => {
     const { themeIsDark } = useTheme();
@@ -8,7 +9,7 @@ const FirstDraw = () => {
     return (
         <Card className="flex gap-2 dark:bg-escher-dark_0c203d">
             <div
-                className="text-escher-37383C dark:text-white font-bold w-full text-center bg-[url('/images/lottery/bg-first-draw-gray.png')] dark:bg-[url('/images/lottery/bg-first-draw-dark.png')] bg-cover py-[6px] leading-none mb-2 rounded-lg flex items-center justify-center relative"
+                className="text-escher-37383C dark:text-white font-bold w-full text-center bg-[url('/images/lottery/bg-first-draw-gray.png')] dark:bg-[url('/images/lottery/bg-first-draw-dark.png')] bg-cover py-1.5 leading-none mb-2 rounded-lg flex items-center justify-center relative"
             >
                 <div>FIRST DRAW</div>
                 <Image alt="" src={"/images/lottery/done.png"} className="absolute h-[31px]" />

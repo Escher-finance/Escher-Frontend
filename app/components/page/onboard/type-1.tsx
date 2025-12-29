@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Screen1 from './screen-1';
+import Image from 'next/image';
 
 export default function Type1() {
     const [isConnectPage, setIsConnectPage] = useState(false);

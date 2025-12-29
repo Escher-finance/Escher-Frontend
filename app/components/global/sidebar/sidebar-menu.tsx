@@ -46,7 +46,7 @@ const SidebarMenu = (props: Props) => {
                     activeClass
                 )}
             >
-                <Image src={icon} width={24} height={24} alt="" className="w-6 h-6" width={24} height={24} />
+                <Image src={icon} width={24} height={24} alt="" className="w-6 h-6" />
                 <div>{props.title}</div>
             </Link>
             {props.url === undefined &&

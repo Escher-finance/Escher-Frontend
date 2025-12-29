@@ -6,7 +6,6 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import Icon from "../icons";
 import SidebarMenu from "./sidebar-menu";
-import SidebarMenuLottery from "./sidebar-menu-lottery";
 import SidebarMenuMulti from "./sidebar-menu-multi";
 
 const ExtraLink = (props: { url: string, text: string, image: string }) => {
@@ -113,15 +112,6 @@ const Sidebar = () => {
                         iconActive={"/icons/sidebar/apps_icon_2-blue.svg"}
                         iconDarkActive={"/icons/sidebar/apps-white.svg"}
                         active={pathName === '/apps'}
-                    />
-
-                    <SidebarMenuLottery
-                        url={"/lucky-draw"}
-                        title={"Lucky Draw"}
-                        icon={"/icons/sidebar/award.svg"}
-                        iconActive={"/icons/sidebar/award-blue.svg"}
-                        iconDarkActive={"/icons/sidebar/award-white.svg"}
-                        active={pathName === '/lucky-draw'}
                     />
 
                     <SidebarMenu
