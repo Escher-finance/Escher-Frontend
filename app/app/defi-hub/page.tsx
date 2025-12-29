@@ -247,7 +247,6 @@ const Page = () => {
                             <Image alt="" src={defiChain.logo} className="w-5 h-5" width={20} height={20} />
                             :
                             <div className="flex items-center">
-                                <Image alt="" src={DEFI_CHAINS.babylon.logo} className="w-5 h-5" width={20} height={20} />
                                 <Image alt="" src={DEFI_CHAINS.osmosis.logo} className="w-5 h-5 -ml-2" width={20} height={20} />
                                 <Image alt="" src={DEFI_CHAINS.ethereum.logo} className="w-5 h-5 -ml-2" width={20} height={20} />
                             </div>
@@ -258,12 +257,6 @@ const Page = () => {
                         <SelectItem value="all">
                             <div className="flex items-center gap-2 text-escher-777e90">
                                 <div>-- All chains --</div>
-                            </div>
-                        </SelectItem>
-                        <SelectItem value="babylon" >
-                            <div className="flex items-center gap-2">
-                                <Image alt="" src={DEFI_CHAINS.babylon.logo} className="w-5 h-5" width={20} height={20} />
-                                <div>{DEFI_CHAINS.babylon.name}</div>
                             </div>
                         </SelectItem>
                         <SelectItem value="osmosis" >
@@ -354,13 +347,15 @@ const Page = () => {
                     }
                     setDefiPosition(val);
                 }}>
-                    <SelectTrigger
-                        className="w-fit border border-escher-dedfff dark:border-escher-darkblue_border py-1.5 text-escher-text4 dark:text-white rounded-full hover:bg-gray-100 dark:hover:bg-escher-darkblue_2 transition-all"
-                    >
-                        {defiPosition === undefined && "LP positions"}
-                        {defiPosition === true && "In range"}
-                        {defiPosition === false && "Out of range"}
-                    </SelectTrigger>
+                    {account.evm?.isConnected &&
+                        <SelectTrigger
+                            className="w-fit border border-escher-dedfff dark:border-escher-darkblue_border py-1.5 text-escher-text4 dark:text-white rounded-full hover:bg-gray-100 dark:hover:bg-escher-darkblue_2 transition-all"
+                        >
+                            {defiPosition === undefined && "LP positions"}
+                            {defiPosition === true && "In range"}
+                            {defiPosition === false && "Out of range"}
+                        </SelectTrigger>
+                    }
                     <SelectContent className="dark:bg-escher-dark_0c203d dark:border-escher-darkblue_border">
                         <SelectItem value="all" >
                             <div className="text-escher-777e90">-- All positions --</div>
