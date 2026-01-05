@@ -2,6 +2,7 @@ import Card from "@/components/global/card";
 import Icon from "@/components/global/icons";
 import LdrsAnimation from "@/components/global/ldrsAnimation";
 import TokenChain from "@/components/global/tokenChain";
+import { useEscher } from "@/components/providers/escherProvider";
 import { useTheme } from "@/components/providers/themeProvider";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { APP_CONFIG } from "@/configs/app";
@@ -22,6 +23,7 @@ interface Props {
 }
 
 const Overview = (props: Props) => {
+    const { isSafe } = useEscher();
     const { themeIsDark } = useTheme();
     const queryUnionLstData = useUnionLstData();
 
@@ -246,7 +248,7 @@ const Overview = (props: Props) => {
             </Card>
 
             {/* Defi */}
-            {!APP_CONFIG.networkIsTestnet &&
+            {!APP_CONFIG.networkIsTestnet && !isSafe &&
                 <Card className="flex-1 px-6 py-[22px] bg-[linear-gradient(116deg,#D7FFD6_0%,#FFF_31.72%)] dark:bg-[linear-gradient(135deg,#D7FFD6_0%,#071B39_31.72%)]">
                     <div className="w-full flex items-center justify-between">
                         <div

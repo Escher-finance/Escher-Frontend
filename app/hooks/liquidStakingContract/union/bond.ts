@@ -31,7 +31,7 @@ interface BondParams {
 }
 
 export const useUnionBond = () => {
-    const { updateTimestampTransaction } = useEscher();
+    const { updateTimestampTransaction, isSafe } = useEscher();
     const { mutateAsync: switchChainAsync } = useSwitchChain();
 
     const [statusPrepare, setStatusPrepare] = useState<ProgressStatus>('pending');
@@ -61,7 +61,9 @@ export const useUnionBond = () => {
         // const testSuccessHash = "0x8d3296caba0733a724c4d099c5c1b4ed7494a1dfc301a13e26c4563316db4ed7"; // testnet
         // return testSuccessHash;
 
-        await switchChainAsync({ chainId: Number(params.token.chain.id) });
+        if (!isSafe) {
+            await switchChainAsync({ chainId: Number(params.token.chain.id) });
+        }
 
         try {
             if (

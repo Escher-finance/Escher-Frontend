@@ -5,6 +5,7 @@ import AssetsDefi from "./assets/defi";
 import AssetsLiquid from "./assets/liquid";
 import { useUnionLstData } from "@/hooks/liquidStakingContract/union/lstData";
 import { APP_CONFIG } from "@/configs/app";
+import { useEscher } from "@/components/providers/escherProvider";
 
 export interface GroupedTokens {
     balance: number
@@ -32,33 +33,37 @@ interface Props {
 }
 
 const Assets = (props: Props) => {
+    const { isSafe } = useEscher();
     const queryUnionLstData = useUnionLstData();
 
     return (
         <Card className="flex-1 p-0">
             <div className="flex items-center justify-between px-6 py-3">
                 <div className="font-semibold text-escher-gray600 dark:text-white">Your Positions</div>
-                <div className="self-start flex gap-2 rounded-lg font-semibold text-sm bg-escher-f5f6f8 dark:bg-escher-darkblue text-escher-777e90 p-1">
-                    <button
-                        onClick={() => props.setTab('liquid')}
-                        className={`px-4 py-2 hover:bg-escher-electricblue_light9 dark:hover:bg-escher-283954 transition-all rounded ${props.tab === 'liquid' && 'text-escher-electricblue dark:text-white bg-escher-dedfff dark:bg-escher-283954'}`}
-                    >
-                        Liquid Staking
-                    </button>
-                    {!APP_CONFIG.networkIsTestnet &&
+                {!isSafe &&
+                    <div className="self-start flex gap-2 rounded-lg font-semibold text-sm bg-escher-f5f6f8 dark:bg-escher-darkblue text-escher-777e90 p-1">
                         <button
-                            onClick={() => props.setTab('defi')}
-                            className={`px-4 py-2 hover:bg-escher-electricblue_light9 dark:hover:bg-escher-283954 transition-all rounded ${props.tab === 'defi' && 'text-escher-electricblue dark:text-white bg-escher-dedfff dark:bg-escher-283954'}`}
+                            onClick={() => props.setTab('liquid')}
+                            className={`px-4 py-2 hover:bg-escher-electricblue_light9 dark:hover:bg-escher-283954 transition-all rounded ${props.tab === 'liquid' && 'text-escher-electricblue dark:text-white bg-escher-dedfff dark:bg-escher-283954'}`}
                         >
-                            DeFi Positions
+                            Liquid Staking
                         </button>
-                    }
-                </div>
+                        {!APP_CONFIG.networkIsTestnet &&
+                            <button
+                                onClick={() => props.setTab('defi')}
+                                className={`px-4 py-2 hover:bg-escher-electricblue_light9 dark:hover:bg-escher-283954 transition-all rounded ${props.tab === 'defi' && 'text-escher-electricblue dark:text-white bg-escher-dedfff dark:bg-escher-283954'}`}
+                            >
+                                DeFi Positions
+                            </button>
+                        }
+                    </div>
+                }
             </div>
 
             {props.tab === 'liquid' &&
                 <AssetsLiquid
                     tokens={props.tokens}
+                    isSafe={isSafe}
                     rates={props.rates}
                     unionTvl={queryUnionLstData.tvl}
                 />
