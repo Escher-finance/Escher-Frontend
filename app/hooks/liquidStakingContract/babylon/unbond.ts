@@ -19,6 +19,7 @@ import { useSwitchChain } from "wagmi";
 import { getMsgsBabylon } from "./unbond/cosmosBabylon";
 import { getMsgsZkgm } from "./unbond/cosmosZkgm";
 import { zkgmUnbond } from "./unbond/evmEthereum";
+import { useEscher } from "@/components/providers/escherProvider";
 
 export interface UnbondCosmosParams {
     amount: string,
@@ -45,6 +46,7 @@ export interface UnbondEvmParams {
 
 
 export const useBabylonUnbond = () => {
+    const { isSafe } = useEscher();
     const { saveData } = useLocalTransactions();
     const { mutateAsync: switchChainAsync } = useSwitchChain();
     const [statusPrepare, setStatusPrepare] = useState<ProgressStatus>('pending');
@@ -156,7 +158,9 @@ export const useBabylonUnbond = () => {
         // setStatusOperation('success');
         // return testSuccessHash;
 
-        await switchChainAsync({ chainId: Number(params.token.chain.id) })
+        if (!isSafe) {
+            await switchChainAsync({ chainId: Number(params.token.chain.id) })
+        }
 
         try {
             const sender = params.walletClient.account?.address;

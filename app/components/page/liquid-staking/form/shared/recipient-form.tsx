@@ -50,7 +50,7 @@ const RecipientForm = (props: Props) => {
 }
 
 const Content = (props: Props) => {
-    const { account, setOpenWalletConnection } = useEscher();
+    const { account, setOpenWalletConnection, isSafe } = useEscher();
     const [recipient, setRecipient] = useState<string | undefined>(props.defaultAddress);
     const { connector: connectorEvm } = useConnection();
     const cosmosWallet = useWallet();
@@ -140,6 +140,7 @@ const Content = (props: Props) => {
                     address={props.defaultAddress ?? ""}
                     logo={connectorIcon ?? ""}
                     name={connectorName ?? ""}
+                    isSafe={isSafe}
                 />
                 :
 

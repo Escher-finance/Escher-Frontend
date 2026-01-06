@@ -8,6 +8,7 @@ import { Action } from "@/types/transaction";
 import Image from "next/image";
 import RecipientForm from "./recipient-form";
 import TokenSelection from "./token-selection";
+import { useEscher } from "@/components/providers/escherProvider";
 
 interface Props {
     amount?: string
@@ -31,6 +32,8 @@ interface Props {
 }
 
 const TokenForm = (props: Props) => {
+    const { isSafe } = useEscher();
+
     return (
         <div className="border border-escher-e4e8ed dark:border-escher-darkblue_border rounded-lg flex flex-col gap-2 p-6 mt-6 w-full">
             <div className="flex items-center justify-between text-escher-gray400 dark:text-escher-777e90 text-sm" onClick={() => console.log({ props })}>
@@ -56,7 +59,7 @@ const TokenForm = (props: Props) => {
                 <div className="w-1/2">
                     <TokenSelection
                         evmIsConnected={props.evmIsConnected}
-                        cosmosIsConnected={props.cosmosIsConnected}
+                        cosmosIsConnected={isSafe ? true : props.cosmosIsConnected}
                         selectedToken={props.selectedToken}
                         onTokenSelected={(t) => props.onTokenSelected(t)}
                         tokens={props.tokens}

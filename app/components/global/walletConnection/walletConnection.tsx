@@ -19,7 +19,7 @@ interface Props {
 
 const WalletConnection = (props: Props) => {
     const [tab, setTab] = useState<TabTypes>(props.initialTab ?? 'evm');
-    const { account, setOpenWalletConnection } = useEscher();
+    const { account, setOpenWalletConnection, isSafe } = useEscher();
     const { themeIsDark } = useTheme();
 
     // EVM
@@ -48,8 +48,8 @@ const WalletConnection = (props: Props) => {
     }, [connectors]);
 
     return (
-        <div className="flex flex-col gap-2" onClick={() => console.log({ connectors, unavailbleWallets: unavailableWallets })}>
-            {APP_CONFIG.enableEvm &&
+        <div className="flex flex-col gap-2">
+            {!isSafe &&
                 <Tab
                     tab={tab}
                     setTab={(val) => {
@@ -74,6 +74,7 @@ const WalletConnection = (props: Props) => {
                             logo={evmConnector?.id ? WALLET_IMAGES[evmConnector?.id] ?? evmConnector?.icon : evmConnector?.icon}
                             name={evmConnector?.name ?? ""}
                             onLogout={account.evm?.disconnect}
+                            isSafe={isSafe}
                         />
                     }
                 </>
@@ -90,6 +91,7 @@ const WalletConnection = (props: Props) => {
                             onLogout={async () => {
                                 account.cosmos?.disconnect();
                             }}
+                            isSafe={isSafe}
                         />
                     }
                 </>

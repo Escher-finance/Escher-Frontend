@@ -9,6 +9,7 @@ import { ButtonStatus } from "../../shared/shared"
 import TokenForm from "../../shared/token-form"
 import { SubmitButton } from "./submit-button"
 
+// TODO way to much params, need to refactor
 export interface FormProps {
     account: EscherAccount
     buttonStatus: ButtonStatus

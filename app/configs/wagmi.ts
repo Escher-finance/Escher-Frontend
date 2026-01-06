@@ -1,5 +1,6 @@
 import { createConfig, http } from 'wagmi';
 import { holesky, mainnet, sepolia } from 'wagmi/chains';
+import { safe } from 'wagmi/connectors';
 
 // [sepolia.id, "https://sepolia.infura.io/v3/1152a3ed05224d72a03659974aeeb8eb"],
 // [holesky.id, "https://holesky.infura.io/v3/1152a3ed05224d72a03659974aeeb8eb"],
@@ -73,6 +74,11 @@ export const wagmiConfig = createConfig({
     [holesky.id]: http(EMV_CHAINS.get(holesky.id)?.rpc),
     [sepolia.id]: http(EMV_CHAINS.get(sepolia.id)?.rpc),
   },
+  connectors: [
+    safe({
+      debug: true
+    })
+  ]
 })
 
 export const FAUCET_LINK = {

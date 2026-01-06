@@ -137,7 +137,7 @@ interface DustParams {
 }
 
 export const useBabylonDustRecovery = () => {
-    const { account, updateTimestampTransaction } = useEscher();
+    const { account, updateTimestampTransaction, isSafe } = useEscher();
     const { mutateAsync: switchChainAsync } = useSwitchChain();
 
     const [statusPrepare, setStatusPrepare] = useState<ProgressStatus>('pending');
@@ -170,7 +170,9 @@ export const useBabylonDustRecovery = () => {
         // });
         // return testSuccessHash;
 
-        await switchChainAsync({ chainId: Number(mainnet.id) });
+        if (!isSafe) {
+            await switchChainAsync({ chainId: Number(mainnet.id) });
+        }
 
         try {
             const sender = account.evm?.address as Address | undefined;

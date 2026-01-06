@@ -30,7 +30,7 @@ interface UnbondParams {
 }
 
 export const useUnionUnbond = () => {
-    const { updateTimestampTransaction } = useEscher();
+    const { updateTimestampTransaction, isSafe } = useEscher();
     const { mutateAsync: switchChainAsync } = useSwitchChain();
 
     const [statusPrepare, setStatusPrepare] = useState<ProgressStatus>('pending');
@@ -59,7 +59,9 @@ export const useUnionUnbond = () => {
         // setStatusOperation('success');
         // return testSuccessHash;
 
-        await switchChainAsync({ chainId: Number(params.token.chain.id) });
+        if (!isSafe) {
+            await switchChainAsync({ chainId: Number(params.token.chain.id) });
+        }
 
         try {
             if (

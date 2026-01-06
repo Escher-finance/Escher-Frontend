@@ -10,6 +10,7 @@ interface Props {
         union: number | undefined
     }
     unionTvl: number | undefined // temporary
+    isSafe: boolean
 }
 
 const AssetsLiquid = (props: Props) => {
@@ -74,6 +75,7 @@ const AssetsLiquid = (props: Props) => {
                 {groupedTokens.map((t, key) =>
                     <AssetsLiquidRow
                         key={key}
+                        isSafe={props.isSafe}
                         groupedToken={t}
                     />
                 )}

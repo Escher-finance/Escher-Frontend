@@ -11,6 +11,7 @@ import React, { createContext, ReactNode, useContext, useEffect, useMemo, useSta
 import { useConnection, useDisconnect, WagmiProvider } from 'wagmi';
 import Intro from '../global/intro';
 import CosmosProvider from './cosmosProvider';
+import { useSafeAutoConnect } from '@/hooks/useSafeAutoConnect';
 
 interface AccountCosmos {
     address: {
@@ -58,6 +59,7 @@ interface EscherContextType {
     account: EscherAccount
     escherTokens: EscherTokens
     isTokenBalanceFetched: boolean
+    isSafe: boolean
     openAccountSidebar: boolean
     openWalletConnection: boolean
     refetchTokens: () => void
@@ -85,8 +87,9 @@ const AppProvider: React.FC<EscherProviderProps> = ({ children }) => {
 
     // Account
     const cosmosChains = useChains(CHAINS_NAME);
-    const { address: evmAddress, isConnected: isEvmConnected } = useConnection();
+    const { address: evmAddress, isConnected: isEvmConnected, connector: evmConnector } = useConnection();
     const { mutate: evmDisconnect } = useDisconnect();
+    useSafeAutoConnect();
 
     const account: EscherAccount = useMemo(() => {
         return {
@@ -138,6 +141,7 @@ const AppProvider: React.FC<EscherProviderProps> = ({ children }) => {
             account,
             escherTokens,
             isTokenBalanceFetched,
+            isSafe: evmConnector?.id === "safe",
             openAccountSidebar,
             openWalletConnection,
             refetchTokens,

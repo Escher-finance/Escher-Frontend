@@ -65,6 +65,7 @@ interface WalletListProps {
     logo?: string
     name: string
     address: string
+    isSafe: boolean
     onLogout?(): void
 }
 
@@ -92,7 +93,7 @@ export const WalletList = (props: WalletListProps) => {
                     </button>
                 </CopyToClipboard>
 
-                {props.onLogout && (
+                {props.onLogout && !props.isSafe && (
                     <button
                         className="text-escher-electricblue dark:text-white bg-white dark:bg-escher-dark_0c203d hover:bg-gray-50 p-1.5 rounded border border-escher-gray200 dark:border-escher-darkblue_border"
                         onClick={props.onLogout}

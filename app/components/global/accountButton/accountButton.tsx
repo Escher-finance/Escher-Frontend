@@ -19,7 +19,7 @@ import GroupedTokens2 from "./_components/groupedTokens2";
 import Tokens from "./_components/tokens";
 
 const AccountButton = () => {
-    const { openAccountSidebar, setOpenAccountSidebar } = useEscher();
+    const { openAccountSidebar, setOpenAccountSidebar, isSafe } = useEscher();
     const { themeIsDark } = useTheme();
     const [tab, setTab] = useState<TabTypes>("all");
 
@@ -66,7 +66,7 @@ const AccountButton = () => {
                 )}
             >
                 <Image src={themeIsDark ? '/icons/wallet-white.svg' : '/icons/wallet-blue.svg'} alt="" width={20} height={20} />
-                {APP_CONFIG.enableEvm && <>
+                {!isSafe && <>
                     <Icon type="FaCircle" className={`w-1.5 h-1.5 ml-1.5 ${account.evm?.isConnected ? "text-green-500" : "text-gray-400"}`} />
                     <Icon type="FaCircle" className={`w-1.5 h-1.5 ml-1 ${account.cosmos?.isConnected ? "text-green-500" : "text-gray-400"}`} />
                 </>}
@@ -93,7 +93,7 @@ const AccountButton = () => {
                     {/* Native */}
                     <Tokens title="Other Tokens" tokens={tokensNative} />
 
-                    {!APP_CONFIG.networkIsTestnet && <>
+                    {!APP_CONFIG.networkIsTestnet && !isSafe && <>
                         {["evm", "all"].includes(tab) &&
                             <DefiUniswap
                                 defi={defis.uniswap}

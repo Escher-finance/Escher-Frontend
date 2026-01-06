@@ -7,6 +7,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import Icon from "../icons";
 import SidebarMenu from "./sidebar-menu";
 import SidebarMenuMulti from "./sidebar-menu-multi";
+import { useEscher } from "@/components/providers/escherProvider";
 
 const ExtraLink = (props: { url: string, text: string, image: string }) => {
     return (
@@ -18,6 +19,7 @@ const ExtraLink = (props: { url: string, text: string, image: string }) => {
 }
 
 const Sidebar = () => {
+    const { isSafe } = useEscher();
     const { themeIsDark, toggleTheme } = useTheme();
     const pathName = usePathname();
     const searchParams = useSearchParams();
@@ -56,15 +58,17 @@ const Sidebar = () => {
                     iconDarkActive={"/icons/sidebar/transactions-white.svg"}
                 />
 
-                {!APP_CONFIG.networkIsTestnet && <>
-                    <SidebarMenu
-                        url={"/bridge"}
-                        title={"Bridge"}
-                        active={pathName === '/bridge'}
-                        icon={"/icons/sidebar/bridge-gray.svg?v=2"}
-                        iconActive={"/icons/sidebar/bridge-blue.svg"}
-                        iconDarkActive={"/icons/sidebar/bridge-white.svg"}
-                    />
+                {(!APP_CONFIG.networkIsTestnet) && <>
+                    {!isSafe &&
+                        <SidebarMenu
+                            url={"/bridge"}
+                            title={"Bridge"}
+                            active={pathName === '/bridge'}
+                            icon={"/icons/sidebar/bridge-gray.svg?v=2"}
+                            iconActive={"/icons/sidebar/bridge-blue.svg"}
+                            iconDarkActive={"/icons/sidebar/bridge-white.svg"}
+                        />
+                    }
 
                     <SidebarMenu
                         url={"/epoints"}
@@ -75,44 +79,46 @@ const Sidebar = () => {
                         iconDarkActive={"/icons/sidebar/epoints-white-1.svg"}
                     />
 
-                    {APP_CONFIG.enableDefiHub &&
-                        <SidebarMenuMulti
-                            child={[
-                                {
-                                    title: "Swap",
-                                    url: "/defi-hub?tab=swap",
-                                    active: ["/defi-hub"].includes(pathName) && tab === "swap",
-                                    enabled: true,
-                                },
-                                {
-                                    title: "Liquidity Pools",
-                                    url: "/defi-hub?tab=lp",
-                                    active: ["/defi-hub"].includes(pathName) && tab === "lp",
-                                    enabled: true,
-                                },
-                                {
-                                    title: "Vaults (coming soon)",
-                                    url: "#",
-                                    active: ["/defi-hub"].includes(pathName) && tab === "restaking",
-                                    enabled: false,
-                                },
-                            ]}
-                            title={"DeFi Hub"}
-                            icon={"/icons/sidebar/assets.svg"}
-                            iconActive={"/icons/sidebar/assets-blue.svg"}
-                            iconDarkActive={"/icons/sidebar/assets-white.svg"}
-                            active={pathName === '/defi-hub'}
-                        />
-                    }
+                    {!isSafe &&
+                        <>
+                            <SidebarMenuMulti
+                                child={[
+                                    {
+                                        title: "Swap",
+                                        url: "/defi-hub?tab=swap",
+                                        active: ["/defi-hub"].includes(pathName) && tab === "swap",
+                                        enabled: true,
+                                    },
+                                    {
+                                        title: "Liquidity Pools",
+                                        url: "/defi-hub?tab=lp",
+                                        active: ["/defi-hub"].includes(pathName) && tab === "lp",
+                                        enabled: true,
+                                    },
+                                    {
+                                        title: "Vaults (coming soon)",
+                                        url: "#",
+                                        active: ["/defi-hub"].includes(pathName) && tab === "restaking",
+                                        enabled: false,
+                                    },
+                                ]}
+                                title={"DeFi Hub"}
+                                icon={"/icons/sidebar/assets.svg"}
+                                iconActive={"/icons/sidebar/assets-blue.svg"}
+                                iconDarkActive={"/icons/sidebar/assets-white.svg"}
+                                active={pathName === '/defi-hub'}
+                            />
 
-                    <SidebarMenu
-                        url={"/apps"}
-                        title={"Apps"}
-                        icon={"/icons/sidebar/apps_icon_2.svg"}
-                        iconActive={"/icons/sidebar/apps_icon_2-blue.svg"}
-                        iconDarkActive={"/icons/sidebar/apps-white.svg"}
-                        active={pathName === '/apps'}
-                    />
+                            <SidebarMenu
+                                url={"/apps"}
+                                title={"Apps"}
+                                icon={"/icons/sidebar/apps_icon_2.svg"}
+                                iconActive={"/icons/sidebar/apps_icon_2-blue.svg"}
+                                iconDarkActive={"/icons/sidebar/apps-white.svg"}
+                                active={pathName === '/apps'}
+                            />
+                        </>
+                    }
 
                     <SidebarMenu
                         url={"/faq"}
