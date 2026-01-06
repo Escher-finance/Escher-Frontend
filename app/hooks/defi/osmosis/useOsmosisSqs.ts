@@ -62,7 +62,7 @@ export const useOsmosisSqsDirect = (params: Params) => {
         return () => {
             clearTimeout(handler);
         };
-    }, [params.tokenIn.denom, params.tokenOut.denom, params.amount, params.poolID, params]);
+    }, [params.tokenIn.denom, params.tokenOut.denom, params.amount, params.poolID]);
 
     const getRoute = async () => {
         let baseUrl = "https://sqs.osmosis.zone/router/custom-direct-quote";
