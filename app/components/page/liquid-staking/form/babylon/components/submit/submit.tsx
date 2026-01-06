@@ -14,15 +14,15 @@ interface Props {
     buttonStatus: ButtonStatus
     cosmosChainContext?: ChainContext
     estimateReceive?: string
-    onError(msg: string | undefined): void
     operation: Action
     publicClient?: PublicClient
-    refetch(): void
+    recipientAddress?: string
     token: CustomToken
     tokenReceive: CustomToken
     unbondingTime: string
     walletClient?: WalletClient
-    recipientAddress?: string
+    onError(msg: string | undefined): void
+    refetch(): void
 }
 
 const Submit = (props: Props) => {

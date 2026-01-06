@@ -21,9 +21,14 @@ import { useEffect, useMemo, useState } from "react";
 import { usePublicClient, useWalletClient } from "wagmi";
 
 const Page = () => {
-    const { account, tokens, refetchTokens: tokenRefetch, escherTokens } = useEscher();
+    const { account, tokens: tokensAll, refetchTokens: tokenRefetch, escherTokens, isSafe } = useEscher();
     const { osmosis: defiOsmosis } = useDefi();
     const { suggestToken } = useSuggestToken();
+
+    const tokens = useMemo(() => {
+        if (isSafe) return tokensAll.filter(t => t.chain.network === "evm");
+        return tokensAll;
+    }, [tokensAll, isSafe]);
 
     useEffect(() => {
         suggestToken();

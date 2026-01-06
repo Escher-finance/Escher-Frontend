@@ -19,6 +19,7 @@ import { useSwitchChain } from "wagmi";
 import { getMsgsBabylon } from "./bond/cosmosBabylon";
 import { getMsgsOsmosis } from "./bond/cosmosOsmosis";
 import { zkgmBond } from "./bond/evmEthereum";
+import { useEscher } from "@/components/providers/escherProvider";
 
 // const testHashBabyBaby = "7D82FDC2A5424F8DE5E6B98F8BEA6B5B582A2D572730CB4A0F89BCA6E59094DA";
 // const testHashBabyOsmo = "B573AB0671A9EE197A50B14EA28E1F730D7D48F7AD4E2123D8F36A3D57A6258A";
@@ -38,14 +39,15 @@ export interface BondCosmosParams {
 export interface BondEvmParams {
     amount: string
     estimateReceive: string
+    publicClient: PublicClient
     receiver: string
     token: CustomToken
     tokenReceive: CustomToken
-    publicClient: PublicClient
     walletClient: WalletClient
 }
 
 export const useBabylonBond = () => {
+    const { isSafe } = useEscher();
     const { saveData } = useLocalTransactions();
     const { mutateAsync: switchChainAsync } = useSwitchChain();
     const [statusPrepare, setStatusPrepare] = useState<ProgressStatus>('pending');
@@ -172,7 +174,9 @@ export const useBabylonBond = () => {
         // setStatusOperation('success');
         // return testSuccessHash;
 
-        await switchChainAsync({ chainId: Number(params.token.chain.id) })
+        if (!isSafe) {
+            await switchChainAsync({ chainId: Number(params.token.chain.id) })
+        }
 
         try {
             const sender = params.walletClient.account?.address;

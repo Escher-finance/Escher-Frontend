@@ -122,14 +122,6 @@ const Page = () => {
                         setCurType={setCurType}
                         title="ePoints"
                     />
-
-                    <CategoryButton
-                        category="luckydraw"
-                        curType={curType}
-                        searchTerms={searchTerms}
-                        setCurType={setCurType}
-                        title="Lucky Draw"
-                    />
                 </div>
                 <div className="w-[175px] h-[38px] flex items-center pl-4 bg-white dark:bg-escher-darkblue rounded-lg border border-escher-e4e8ed dark:border-escher-darkblue_border dark:text-white">
                     <Icon type="FiSearch" className="text-gray-500" />

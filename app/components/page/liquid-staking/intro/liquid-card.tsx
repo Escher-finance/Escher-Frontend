@@ -86,7 +86,7 @@ export const LiquidCard = (props: {
                     {props.tooltip &&
                         <TooltipProvider>
                             <Tooltip delayDuration={0}>
-                                <TooltipTrigger className="text-escher-electricblue dark:text-white bg-escher-electricblue dark:bg-gray-500 bg-opacity-[0.23] rounded-full p-1">
+                                <TooltipTrigger className="text-white bg-escher-electricblue dark:bg-gray-500 bg-opacity-[0.23] rounded-full p-1">
                                     <Icon type="BsExclamationCircle" />
                                 </TooltipTrigger>
                                 <TooltipContent

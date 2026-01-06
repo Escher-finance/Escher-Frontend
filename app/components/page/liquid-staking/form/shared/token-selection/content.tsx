@@ -158,7 +158,7 @@ const Content = (props: Props) => {
                         }}
                         className="flex items-center justify-center gap-2 bg-escher-E7E8FE dark:bg-white hover:bg-escher-electricblue_light2 dark:hover:bg-gray-200 text-escher-electricblue dark:text-escher-text2 p-2 font-semibold rounded-lg"
                     >
-                        <Image alt="" src={"/icons/wallet-blue.svg"} />
+                        <Image alt="" src={"/icons/wallet-blue.svg"} width={20} height={20} />
                         <div>Add wallet</div>
                     </button>
                 </>
