@@ -83,7 +83,7 @@ const Content = (props: Props) => {
     });
 
     const outputAmount = useMemo(() => {
-        if (inputAmount === "0" || inputAmount === "") return "0";
+        if (inputAmount === "0" || inputAmount === "") return 0;
 
         const baseAmount = route.data?.amount_out_formatted;
         if (!baseAmount) return undefined;
@@ -147,7 +147,11 @@ const Content = (props: Props) => {
     }
 
     const submitButton = useMemo((): { active: boolean, text: string } => {
-        if (!inputAmount || Number(inputAmount) <= 0) {
+        if (
+            !inputAmount ||
+            Number(inputAmount) <= 0 ||
+            ((outputAmount ?? 0) <= 0)
+        ) {
             return {
                 active: false,
                 text: "Swap"
@@ -190,6 +194,7 @@ const Content = (props: Props) => {
         }
     }, [
         inputAmount,
+        outputAmount,
         escherTokens.osmosis.ebaby.balance,
         escherTokens.osmosis.ebaby.decimals,
         route.isFetching,

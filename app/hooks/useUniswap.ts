@@ -319,7 +319,11 @@ export const useUniswapRoute = (params: UniswapRouteParameters) => {
             clearTimeout(handler);
         };
     }, [
-        params
+        params.inputToken?.contractAddress,
+        params.outputToken?.contractAddress,
+        params.amount,
+        params.slippage,
+        params.userAddress,
     ]);
 
     return useQuery({
