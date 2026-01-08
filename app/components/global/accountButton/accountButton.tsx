@@ -93,13 +93,13 @@ const AccountButton = () => {
                     {/* Native */}
                     <Tokens title="Other Tokens" tokens={tokensNative} />
 
-                    {!APP_CONFIG.networkIsTestnet && !isSafe && <>
-                        {["evm", "all"].includes(tab) &&
-                            <DefiUniswap
-                                defi={defis.uniswap}
-                            />
-                        }
+                    {["evm", "all"].includes(tab) &&
+                        <DefiUniswap
+                            defi={defis.uniswap}
+                        />
+                    }
 
+                    {!APP_CONFIG.networkIsTestnet && !isSafe && <>
                         {
                             ["cosmos", "all"].includes(tab) &&
                             <DefiOsmosis

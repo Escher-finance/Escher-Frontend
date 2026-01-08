@@ -1,3 +1,4 @@
+import { useEscher } from "@/components/providers/escherProvider";
 import { getUniTokenFromEscherToken } from "@/lib/utils";
 import { DefiPool } from "@/types/defi";
 import { UniswapPosition } from "@/types/defiUniswap";
@@ -26,6 +27,7 @@ interface UniswapRemoveLiquidityParams {
 export const UNISWAP_V3_REMOVE_SLIPPAGE = new Percent(50, 10_000);
 
 export const useUniswapRemoveLiquidity = () => {
+    const { isSafe } = useEscher();
     const { mutateAsync: switchChainAsync } = useSwitchChain();
 
     const [statusPrepare, setStatusPrepare] =
@@ -36,7 +38,9 @@ export const useUniswapRemoveLiquidity = () => {
     const pre = async (chainId: number | string) => {
         setStatusPrepare("pending");
         setStatusOperation("pending");
-        await switchChainAsync({ chainId: Number(chainId) });
+        if (!isSafe) {
+            await switchChainAsync({ chainId: Number(chainId) });
+        }
     };
 
     const removePosition = async (params: UniswapRemoveLiquidityParams) => {

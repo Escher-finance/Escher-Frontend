@@ -6,7 +6,6 @@ import Link from "next/link";
 
 interface Props {
     token: CustomToken
-    isSafe: boolean
     totalTvl?: number
 }
 
@@ -33,9 +32,7 @@ const AssetsLiquidRowChain = (props: Props) => {
                     :
                     <LdrsAnimation />
                 }
-                {!props.isSafe &&
-                    <Link href={"/defi-hub"} className="text-escher-electricblue dark:text-white underline underline-offset-2 text-[10px] font-medium">Put to use</Link>
-                }
+                <Link href={"/defi-hub"} className="text-escher-electricblue dark:text-white underline underline-offset-2 text-[10px] font-medium">Put to use</Link>
             </div>
         </div>
     );
