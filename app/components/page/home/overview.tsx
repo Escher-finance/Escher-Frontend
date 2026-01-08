@@ -248,7 +248,7 @@ const Overview = (props: Props) => {
             </Card>
 
             {/* Defi */}
-            {!APP_CONFIG.networkIsTestnet && !isSafe &&
+            {!APP_CONFIG.networkIsTestnet &&
                 <Card className="flex-1 px-6 py-[22px] bg-[linear-gradient(116deg,#D7FFD6_0%,#FFF_31.72%)] dark:bg-[linear-gradient(135deg,#D7FFD6_0%,#071B39_31.72%)]">
                     <div className="w-full flex items-center justify-between">
                         <div
@@ -281,11 +281,13 @@ const Overview = (props: Props) => {
                                     <div className="text-escher-electricblue font-semibold self-center text-sm">Breakdown</div>
                                     <div className="w-full flex flex-col gap-1">
                                         {/* Osmosis */}
-                                        <div className="flex items-center gap-2 w-full">
-                                            <Image src={props.defis.osmosis.info.logoURI} alt="osmosis" width={24} height={24} />
-                                            <div className="font-semibold flex-1 mr-10 text-sm">{props.defis.osmosis.info.name}</div>
-                                            <div className="font-semibold text-xs">${formatNumber(props.defis.osmosis.info.position ?? 0)}</div>
-                                        </div>
+                                        {!isSafe &&
+                                            <div className="flex items-center gap-2 w-full">
+                                                <Image src={props.defis.osmosis.info.logoURI} alt="osmosis" width={24} height={24} />
+                                                <div className="font-semibold flex-1 mr-10 text-sm">{props.defis.osmosis.info.name}</div>
+                                                <div className="font-semibold text-xs">${formatNumber(props.defis.osmosis.info.position ?? 0)}</div>
+                                            </div>
+                                        }
                                         {/* Uniswap */}
                                         <div className="flex items-center gap-2 w-full">
                                             <Image src={props.defis.uniswap.info.logoURI} alt="uniswap" width={24} height={24} />
@@ -301,7 +303,9 @@ const Overview = (props: Props) => {
                     <div className="flex justify-between items-center mt-4">
                         <div className="flex">
                             <Image src={"/images/apps/app-uniswap-circle-2.svg"} width={24} height={24} alt="" className="z-6" />
-                            <Image src={"/images/apps/app-osmosis-circle-2.svg"} width={24} height={24} alt="" className="z-6" />
+                            {!isSafe &&
+                                <Image src={"/images/apps/app-osmosis-circle-2.svg"} width={24} height={24} alt="" className="z-6" />
+                            }
                         </div>
 
                         {totalDefisTvl > 0 ?

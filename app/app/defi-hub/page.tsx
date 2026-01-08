@@ -60,7 +60,7 @@ const DEFI_CHAINS: Record<DefiChain, DefiChainData> = {
 }
 
 const Page = () => {
-    const { account } = useEscher();
+    const { account, isSafe } = useEscher();
     const defis = useDefi();
     const { skipClient } = useSkipClient();
 
@@ -101,7 +101,10 @@ const Page = () => {
 
         // OSMOSIS
         const osmosisDefi = defis.osmosis;
-        const osmosisPools = osmosisDefi.pools.map(pool => ({ pool: pool, defi: osmosisDefi.info }));
+        let osmosisPools = osmosisDefi.pools.map(pool => ({ pool: pool, defi: osmosisDefi.info }));
+        if (isSafe) {
+            osmosisPools = [];
+        }
 
         if (defiPosition !== undefined) {
             return uniswapPools.filter(v => v.pool.position?.isInRange === defiPosition);
@@ -114,14 +117,17 @@ const Page = () => {
             (defiProtocol ? p.defi.name === defiProtocol.name : true) &&
             (defiChain ? p.defi.chain.id === defiChain.chainId : true)
         );
-    }, [defis, defiProtocol, defiChain, defiPosition]);
+    }, [defis, defiProtocol, defiChain, defiPosition, isSafe]);
 
     const swaps = useMemo(() => {
         const uniswapDefi = defis.uniswap;
         const uniswapSwaps = uniswapDefi.info.swaps?.map(swap => ({ ...swap, defi: uniswapDefi }));
 
         const osmosisDefi = defis.osmosis;
-        const osmosisSwaps = osmosisDefi.info.swaps?.map(swap => ({ ...swap, defi: osmosisDefi }));
+        let osmosisSwaps = osmosisDefi.info.swaps?.map(swap => ({ ...swap, defi: osmosisDefi }));
+        if (isSafe) {
+            osmosisSwaps = [];
+        }
 
         return [
             ...(uniswapSwaps ? uniswapSwaps : []),
@@ -131,7 +137,7 @@ const Page = () => {
             (defiChain ? p.defi.info.chain.id === defiChain.chainId : true) &&
             (defiLst ? p.lst === defiLst : true)
         );
-    }, [defis, defiProtocol, defiChain, defiLst]);
+    }, [defis, defiProtocol, defiChain, defiLst, isSafe]);
 
     return (
         <div className="w-full max-w-[1440px] mx-auto flex flex-col p-8 gap-6">
@@ -175,104 +181,106 @@ const Page = () => {
                     </SelectContent>
                 </Select>
 
-                {/* Protocol */}
-                <Select onValueChange={v => {
-                    switch (v) {
-                        case "uniswap":
-                            setDefiProtocol(DEFI_PROTOCOLS.uniswap);
-                            break;
-                        case "osmosis":
-                            setDefiProtocol(DEFI_PROTOCOLS.osmosis);
-                            break;
-                        case "all":
-                            setDefiProtocol(undefined);
-                            break;
-                    }
-                }}>
-                    <SelectTrigger
-                        className="w-fit border border-escher-dedfff dark:border-escher-darkblue_border py-1.5 text-escher-text4 dark:text-white rounded-full hover:bg-gray-100 dark:hover:bg-escher-darkblue_2 transition-all flex items-center"
-                    >
-                        {defiProtocol ?
-                            <Image alt="" src={defiProtocol.logo} className="w-4 h-4" width={16} height={16} />
-                            :
-                            <div className="flex items-center">
-                                <Image alt="" src={DEFI_PROTOCOLS.uniswap.logo} className="w-5 h-5 -ml-2" width={20} height={20} />
-                                <Image alt="" src={DEFI_PROTOCOLS.osmosis.logo} className="w-5 h-5 -ml-2" width={20} height={20} />
-                            </div>
+                {!isSafe && <>
+                    {/* Protocol */}
+                    <Select onValueChange={v => {
+                        switch (v) {
+                            case "uniswap":
+                                setDefiProtocol(DEFI_PROTOCOLS.uniswap);
+                                break;
+                            case "osmosis":
+                                setDefiProtocol(DEFI_PROTOCOLS.osmosis);
+                                break;
+                            case "all":
+                                setDefiProtocol(undefined);
+                                break;
                         }
-                        <div>PROTOCOLS</div>
-                    </SelectTrigger>
-                    <SelectContent className="dark:bg-escher-dark_0c203d dark:border-escher-darkblue_border">
-                        <SelectItem value="all">
-                            <div className="flex items-center gap-2 text-escher-777e90">
-                                <div>-- All protocols --</div>
-                            </div>
-                        </SelectItem>
-                        <SelectItem value="uniswap">
-                            <div className="flex items-center gap-2">
-                                <Image alt="" src={DEFI_PROTOCOLS.uniswap.logo} className="w-4 h-4" width={16} height={16} />
-                                <div>{DEFI_PROTOCOLS.uniswap.name}</div>
-                            </div>
-                        </SelectItem>
-                        <SelectItem value="osmosis">
-                            <div className="flex items-center gap-2">
-                                <Image alt="" src={DEFI_PROTOCOLS.osmosis.logo} className="w-4 h-4" width={16} height={16} />
-                                <div>{DEFI_PROTOCOLS.osmosis.name}</div>
-                            </div>
-                        </SelectItem>
-                    </SelectContent>
-                </Select>
+                    }}>
+                        <SelectTrigger
+                            className="w-fit border border-escher-dedfff dark:border-escher-darkblue_border py-1.5 text-escher-text4 dark:text-white rounded-full hover:bg-gray-100 dark:hover:bg-escher-darkblue_2 transition-all flex items-center"
+                        >
+                            {defiProtocol ?
+                                <Image alt="" src={defiProtocol.logo} className="w-4 h-4" width={16} height={16} />
+                                :
+                                <div className="flex items-center">
+                                    <Image alt="" src={DEFI_PROTOCOLS.uniswap.logo} className="w-5 h-5 -ml-2" width={20} height={20} />
+                                    <Image alt="" src={DEFI_PROTOCOLS.osmosis.logo} className="w-5 h-5 -ml-2" width={20} height={20} />
+                                </div>
+                            }
+                            <div>PROTOCOLS</div>
+                        </SelectTrigger>
+                        <SelectContent className="dark:bg-escher-dark_0c203d dark:border-escher-darkblue_border">
+                            <SelectItem value="all">
+                                <div className="flex items-center gap-2 text-escher-777e90">
+                                    <div>-- All protocols --</div>
+                                </div>
+                            </SelectItem>
+                            <SelectItem value="uniswap">
+                                <div className="flex items-center gap-2">
+                                    <Image alt="" src={DEFI_PROTOCOLS.uniswap.logo} className="w-4 h-4" width={16} height={16} />
+                                    <div>{DEFI_PROTOCOLS.uniswap.name}</div>
+                                </div>
+                            </SelectItem>
+                            <SelectItem value="osmosis">
+                                <div className="flex items-center gap-2">
+                                    <Image alt="" src={DEFI_PROTOCOLS.osmosis.logo} className="w-4 h-4" width={16} height={16} />
+                                    <div>{DEFI_PROTOCOLS.osmosis.name}</div>
+                                </div>
+                            </SelectItem>
+                        </SelectContent>
+                    </Select>
 
-                {/* Chain */}
-                <Select onValueChange={v => {
-                    switch (v) {
-                        case "babylon":
-                            setDefiChain(DEFI_CHAINS.babylon);
-                            break;
-                        case "osmosis":
-                            setDefiChain(DEFI_CHAINS.osmosis);
-                            break;
-                        case "ethereum":
-                            setDefiChain(DEFI_CHAINS.ethereum);
-                            break;
-                        case "all":
-                            setDefiChain(undefined);
-                            break;
-                    }
-                }}>
-                    <SelectTrigger
-                        className="w-fit border border-escher-dedfff dark:border-escher-darkblue_border py-1.5 text-escher-text4 dark:text-white rounded-full hover:bg-gray-100 dark:hover:bg-escher-darkblue_2 transition-all flex items-center"
-                    >
-                        {defiChain ?
-                            <Image alt="" src={defiChain.logo} className="w-5 h-5" width={20} height={20} />
-                            :
-                            <div className="flex items-center">
-                                <Image alt="" src={DEFI_CHAINS.osmosis.logo} className="w-5 h-5 -ml-2" width={20} height={20} />
-                                <Image alt="" src={DEFI_CHAINS.ethereum.logo} className="w-5 h-5 -ml-2" width={20} height={20} />
-                            </div>
+                    {/* Chain */}
+                    <Select onValueChange={v => {
+                        switch (v) {
+                            case "babylon":
+                                setDefiChain(DEFI_CHAINS.babylon);
+                                break;
+                            case "osmosis":
+                                setDefiChain(DEFI_CHAINS.osmosis);
+                                break;
+                            case "ethereum":
+                                setDefiChain(DEFI_CHAINS.ethereum);
+                                break;
+                            case "all":
+                                setDefiChain(undefined);
+                                break;
                         }
-                        <div>BLOCKCHAINS</div>
-                    </SelectTrigger>
-                    <SelectContent className="dark:bg-escher-dark_0c203d dark:border-escher-darkblue_border">
-                        <SelectItem value="all">
-                            <div className="flex items-center gap-2 text-escher-777e90">
-                                <div>-- All chains --</div>
-                            </div>
-                        </SelectItem>
-                        <SelectItem value="osmosis" >
-                            <div className="flex items-center gap-2">
-                                <Image alt="" src={DEFI_CHAINS.osmosis.logo} className="w-5 h-5" width={20} height={20} />
-                                <div>{DEFI_CHAINS.osmosis.name}</div>
-                            </div>
-                        </SelectItem>
-                        <SelectItem value="ethereum" >
-                            <div className="flex items-center gap-2">
-                                <Image alt="" src={DEFI_CHAINS.ethereum.logo} className="w-5 h-5" width={20} height={20} />
-                                <div>{DEFI_CHAINS.ethereum.name}</div>
-                            </div>
-                        </SelectItem>
-                    </SelectContent>
-                </Select>
+                    }}>
+                        <SelectTrigger
+                            className="w-fit border border-escher-dedfff dark:border-escher-darkblue_border py-1.5 text-escher-text4 dark:text-white rounded-full hover:bg-gray-100 dark:hover:bg-escher-darkblue_2 transition-all flex items-center"
+                        >
+                            {defiChain ?
+                                <Image alt="" src={defiChain.logo} className="w-5 h-5" width={20} height={20} />
+                                :
+                                <div className="flex items-center">
+                                    <Image alt="" src={DEFI_CHAINS.osmosis.logo} className="w-5 h-5 -ml-2" width={20} height={20} />
+                                    <Image alt="" src={DEFI_CHAINS.ethereum.logo} className="w-5 h-5 -ml-2" width={20} height={20} />
+                                </div>
+                            }
+                            <div>BLOCKCHAINS</div>
+                        </SelectTrigger>
+                        <SelectContent className="dark:bg-escher-dark_0c203d dark:border-escher-darkblue_border">
+                            <SelectItem value="all">
+                                <div className="flex items-center gap-2 text-escher-777e90">
+                                    <div>-- All chains --</div>
+                                </div>
+                            </SelectItem>
+                            <SelectItem value="osmosis" >
+                                <div className="flex items-center gap-2">
+                                    <Image alt="" src={DEFI_CHAINS.osmosis.logo} className="w-5 h-5" width={20} height={20} />
+                                    <div>{DEFI_CHAINS.osmosis.name}</div>
+                                </div>
+                            </SelectItem>
+                            <SelectItem value="ethereum" >
+                                <div className="flex items-center gap-2">
+                                    <Image alt="" src={DEFI_CHAINS.ethereum.logo} className="w-5 h-5" width={20} height={20} />
+                                    <div>{DEFI_CHAINS.ethereum.name}</div>
+                                </div>
+                            </SelectItem>
+                        </SelectContent>
+                    </Select>
+                </>}
 
                 {/* LST */}
                 <Select onValueChange={v => {
@@ -332,42 +340,44 @@ const Page = () => {
                 </Select>
 
                 {/* LP position */}
-                <Select onValueChange={v => {
-                    let val: boolean | undefined = undefined;
-                    switch (v) {
-                        case "all":
-                            val = undefined;
-                            break;
-                        case "true":
-                            val = true;
-                            break;
-                        case "false":
-                            val = false;
-                            break;
-                    }
-                    setDefiPosition(val);
-                }}>
-                    {account.evm?.isConnected &&
-                        <SelectTrigger
-                            className="w-fit border border-escher-dedfff dark:border-escher-darkblue_border py-1.5 text-escher-text4 dark:text-white rounded-full hover:bg-gray-100 dark:hover:bg-escher-darkblue_2 transition-all"
-                        >
-                            {defiPosition === undefined && "LP positions"}
-                            {defiPosition === true && "In range"}
-                            {defiPosition === false && "Out of range"}
-                        </SelectTrigger>
-                    }
-                    <SelectContent className="dark:bg-escher-dark_0c203d dark:border-escher-darkblue_border">
-                        <SelectItem value="all" >
-                            <div className="text-escher-777e90">-- All positions --</div>
-                        </SelectItem>
-                        <SelectItem value="true" >
-                            In range
-                        </SelectItem>
-                        <SelectItem value="false">
-                            Out of range
-                        </SelectItem>
-                    </SelectContent>
-                </Select>
+                {defiType === "lp" &&
+                    <Select onValueChange={v => {
+                        let val: boolean | undefined = undefined;
+                        switch (v) {
+                            case "all":
+                                val = undefined;
+                                break;
+                            case "true":
+                                val = true;
+                                break;
+                            case "false":
+                                val = false;
+                                break;
+                        }
+                        setDefiPosition(val);
+                    }}>
+                        {account.evm?.isConnected &&
+                            <SelectTrigger
+                                className="w-fit border border-escher-dedfff dark:border-escher-darkblue_border py-1.5 text-escher-text4 dark:text-white rounded-full hover:bg-gray-100 dark:hover:bg-escher-darkblue_2 transition-all"
+                            >
+                                {defiPosition === undefined && "LP positions"}
+                                {defiPosition === true && "In range"}
+                                {defiPosition === false && "Out of range"}
+                            </SelectTrigger>
+                        }
+                        <SelectContent className="dark:bg-escher-dark_0c203d dark:border-escher-darkblue_border">
+                            <SelectItem value="all" >
+                                <div className="text-escher-777e90">-- All positions --</div>
+                            </SelectItem>
+                            <SelectItem value="true" >
+                                In range
+                            </SelectItem>
+                            <SelectItem value="false">
+                                Out of range
+                            </SelectItem>
+                        </SelectContent>
+                    </Select>
+                }
             </div>
 
             {defiType === "swap" && <>

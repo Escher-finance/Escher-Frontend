@@ -55,6 +55,11 @@ Running in development
 yarn dev
 ```
 
+Secure
+```bash
+yarn dev --experimental-https
+```
+
 This starts the Next.js dev server with Turbopack: it serves the multi-app site at `http://localhost:3000` by default.
 
 Build and start (production)

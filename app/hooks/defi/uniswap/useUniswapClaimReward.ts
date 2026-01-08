@@ -1,14 +1,16 @@
+import { useEscher } from "@/components/providers/escherProvider";
 import { getUniTokenFromEscherToken } from "@/lib/utils";
 import { UniswapClaimRewardParams } from "@/types/defiUniswap";
+import { ProgressStatus } from "@/types/status";
 import { CurrencyAmount } from "@uniswap/sdk-core";
 import { CollectOptions, NonfungiblePositionManager } from "@uniswap/v3-sdk";
 import { useState } from "react";
 import { Hex } from "viem";
 import { useSwitchChain } from "wagmi";
 import { nonfungiblePositionManagerContractAddress } from "./useUniswapDefi";
-import { ProgressStatus } from "@/types/status";
 
 export const useUniswapClaimReward = () => {
+    const { isSafe } = useEscher();
     const { mutateAsync: switchChainAsync } = useSwitchChain();
 
     const [statusPrepare, setStatusPrepare] =
@@ -19,7 +21,9 @@ export const useUniswapClaimReward = () => {
     const pre = async (chainId: number | string) => {
         setStatusPrepare("pending");
         setStatusOperation("pending");
-        await switchChainAsync({ chainId: Number(chainId) });
+        if (!isSafe) {
+            await switchChainAsync({ chainId: Number(chainId) });
+        }
     };
 
     const claimRewards = async (params: UniswapClaimRewardParams) => {

@@ -22,7 +22,7 @@ interface SwapParams {
 const V3_SWAP_ROUTER_ADDRESS = "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45";
 
 export const useUniswapSwap = () => {
-    const { refetchTokens } = useEscher();
+    const { refetchTokens, isSafe } = useEscher();
     const { mutateAsync: switchChainAsync } = useSwitchChain();
 
     const [statusPrepare, setStatusPrepare] = useState<ProgressStatus>('pending');
@@ -43,7 +43,9 @@ export const useUniswapSwap = () => {
         // setStatusOperation('success');
         // return testSuccessHash;
 
-        await switchChainAsync({ chainId: Number(params.tokenIn.chain.id) });
+        if (!isSafe) {
+            await switchChainAsync({ chainId: Number(params.tokenIn.chain.id) });
+        }
 
         try {
             if (

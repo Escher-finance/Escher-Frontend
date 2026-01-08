@@ -1,3 +1,4 @@
+import { useEscher } from "@/components/providers/escherProvider";
 import { sleep } from "@/lib";
 import { allowanceWithApproval } from "@/lib/evm";
 import { getUniTokenFromEscherToken } from "@/lib/utils";
@@ -48,6 +49,7 @@ interface UniswapAddLiquidityParams {
 }
 
 export const useUniswapAddLiquidity = () => {
+    const { isSafe } = useEscher();
     const { mutateAsync: switchChainAsync } = useSwitchChain();
 
     const [statusPrepare, setStatusPrepare] =
@@ -64,7 +66,9 @@ export const useUniswapAddLiquidity = () => {
         setStatusApproval0("pending");
         setStatusApproval1("pending");
         setStatusOperation("pending");
-        await switchChainAsync({ chainId: Number(chainId) });
+        if (!isSafe) {
+            await switchChainAsync({ chainId: Number(chainId) });
+        }
     };
 
     const mintPosition = async (params: UniswapMintLiquidityParams) => {
@@ -159,8 +163,8 @@ export const useUniswapAddLiquidity = () => {
                 value: aIsEth
                     ? inputAmount.a
                     : bIsEth
-                      ? inputAmount.b
-                      : undefined,
+                        ? inputAmount.b
+                        : undefined,
                 account: params.walletClient.account,
             });
             console.log({ simulateResult });
@@ -173,8 +177,8 @@ export const useUniswapAddLiquidity = () => {
                 value: aIsEth
                     ? inputAmount.a
                     : bIsEth
-                      ? inputAmount.b
-                      : undefined,
+                        ? inputAmount.b
+                        : undefined,
             });
             const mintPositionReceipt =
                 await params.publicClient.waitForTransactionReceipt({
@@ -276,8 +280,8 @@ export const useUniswapAddLiquidity = () => {
                 value: aIsEth
                     ? inputAmount.a
                     : bIsEth
-                      ? inputAmount.b
-                      : undefined,
+                        ? inputAmount.b
+                        : undefined,
                 account: params.walletClient.account,
             });
             console.log({ simulateResult });
@@ -290,8 +294,8 @@ export const useUniswapAddLiquidity = () => {
                 value: aIsEth
                     ? inputAmount.a
                     : bIsEth
-                      ? inputAmount.b
-                      : undefined,
+                        ? inputAmount.b
+                        : undefined,
             });
             const addPositionReceipt =
                 await params.publicClient.waitForTransactionReceipt({

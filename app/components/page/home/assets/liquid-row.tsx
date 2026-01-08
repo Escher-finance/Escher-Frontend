@@ -9,7 +9,6 @@ import AssetsLiquidRowChain from "./liquid-row-chain";
 
 interface Props {
     groupedToken: GroupedTokens
-    isSafe: boolean
 }
 
 const AssetsLiquidRow = (props: Props) => {
@@ -63,7 +62,6 @@ const AssetsLiquidRow = (props: Props) => {
                             key={key}
                             token={t}
                             totalTvl={props.groupedToken.tvl}
-                            isSafe={props.isSafe}
                         />
                     )}
                 </AccordionContent>
