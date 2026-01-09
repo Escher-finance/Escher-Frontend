@@ -34,7 +34,7 @@ const Content = (props: Props) => {
     }, [props.tokens]);
     const skipTokenSelection = props.skipTokenSelection && uniqueTokensLength === 1;
 
-    const { setOpenWalletConnection } = useEscher();
+    const { setOpenWalletConnection, isSafe } = useEscher();
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [step, setStep] = useState<'token' | 'chain'>(skipTokenSelection ? 'chain' : 'token');
     const [selectedTokenSymbol, setSelectedTokenSymbol] = useState<string | undefined>(
@@ -148,7 +148,11 @@ const Content = (props: Props) => {
                 </div>
             }
 
-            {((APP_CONFIG.enableEvm && !props.evmIsConnected) || !props.cosmosIsConnected) &&
+            {(
+                (APP_CONFIG.enableEvm && !props.evmIsConnected) ||
+                !props.cosmosIsConnected &&
+                !isSafe
+            ) &&
                 <>
                     <hr className="my-4" />
                     <button

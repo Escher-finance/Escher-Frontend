@@ -7,7 +7,6 @@ import { usePathname, useSearchParams } from "next/navigation";
 import Icon from "../icons";
 import SidebarMenu from "./sidebar-menu";
 import SidebarMenuMulti from "./sidebar-menu-multi";
-import { useEscher } from "@/components/providers/escherProvider";
 
 const ExtraLink = (props: { url: string, text: string, image: string }) => {
     return (
@@ -19,7 +18,6 @@ const ExtraLink = (props: { url: string, text: string, image: string }) => {
 }
 
 const Sidebar = () => {
-    const { isSafe } = useEscher();
     const { themeIsDark, toggleTheme } = useTheme();
     const pathName = usePathname();
     const searchParams = useSearchParams();
@@ -59,16 +57,14 @@ const Sidebar = () => {
                 />
 
                 {(!APP_CONFIG.networkIsTestnet) && <>
-                    {!isSafe &&
-                        <SidebarMenu
-                            url={"/bridge"}
-                            title={"Bridge"}
-                            active={pathName === '/bridge'}
-                            icon={"/icons/sidebar/bridge-gray.svg?v=2"}
-                            iconActive={"/icons/sidebar/bridge-blue.svg"}
-                            iconDarkActive={"/icons/sidebar/bridge-white.svg"}
-                        />
-                    }
+                    <SidebarMenu
+                        url={"/bridge"}
+                        title={"Bridge"}
+                        active={pathName === '/bridge'}
+                        icon={"/icons/sidebar/bridge-gray.svg?v=2"}
+                        iconActive={"/icons/sidebar/bridge-blue.svg"}
+                        iconDarkActive={"/icons/sidebar/bridge-white.svg"}
+                    />
 
                     <SidebarMenu
                         url={"/epoints"}

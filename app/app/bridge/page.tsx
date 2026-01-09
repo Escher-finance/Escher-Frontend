@@ -23,7 +23,7 @@ import { useEffect, useMemo, useState } from "react";
 import { usePublicClient, useWalletClient } from "wagmi";
 
 const Page = () => {
-    const { account, escherTokens, setOpenWalletConnection, refetchTokens } = useEscher();
+    const { account, escherTokens, isSafe, setOpenWalletConnection, refetchTokens } = useEscher();
     const { themeIsDark } = useTheme();
     const evmPublicClient = usePublicClient();
     const { data: evmWalletClient } = useWalletClient();
@@ -63,11 +63,19 @@ const Page = () => {
     const [fAmount, setFAmount] = useState("0");
 
     // Token In
-    const tokenInList = useMemo(() => [
-        escherTokens.babylon.ebaby,
-        escherTokens.osmosis.ebaby,
-        escherTokens.evm.ebaby,
-    ], [escherTokens]);
+    const tokenInList = useMemo(() => {
+        if (!isSafe) {
+            return ([
+                escherTokens.babylon.ebaby,
+                escherTokens.osmosis.ebaby,
+                escherTokens.evm.ebaby
+            ]);
+        } else {
+            return ([
+                escherTokens.evm.ebaby
+            ]);
+        }
+    }, [escherTokens, isSafe]);
     const [tokenInId, setTokenInId] = useState<string>();
     const tokenIn = useMemo(() => (tokenInList.find(v => v.id === tokenInId) ?? tokenInList[0]),
         [tokenInList, tokenInId]);
@@ -300,6 +308,7 @@ const Page = () => {
                     />
 
                     <SwapToken
+                        isSafe={isSafe}
                         onSwap={() => {
                             setTokenInId(tokenOut?.id);
                             setFAmount("0");

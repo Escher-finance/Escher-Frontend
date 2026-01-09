@@ -30,7 +30,7 @@ interface EvmBridgeParams {
 }
 
 export const useEvmBridge = () => {
-    const { updateTimestampTransaction } = useEscher();
+    const { isSafe, updateTimestampTransaction } = useEscher();
     const { mutateAsync: switchChainAsync } = useSwitchChain();
     const { saveData } = useLocalTransactions();
 
@@ -61,7 +61,9 @@ export const useEvmBridge = () => {
         // setIsPending(false);
         // return;
 
-        await switchChainAsync({ chainId: Number(params.tokenIn.chain.id) })
+        if (!isSafe) {
+            await switchChainAsync({ chainId: Number(params.tokenIn.chain.id) })
+        }
 
         try {
 
