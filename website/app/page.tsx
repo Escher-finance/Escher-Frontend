@@ -20,6 +20,7 @@ export default function Home() {
         <Partners />
         <Defi />
         <Security />
+        <div>@escher</div>
       </div>
     </QueryClientProvider>
   );
