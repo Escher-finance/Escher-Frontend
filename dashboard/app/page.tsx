@@ -37,7 +37,7 @@ export default function Home() {
           address={user.email}
         />
       }
-
+      <div>@Escher Finance</div>
     </div >
   );
 }
