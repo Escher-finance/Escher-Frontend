@@ -2,7 +2,7 @@ import { useEscher } from "@/components/providers/escherProvider";
 import { APP_CONFIG } from "@/configs/app";
 import { Leaderboard, Point } from "@/types/points";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 export const usePoints = () => {
     const { account } = useEscher();
@@ -18,7 +18,9 @@ export const usePoints = () => {
         }
     }, [account]);
 
-    async function getPoints(): Promise<Point[]> {
+    const getPoints = useCallback(async (): Promise<Point[]> => {
+        if (!addresses.cosmos && !addresses.evm) return [];
+
         const params = [
             addresses.cosmos ? `cosmos=${addresses.cosmos}` : null,
             addresses.evm ? `evm=${addresses.evm}` : null,
@@ -44,7 +46,7 @@ export const usePoints = () => {
         }
 
         return result;
-    }
+    }, [addresses]);
 
     const queryPoints = useQuery({
         queryKey: ['indexerPoints', addresses],
