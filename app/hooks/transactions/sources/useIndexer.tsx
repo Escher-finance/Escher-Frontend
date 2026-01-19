@@ -129,7 +129,6 @@ export default function useIndexer(params: Params) {
         queryKey: ["transactions", "indexer", params.addresses, params.timestampTransaction],
         queryFn: getIndexer,
         refetchInterval: APP_CONFIG.transactionsRefetchInterval,
-        refetchOnWindowFocus: true
     });
 }
 

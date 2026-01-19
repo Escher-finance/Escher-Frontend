@@ -1,5 +1,4 @@
 import { APP_CONFIG } from '@/configs/app';
-import { BABYLON_CONTRACTS } from '@/configs/babylon';
 import { IndexerTransaction } from '@/types/transaction';
 import BigNumber from 'bignumber.js';
 import dayjs from 'dayjs';
@@ -35,6 +34,8 @@ export async function GET(
         let resultQuery;
 
         // BOND
+        // let timeA = (new Date()).getTime();
+
         let queryValues = [];
         let conditions = [];
 
@@ -58,9 +59,11 @@ export async function GET(
                     "denom", "channel_id", "hash", "staker", "recipient", "recipient_channel_id", "ibc_channel_id"
                 FROM babylon_bond
                 ${whereClause}
+                LIMIT 50 OFFSET 0
             `,
             queryValues
         );
+
         const rowsBond: IndexerTransaction[] = resultQuery.rows.map(v => ({
             lst: "babylon",
             hash: v.hash,
@@ -85,8 +88,13 @@ export async function GET(
             source: "indexer"
         }));
         result = result.concat(rowsBond);
+        // console.table({
+        //     "babylon_bond": resultQuery.rows.length,
+        //     "time": (new Date()).getTime() - timeA
+        // });
 
         // BATCH
+        // timeA = (new Date()).getTime();
         queryValues = [];
         conditions = [];
 
@@ -112,8 +120,13 @@ export async function GET(
                 ${whereClause}
             `, queryValues);
         const rowsBatch = resultQuery.rows;
+        // console.table({
+        //     "batch": resultQuery.rows.length,
+        //     "time": (new Date()).getTime() - timeA
+        // });
 
         // UNBOND
+        // timeA = (new Date()).getTime();
         queryValues = [];
         conditions = [];
 
@@ -136,7 +149,9 @@ export async function GET(
                 select "batch_id", "amount", "time" ${local ? `+ INTERVAL '7 hours' as "time"` : ``} , "channel_id", "hash" , "staker", "recipient", "recipient_channel_id", "recipient_ibc_channel_id"
                 from babylon_unbond_request 
                 ${whereClause}
+                LIMIT 50 OFFSET 0
             `, queryValues);
+
         const rowsUnbond: IndexerTransaction[] = resultQuery.rows.map(v => {
             const batch = rowsBatch.find(batch => batch.id == v.batch_id);
             const status = batch?.released ? "success" : "pending";
@@ -166,8 +181,14 @@ export async function GET(
             };
         });
         result = result.concat(rowsUnbond);
+        // console.table({
+        //     "unbond": resultQuery.rows.length,
+        //     "time": (new Date()).getTime() - timeA
+        // });
 
         // Tower
+        /* disable tower
+        // timeA = (new Date()).getTime();
         // Temp
         const poolAddress = "bbn1hs95lgvuy0p6jn4v7js5x8plfdqw867lsuh5xv6d2ua20jprkgeslpzjvl";
         resultQuery = await client.query(`
@@ -218,7 +239,11 @@ export async function GET(
             source: "indexer"
         }));
         result = result.concat(rowsTower);
-
+        // console.table({
+        //     "tower": resultQuery.rows.length,
+        //     "time": (new Date()).getTime() - timeA
+        // });
+    */
         client.release();
         result = result.sort((x, y) => x.time < y.time ? 1 : -1);
 
