@@ -381,7 +381,7 @@ export const useTowerDefi = (): DefiTowerQuery => {
             }
         }
         getClient();
-    }, [chainContext]);
+    }, [chainContext.chain.chain_id]);
 
     const defi = DEFIS.tower;
     const queryMetric = useQuery({
