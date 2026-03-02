@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiInfo, FiLogOut, FiChevronDown, FiDownload, FiSearch, FiRefreshCw } from "react-icons/fi";
+import { FiChevronDown, FiCopy, FiDownload, FiInfo, FiLogOut, FiRefreshCw, FiSearch } from "react-icons/fi";
 import { twMerge } from 'tailwind-merge';
 
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -9,7 +9,8 @@ export type IconType =
     'FiDownload' |
     'FiSearch' |
     'FiChevronDown' |
-    'FiRefreshCw'
+    'FiRefreshCw' |
+    'FiCopy'
     ;
 
 const ICON_SIZE_CLASS_DICT: Record<IconSize, string> = {
@@ -26,7 +27,8 @@ const ICON_DICT: Record<IconType, React.ElementType> = {
     FiDownload: FiDownload,
     FiChevronDown: FiChevronDown,
     FiSearch: FiSearch,
-    FiRefreshCw: FiRefreshCw
+    FiRefreshCw: FiRefreshCw,
+    FiCopy: FiCopy
 };
 
 type IconProps = {
