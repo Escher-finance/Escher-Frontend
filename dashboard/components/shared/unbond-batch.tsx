@@ -5,6 +5,7 @@ import { formatDate, formatNumber, hoursAgo } from "@/utils/utils";
 import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import { useCallback } from "react";
+import Icons from "../global/icons";
 
 interface Props {
     lst: LiquidStaking
@@ -74,7 +75,17 @@ const UnbondBatch = (props: Props) => {
                             <>
                                 <div key={k} className={`${color().bg} ${color().text} text-sm font-bold text-center p-1`}>{v.id}</div>
                                 <div>{v.submitted ? formatDate(v.submitted) : "-"}</div>
-                                <div>{formatNumber(Number(v.undelegate_amount) / 10 ** decimals)} <span className="font-semibold text-gray-500 text-xs">{symbol}</span></div>
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        onClick={() => {
+                                            navigator.clipboard.writeText(String(v.undelegate_amount));
+                                            alert(`Raw amount : ${v.undelegate_amount} copied!`)
+                                        }}
+                                        className="hover:text-sky-600 transition-colors cursor-pointer"
+                                        title="Copy raw amount"
+                                    ><Icons type="FiCopy" size="sm" /></button>
+                                    {formatNumber(Number(v.undelegate_amount) / 10 ** decimals)} <span className="font-semibold text-gray-500 text-xs">{symbol}</span>
+                                </div>
                                 {v.submitted ?
                                     <div>
                                         <div>{`${age} hours`}</div>
