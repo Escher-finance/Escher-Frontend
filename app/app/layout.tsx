@@ -61,6 +61,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${funnelDisplay.variable} font-inter antialiased bg-white dark:bg-black min-h-screen`}
       >
+        <div className="flex bg-escher-electricblue text-white justify-center text-sm font-medium py-3">
+          ⚠️ Our Liquid Staking service is shutting down on April 1st. Please withdraw your funds before access ends. Read the full announcement
+          <a href="https://x.com/escher_fi/status/2034694326857486843" target="_blank" className="font-semibold underline ml-1 underline-offset-2">here ↗</a>
+        </div>
         {/* {children} */}
         <ThemeProvider>
           <EscherProvider>
