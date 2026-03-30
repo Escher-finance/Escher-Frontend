@@ -220,6 +220,15 @@ const FormBabylon = (props: Props) => {
         // };
 
         if (
+            operation === "bond"
+        ) {
+            return {
+                enabled: false,
+                text: "Staking unavailable"
+            }
+        }
+
+        if (
             !APP_CONFIG.enableEvmStaking &&
             (selectedInputToken.chain.network === "evm" || selectedOutputToken.chain.network === "evm")
         ) {
