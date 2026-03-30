@@ -168,15 +168,6 @@ const FormUnion = (props: Props) => {
         // };
 
         if (
-            operation === "bond"
-        ) {
-            return {
-                enabled: false,
-                text: "Staking unavailable"
-            }
-        }
-
-        if (
             !APP_CONFIG.enableEvmStaking &&
             (selectedInputToken.chain.network === "evm" || selectedOutputToken.chain.network === "evm")
         ) {
@@ -186,7 +177,7 @@ const FormUnion = (props: Props) => {
             }
         }
 
-        if (!lstConfig.feature.bond) {
+        if (operation === "bond" && !lstConfig.feature.bond) {
             return {
                 enabled: false,
                 text: "Staking unavailable"
@@ -230,7 +221,7 @@ const FormUnion = (props: Props) => {
             }
         }
 
-        if (inputAmount < lstConfig.minBond) {
+        if (inputAmount < lstConfig.minBond && operation === "bond") {
             return {
                 enabled: false,
                 text: `Minimum amount is ${lstConfig.minBond}`
