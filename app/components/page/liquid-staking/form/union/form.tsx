@@ -18,6 +18,7 @@ import { FormProps, SubmitForm } from "./components/submit-form";
 import UnbondNow from "./components/unbond-now";
 import UnbondType from "./components/unbond-type";
 import Withdraw from "./components/withdraw";
+import Link from "next/link";
 
 interface Props {
     account: EscherAccount
@@ -162,6 +163,13 @@ const FormUnion = (props: Props) => {
         const enabled = true;
         const text = `Get ${selectedOutputToken.symbol}`;
 
+        if (operation === "bond") {
+            return {
+                enabled: false,
+                text: "Staking unavailable"
+            }
+        }
+
         // return {
         //     enabled,
         //     text
@@ -177,10 +185,17 @@ const FormUnion = (props: Props) => {
             }
         }
 
-        if (operation === "bond" && !lstConfig.feature.bond) {
+        if (!lstConfig.feature.bond) {
             return {
                 enabled: false,
                 text: "Staking unavailable"
+            }
+        }
+
+        if (!lstConfig.feature.unbond) {
+            return {
+                enabled: false,
+                text: "Unstaking unavailable"
             }
         }
 
@@ -221,7 +236,7 @@ const FormUnion = (props: Props) => {
             }
         }
 
-        if (inputAmount < lstConfig.minBond && operation === "bond") {
+        if (inputAmount < lstConfig.minBond) {
             return {
                 enabled: false,
                 text: `Minimum amount is ${lstConfig.minBond}`
@@ -271,9 +286,12 @@ const FormUnion = (props: Props) => {
             />
 
             {page === "bond" &&
-                <SubmitForm
-                    {...formProps}
-                />
+                <>
+                    <SubmitForm
+                        {...formProps}
+                    />
+                    <div className="mt-4 text-gray-500 text-center text-xs font-semibold">Staking is currently unavailable. Visit <Link href="https://app.union.build/stake" target="_blank" className="text-blue-500 hover:underline">Union App</Link> to manage your staking</div>
+                </>
             }
 
             {page === "unbond" &&
@@ -289,6 +307,7 @@ const FormUnion = (props: Props) => {
                         :
                         <UnbondNow />
                     }
+                    <div className="mt-4 text-gray-500 text-center text-xs font-semibold">Staking is currently unavailable. Visit <Link href="https://app.union.build/stake" target="_blank" className="text-blue-500 hover:underline">Union App</Link> to manage your staking</div>
                 </>
             }
 
