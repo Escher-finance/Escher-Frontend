@@ -170,6 +170,13 @@ const FormUnion = (props: Props) => {
             }
         }
 
+        if (operation === "unbond") {
+            return {
+                enabled: false,
+                text: "Unstaking unavailable"
+            }
+        }
+
         // return {
         //     enabled,
         //     text
@@ -199,7 +206,7 @@ const FormUnion = (props: Props) => {
             }
         }
 
-        if (operation === "unbond" && !lstConfig.feature.unbond) {
+        if (!lstConfig.feature.unbond) {
             return {
                 enabled: false,
                 text: "Unstaking unavailable"
