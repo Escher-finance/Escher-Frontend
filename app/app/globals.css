@@ -224,4 +224,25 @@
   button {
     @apply cursor-pointer;
   }
+
+  @keyframes float {
+    0% { transform: translateY(0px) translateX(0px); }
+    33% { transform: translateY(-20px) translateX(10px); }
+    66% { transform: translateY(10px) translateX(-15px); }
+    100% { transform: translateY(0px) translateX(0px); }
+  }
+
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 15s ease-in-out infinite;
+    animation-delay: -5s;
+  }
+
+  .animate-float-slow {
+    animation: float 20s ease-in-out infinite;
+    animation-delay: -10s;
+  }
 }

@@ -1,14 +1,8 @@
-import AppLayout from "@/components/global/appLayout";
-import WalletModal from "@/components/modal/walletModal/walletModal";
-import { EscherProvider } from "@/components/providers/escherProvider";
-import { ThemeProvider } from "@/components/providers/themeProvider";
 import { APP_CONFIG } from "@/configs/app";
-import { Analytics } from "@vercel/analytics/react";
+import ShutdownView from "@/components/ShutdownView";
 import type { Metadata } from "next";
 import { Funnel_Display, Inter } from "next/font/google";
-import { Toaster } from "sonner";
 import "./globals.css";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: (APP_CONFIG.network === "mainnet") ? "Escher App" : "Testnet Escher App",
@@ -44,38 +38,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  if (APP_CONFIG.isMaintenance) {
-    return (
-      <></>
-    );
-  }
-
   return (
     <html lang="en">
-      <head>
-        <Script strategy="beforeInteractive" id="test">
-          {`globalThis.Browser = { T: () => {} };`}
-        </Script>
-      </head>
-
-      <body
-        className={`${inter.variable} ${funnelDisplay.variable} font-inter antialiased bg-white dark:bg-black min-h-screen`}
-      >
-        <div className="flex bg-escher-electricblue text-white justify-center text-sm font-medium py-3">
-          ⚠️ Our Liquid Staking service is shutting down on April 1st. Please withdraw your funds before access ends. Read the full announcement
-          <a href="https://x.com/escher_fi/status/2034694326857486843" target="_blank" className="font-semibold underline ml-1 underline-offset-2">here ↗</a>
-        </div>
-        {/* {children} */}
-        <ThemeProvider>
-          <EscherProvider>
-            <AppLayout>
-              {children}
-              <WalletModal />
-            </AppLayout>
-          </EscherProvider>
-          <Toaster richColors />
-          <Analytics />
-        </ThemeProvider>
+      <body className={`${inter.variable} ${funnelDisplay.variable} font-inter antialiased`}>
+        <ShutdownView />
       </body>
     </html>
   );
